@@ -1,26 +1,59 @@
+import router from 'next/router';
 import * as React from 'react';
+import { useDispatch } from 'react-redux';
 
 import Layout from '@/components/layout/Layout';
-import ArrowLink from '@/components/links/ArrowLink';
 import ButtonLink from '@/components/links/ButtonLink';
-import UnderlineLink from '@/components/links/UnderlineLink';
-import UnstyledLink from '@/components/links/UnstyledLink';
 import Seo from '@/components/Seo';
 
-/**
- * SVGR Support
- * Caveat: No React Props Type.
- *
- * You can override the next-env if the type is important to you
- * @see https://stackoverflow.com/questions/68103844/how-to-override-next-js-svg-module-declaration
- */
-import Vercel from '~/svg/Vercel.svg';
+import { setSubject } from '@/store/subjectSlice';
 
-// !STARTERCONF -> Select !STARTERCONF and CMD + SHIFT + F
-// Before you begin editing, follow all comments with `STARTERCONF`,
-// to customize the default configuration.
+const subjects = [
+  { id: 1, name: 'GPT for Work' },
+  { id: 2, name: 'Python Programming' },
+  { id: 3, name: 'Smart Contracts' },
+];
+
+const topics = [
+  { id: 1, name: 'Topic 1' },
+  { id: 2, name: 'Topic 2' },
+  { id: 3, name: 'Topic 3' },
+];
 
 export default function HomePage() {
+  const [isModalOpen, setIsModalOpen] = React.useState(false);
+  const [selectedSubject, setSelectedSubject] = React.useState(null);
+  const [selectedProficiency, setSelectedProficiency] = React.useState(null);
+  const [currentStep, setCurrentStep] = React.useState(1);
+  const dispatch = useDispatch();
+
+  function openModal(subject: React.SetStateAction<null>) {
+    setSelectedSubject(subject);
+    setIsModalOpen(true);
+  }
+
+  function closeModal() {
+    setIsModalOpen(false);
+  }
+
+  function handleProficiencySelected(proficiency, topic) {
+    setIsModalOpen(false);
+    setCurrentStep(1);
+    dispatch(
+      setSubject({
+        subject: selectedSubject.name,
+        proficiency,
+        topic: topic
+      })
+    );
+    router.push('/learn');
+  }
+
+  function setProficiencyAndProceed(proficiency) {
+    setSelectedProficiency(proficiency);
+    setCurrentStep(2);
+  }
+
   return (
     <Layout>
       {/* <Seo templateTitle='Home' /> */}
@@ -29,42 +62,77 @@ export default function HomePage() {
       <main>
         <section className='bg-white'>
           <div className='layout relative flex min-h-screen flex-col items-center justify-center py-12 text-center'>
-            <Vercel className='text-5xl' />
             <h1 className='mt-4'>
-              Next.js + Tailwind CSS + TypeScript Starter
+              GigaBrain University
             </h1>
             <p className='mt-2 text-sm text-gray-800'>
-              A starter for Next.js, Tailwind CSS, and TypeScript with Absolute
-              Import, Seo, Link component, pre-configured with Husky{' '}
-            </p>
-            <p className='mt-2 text-sm text-gray-700'>
-              <ArrowLink href='https://github.com/theodorusclarence/ts-nextjs-tailwind-starter'>
-                See the repository
-              </ArrowLink>
+            Select the subject you wish to learn today
             </p>
 
-            <ButtonLink className='mt-6' href='/components' variant='light'>
-              See all components
-            </ButtonLink>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 pt-8">
+              {subjects.map((subject) => (
+              <div key={subject.id}>
+                <ButtonLink 
+                  variant="primary" 
+                  href="" 
+                  className="w-full h-40 bg-green-200 rounded-lg flex items-center justify-center text-black text-xl font-semibold cursor-pointer transform transition duration-300 ease-in-out hover:scale-110 m-5"
+                  onClick={() => openModal(subject)}
+                  >
+                  {subject.name}
+                </ButtonLink>
+              </div>
+              ))}
+            </div>
 
-            <UnstyledLink
-              href='https://vercel.com/new/git/external?repository-url=https%3A%2F%2Fgithub.com%2Ftheodorusclarence%2Fts-nextjs-tailwind-starter'
-              className='mt-4'
-            >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                width='92'
-                height='32'
-                src='https://vercel.com/button'
-                alt='Deploy with Vercel'
-              />
-            </UnstyledLink>
+            {isModalOpen && (
+              <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50">
+                <div className="bg-white rounded-lg p-8 relative">
+                <div className="absolute top-0 right-0 cursor-pointer" onClick={closeModal}>X</div>
+                  <h2 className="text-2xl font-bold mb-4">
+                    Select your proficiency level for {selectedSubject?.name}
+                  </h2>
+                  <div className="flex flex-wrap justify-center">
+                    <button
+                      onClick={() => setProficiencyAndProceed('beginner')}
+                      className="bg-green-500 text-white px-4 py-2 rounded-lg m-2 bg-blue-500 hover:bg-yellow-500 transition-colors duration-500 ease-in-out"
+                    >
+                      Beginner
+                    </button>
+                    <button
+                      onClick={() => setProficiencyAndProceed('intermediate')}
+                      className="bg-blue-500 text-white px-4 py-2 rounded-lg m-2 bg-blue-500 hover:bg-yellow-500 transition-colors duration-500 ease-in-out"
+                    >
+                      Intermediate
+                    </button>
+                    <button
+                      onClick={() => setProficiencyAndProceed('advanced')}
+                      className="bg-red-500 text-white px-4 py-2 rounded-lg m-2 bg-blue-500 hover:bg-yellow-500 transition-colors duration-500 ease-in-out"
+                    >
+                      Advanced
+                    </button>
+                  </div>
+                  {currentStep === 2 && (
+              <div>
+                <h2 className="text-2xl font-bold mb-4">Select a topic to start learning</h2>
+                <div className="flex flex-wrap justify-center">
+                  {topics.map((topic) => (
+                    <button
+                      key={topic.id}
+                      onClick={() => handleProficiencySelected(selectedProficiency, topic.name)}
+                      className="bg-green-500 text-white px-4 py-2 rounded-lg m-2"
+                    >
+                      {topic.name}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
 
+                </div>
+              </div>
+            )}
             <footer className='absolute bottom-2 text-gray-700'>
-              © {new Date().getFullYear()} By{' '}
-              <UnderlineLink href='https://theodorusclarence.com?ref=tsnextstarter'>
-                Theodorus Clarence
-              </UnderlineLink>
+              © {new Date().getFullYear()}
             </footer>
           </div>
         </section>
