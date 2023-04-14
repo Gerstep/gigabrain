@@ -8,16 +8,35 @@ import type Message from '@/components/Agent'
 import Agent from '@/components/Agent';
 import Button from '@/components/buttons/Button';
 import Layout from '@/components/layout/Layout';
+import UnderlineLink from '@/components/links/UnderlineLink';
 import Window from '@/components/Messages';
 import Seo from '@/components/Seo';
 
 import { RootState } from '@/store/store';
 
+import { blockchainTopics } from '@/utils/topics';
+
+interface Progress {
+  topic: string,
+  percentage: number,
+};
+
+const defaultProgress: Progress = {
+  topic: 'Blockchain fundamentals',
+  percentage: 0,
+};
+
 export default function Learn() {
+  console.log(blockchainTopics[0].category)
   const router = useRouter();
   const { subject, proficiency, topic } = useSelector((state: RootState) => state.subject);
   const [, setAgent] = React.useState<Agent | null>(null);
   const [messages, setMessages] = React.useState<Message[]>([]);
+  const [progress, setProgress] = React.useState<Progress>(defaultProgress);
+
+  const updateProgress = (newTopic: string, newPercentage: number) => {
+    setProgress({ topic: newTopic, percentage: newPercentage });
+  }
 
   useEffect(() => {
     if (!subject || !proficiency) {
@@ -52,18 +71,24 @@ export default function Learn() {
             <p className="mr-2 font-bold font-mon">Proficiency:</p>
             <p className='block'>{proficiency}</p>
           </div>
+          <div>
+            <p className="mr-2 font-bold font-mon">Current Progress:</p>
+            <p className='block'>{progress.percentage}%</p>
+          </div>
           <div className='mr-7'>
-            <p className="mr-2 font-bold font-mon">Topic:</p>
+            <p className="mr-2 font-bold font-mon">Current Topic:</p>
             <p className='block'>{topic}</p>
           </div>
         </div>
         <div className='layout relative flex flex-col items-center justify-center py-12 text-center'>
-        <p>
-          <Window messages={messages} />
-        </p>
+          {progress.percentage === 0 && ( <ShowTopics blockchainTopics={blockchainTopics} /> )}
+          {progress.percentage > 0 && ( <Window messages={messages} /> )}
         </div>
+
+        {/* Add control block here with chat input, and contexual buttons */}
         <div className='flex items-center justify-center bg-gray-200 px-4 py-2'>
           <Button onClick={callAgent}>Call Agent</Button>
+          <Button className='m-4' onClick={() => updateProgress('block', progress.percentage+1)}>Inc progress</Button>
         </div>
       </section>
     </main>
@@ -71,7 +96,31 @@ export default function Learn() {
   );
 };
 
+const ShowTopics = ({blockchainTopics}) => {
+  return(
+    <div className="container mx-auto">
+      <h1 className="text-3xl font-bold text-center mb-8">Welcome! To start, choose a topic:</h1>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {blockchainTopics.map((category, index) => (
+          <div key={index} className="bg-white p-4 rounded-md shadow-md">
+            <h2 className="text-xl font-bold mb-2">{category.category}</h2>
+            <div className="list-disc list-inside text-left">
+              {category.topics.map((topic, index) => (
+                <div className="pt-1" key={index}>
+                  <UnderlineLink href="/">
+                  {topic}
+                  </UnderlineLink>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
 
+export { ShowTopics }
 /* 
 
 Implement:
@@ -81,78 +130,5 @@ Implement:
 [ ] Text input message type 
 [ ] System instructions for the user
 [ ] 
-
-Topics
-
-Blockchain fundamentals:
-
-Distributed ledger technology (DLT)
-Consensus mechanisms (Proof of Work, Proof of Stake, etc.)
-Tokenization concepts (tokens, ICOs, NFTs, etc.)
-Blockchain types (public, private, consortium, etc.)
-Smart contract platforms:
-
-Ethereum (most popular)
-Binance Smart Chain
-Cardano
-Solana
-Polkadot
-Avalanche
-Other emerging platforms
-Programming languages and tools:
-
-Solidity (most popular for Ethereum)
-Vyper (alternative for Ethereum)
-Rust (for Solana and Polkadot)
-Plutus (for Cardano)
-Development frameworks (Truffle, Hardhat, etc.)
-Integrated development environment (IDE) options (e.g., Remix)
-Smart contract design patterns and best practices:
-
-Contract structure and organization
-Function visibility and access control
-Reentrancy prevention
-Error handling and exception management
-Gas optimization
-Upgradeability and modularity
-Smart contract security:
-
-Common vulnerabilities (reentrancy attacks, integer overflows, etc.)
-Security audits and tools (e.g., Slither, Mythril, OpenZeppelin)
-Secure coding practices
-Formal verification
-Testing and deployment:
-
-Writing unit and integration tests
-Local blockchain setup (e.g., Ganache)
-Test networks (Ropsten, Rinkeby, Kovan, etc.)
-Deployment to mainnet
-Decentralized application (DApp) integration:
-
-Front-end frameworks (React, Vue, Angular, etc.)
-Web3.js, ethers.js, or other blockchain interaction libraries
-Decentralized storage solutions (e.g., IPFS, Filecoin)
-Decentralized identity (e.g., DID)
-Standards and interoperability:
-
-ERC20, ERC721, ERC1155 token standards
-EIPs (Ethereum Improvement Proposals)
-Cross-chain communication and bridges
-DeFi (Decentralized Finance) concepts:
-
-Decentralized exchanges (DEXes)
-Lending platforms
-Yield farming
-Stablecoins
-Oracles and data providers
-Liquidity pools
-Legal, regulatory, and compliance aspects:
-
-Smart contract legal implications
-Security and utility tokens
-Data privacy regulations (e.g., GDPR)
-Anti-money laundering (AML) and know your customer (KYC) aspects
-
-
 
 */

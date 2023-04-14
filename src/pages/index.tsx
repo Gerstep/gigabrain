@@ -10,24 +10,18 @@ import Seo from '@/components/Seo';
 import { setSubject } from '@/store/subjectSlice';
 
 const subjects = [
-  { id: 1, name: 'GPT for Work' },
-  { id: 2, name: 'Python Programming' },
-  { id: 3, name: 'Smart Contracts' },
-  { id: 4, name: 'Corporate Law' },
-  { id: 5, name: 'Digital Marketing' },
+  { id: 1, name: 'Blockchain Development', status: 'open' },
+  { id: 2, name: 'Python Programming', status: 'closed' },
+  { id: 3, name: 'AI for work', status: 'closed' },
+  { id: 4, name: 'Corporate Law', status: 'closed' },
+  { id: 5, name: 'Digital Marketing', status: 'closed' },
 ];
 
-const topics = [
-  { id: 1, name: 'Topic 1' },
-  { id: 2, name: 'Topic 2' },
-  { id: 3, name: 'Topic 3' },
-];
 
 export default function HomePage() {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   const [selectedSubject, setSelectedSubject] = React.useState(null);
-  const [selectedProficiency, setSelectedProficiency] = React.useState(null);
-  const [currentStep, setCurrentStep] = React.useState(1);
+  const [, setSelectedProficiency] = React.useState(null);
   const dispatch = useDispatch();
 
   function openModal(subject: React.SetStateAction<null>) {
@@ -39,22 +33,15 @@ export default function HomePage() {
     setIsModalOpen(false);
   }
 
-  function handleProficiencySelected(proficiency, topic) {
-    setIsModalOpen(false);
-    setCurrentStep(1);
+  function setProficiencyAndProceed(proficiency) {
+    setSelectedProficiency(proficiency);
     dispatch(
       setSubject({
         subject: selectedSubject.name,
-        proficiency,
-        topic: topic
+        proficiency
       })
     );
     router.push('/learn');
-  }
-
-  function setProficiencyAndProceed(proficiency) {
-    setSelectedProficiency(proficiency);
-    setCurrentStep(2);
   }
 
   return (
@@ -86,10 +73,12 @@ export default function HomePage() {
                 <ButtonLink 
                   variant="primary" 
                   href="" 
-                  className="w-full h-40 bg-green-200 rounded-lg flex items-center justify-center text-black text-xl font-semibold cursor-pointer transform transition duration-300 ease-in-out hover:scale-110 m-5"
+                  className="w-full h-40 bg-green-200 rounded-lg flex flex-col items-center justify-center text-black text-xl font-semibold cursor-pointer transform transition duration-300 ease-in-out hover:scale-110 m-5"
                   onClick={() => openModal(subject)}
+                  style={subject.status !== 'open' ? { pointerEvents: 'none' } : {}}
                   >
-                  {subject.name}
+                  <span className=''>{subject.name}</span>
+                  <span className='font-normal pt-5'>(course {subject.status})</span>
                 </ButtonLink>
               </div>
               ))}
@@ -122,27 +111,11 @@ export default function HomePage() {
                       Advanced
                     </button>
                   </div>
-                  {currentStep === 2 && (
-                    <div>
-                      <h2 className="text-2xl font-bold mb-4">Select a topic to start learning</h2>
-                      <div className="flex flex-wrap justify-center">
-                        {topics.map((topic) => (
-                          <button
-                            key={topic.id}
-                            onClick={() => handleProficiencySelected(selectedProficiency, topic.name)}
-                            className="bg-green-500 text-white px-4 py-2 rounded-lg m-2"
-                          >
-                            {topic.name}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-                    )}
                 </div>
               </div>
             )}
             <footer className='absolute bottom-2 text-gray-700'>
-              © {new Date().getFullYear()}
+              © {new Date().getFullYear()} GigaBrain Academy
             </footer>
           </div>
         </section>
