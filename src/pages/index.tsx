@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import router from 'next/router';
 import * as React from 'react';
 import { useDispatch } from 'react-redux';
@@ -12,6 +13,8 @@ const subjects = [
   { id: 1, name: 'GPT for Work' },
   { id: 2, name: 'Python Programming' },
   { id: 3, name: 'Smart Contracts' },
+  { id: 4, name: 'Corporate Law' },
+  { id: 5, name: 'Digital Marketing' },
 ];
 
 const topics = [
@@ -62,11 +65,19 @@ export default function HomePage() {
       <main>
         <section className='bg-white'>
           <div className='layout relative flex min-h-screen flex-col items-center justify-center py-12 text-center'>
+            <div className='rounded-full overflow-hidden'>
+              <Image 
+              src="/images/gigabrain.png"
+              alt="My image"
+              width={500}
+              height={500}
+            />
+            </div>
             <h1 className='mt-4'>
               GigaBrain University
             </h1>
             <p className='mt-2 text-sm text-gray-800'>
-            Select the subject you wish to learn today
+            Select the subject you wish to study today
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 pt-8">
@@ -112,22 +123,21 @@ export default function HomePage() {
                     </button>
                   </div>
                   {currentStep === 2 && (
-              <div>
-                <h2 className="text-2xl font-bold mb-4">Select a topic to start learning</h2>
-                <div className="flex flex-wrap justify-center">
-                  {topics.map((topic) => (
-                    <button
-                      key={topic.id}
-                      onClick={() => handleProficiencySelected(selectedProficiency, topic.name)}
-                      className="bg-green-500 text-white px-4 py-2 rounded-lg m-2"
-                    >
-                      {topic.name}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
-
+                    <div>
+                      <h2 className="text-2xl font-bold mb-4">Select a topic to start learning</h2>
+                      <div className="flex flex-wrap justify-center">
+                        {topics.map((topic) => (
+                          <button
+                            key={topic.id}
+                            onClick={() => handleProficiencySelected(selectedProficiency, topic.name)}
+                            className="bg-green-500 text-white px-4 py-2 rounded-lg m-2"
+                          >
+                            {topic.name}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                    )}
                 </div>
               </div>
             )}

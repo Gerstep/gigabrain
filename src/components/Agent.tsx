@@ -1,7 +1,5 @@
+/* eslint-disable no-console */
 import axios from "axios";
-
-
-
 
 export interface Message {
   type: "goal" | "thinking" | "task" | "action" | "system";

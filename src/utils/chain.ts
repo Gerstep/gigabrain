@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { LLMChain } from "langchain/chains";
 import { OpenAI } from "langchain/llms/openai";
 import { PromptTemplate } from "langchain/prompts";

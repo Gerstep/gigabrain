@@ -13,7 +13,7 @@ const handler = async (request: NextRequest) => {
     const { subject } = (await request.json()) as RequestBody;
     const newTask = await startAgent(subject);
     return NextResponse.json({ newTask });
-  } catch (e) {}
+  } catch (e) { /* empty */ }
 
   return NextResponse.error();
 };
