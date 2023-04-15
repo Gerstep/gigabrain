@@ -15,6 +15,7 @@ export const ProgressContext = React.createContext<{
   updateProgress: (newTopic: string, newPercentage: number) => void;
 }>({
   progress: defaultProgress,
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   updateProgress: () => {},
 });
 
