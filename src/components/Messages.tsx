@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 
 import type { Message } from '@/components/Agent';
 import ButtonLink from "@/components/links/ButtonLink";
-import Expand from "@/components/motions/Expand";
+import Expand from "@/components/motions/expand";
 
 interface Window {
   messages: Message[];
