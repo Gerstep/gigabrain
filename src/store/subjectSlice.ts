@@ -4,6 +4,7 @@ const initialState = {
   subject: '',
   proficiency: '',
   topic: '',
+  progress: [],
 };
 
 const subjectSlice = createSlice({
@@ -15,8 +16,12 @@ const subjectSlice = createSlice({
       state.proficiency = action.payload.proficiency;
       state.topic = action.payload.topic;
     },
+    setProgress: (state, action) => {
+      const { topic  } = action.payload;
+      state.progress.push({ topic });
+    },
   },
 });
 
-export const { setSubject } = subjectSlice.actions;
+export const { setSubject, setProgress } = subjectSlice.actions;
 export default subjectSlice.reducer;
