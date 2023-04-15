@@ -42,11 +42,11 @@ class Agent {
     }
   }
 
-  async getInitialTask(): Promise<string>{
+  async getInitialTask(): Promise<string[]>{
     const res = await axios.post(`/api/chain`, {
       subject: this.subject
     })
-    return res.data.newTask as string;
+    return res.data.newTask as string[];
   }
 
   sendTopicMessage(value : string) {
