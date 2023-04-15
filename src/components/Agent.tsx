@@ -2,16 +2,17 @@
 import axios from "axios";
 
 export interface Message {
-  type: "goal" | "thinking" | "task" | "action" | "system";
+  type: "thinking" | "action" | "system" | "topic";
   info?: string;
   value: string;
+  actions?: string[];
 }
 
 class Agent {
   subject: string;
   proficiency: string;
   topic: string;
-  task = '';
+  tasks: string[] = [];
   sendMessage: (message: Message) => void;
 
   constructor(
@@ -28,8 +29,13 @@ class Agent {
 
   async run() {
     try {
-      this.task = await this.getInitialTask();
-      await this.sendSystemMessage(this.task);
+      this.sendThinkingMessage();
+
+      this.tasks = await this.getInitialTask();
+      for (const task of this.tasks) {
+        await new Promise((r) => setTimeout(r, 800));
+        this.sendTopicMessage(task);
+      }
     } catch (e) {
       console.log(e);
       return;
@@ -43,9 +49,12 @@ class Agent {
     return res.data.newTask as string;
   }
 
-  sendSystemMessage(value : string) {
-    this.sendMessage({ type: "system", value: value });
-    console.log('IM CALLED!!! WTIH VALUE ' + value)
+  sendTopicMessage(value : string) {
+    this.sendMessage({ type: "topic", value: value, actions: ["Learn more → "] });
+  }
+
+  sendThinkingMessage() {
+    this.sendMessage({ type: "thinking", value: "" });
   }
 }
 

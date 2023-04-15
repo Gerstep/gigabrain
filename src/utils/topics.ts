@@ -3,9 +3,9 @@ export const blockchainTopics = [
     category: "Blockchain fundamentals",
     topics: [
       "Distributed ledger technology (DLT)",
-      "Consensus mechanisms (Proof of Work, Proof of Stake, etc.)",
-      "Tokenization concepts (tokens, ICOs, NFTs, etc.)",
-      "Blockchain types (public, private, consortium, etc.)",
+      "Consensus mechanisms",
+      "Tokenization concepts",
+      "Blockchain types",
     ],
   },
   {
@@ -26,13 +26,13 @@ export const blockchainTopics = [
       "Solidity (most popular for Ethereum)",
       "Vyper (alternative for Ethereum)",
       "Rust (for Solana and Polkadot)",
-      "Plutus (for Cardano)",
-      "Development frameworks (Truffle, Hardhat, etc.)",
-      "Integrated development environment (IDE) options (e.g., Remix)",
+      "Plutus",
+      "Development frameworks",
+      "Integrated development environments",
     ],
   },
   {
-    category: "Smart contract design patterns and best practices:",
+    category: "Smart contract design patterns and best practices",
     topics: [
       "Contract structure and organization",
       "Function visibility and access control",
@@ -45,8 +45,8 @@ export const blockchainTopics = [
   {
     category: "Smart contract security",
     topics: [
-      "Common vulnerabilities (reentrancy attacks, integer overflows, etc.)",
-      "Security audits and tools (e.g., Slither, Mythril, OpenZeppelin)",
+      "Common vulnerabilities (reentrancy attacks, integer overflows",
+      "Security audits and tools",
       "Secure coding practices",
       "Formal verification",
     ],
@@ -55,18 +55,18 @@ export const blockchainTopics = [
     category: "Testing and deployment",
     topics: [
       "Writing unit and integration tests",
-      "Local blockchain setup (e.g., Ganache)",
-      "Test networks (Ropsten, Rinkeby, Kovan, etc.)",
+      "Local blockchain setup",
+      "Test networks",
       "Deployment to mainnet",
     ],
   },
   {
     category: "Decentralized application (DApp) integration",
     topics: [
-      "Front-end frameworks (React, Vue, Angular, etc.)",
-      "Web3.js, ethers.js, or other blockchain interaction libraries",
-      "Decentralized storage solutions (e.g., IPFS, Filecoin)",
-      "Decentralized identity (e.g., DID)",
+      "Front-end frameworks",
+      "Web3.js, ethers.js",
+      "Decentralized storage solutions",
+      "Decentralized identity",
     ],
   },
   {
@@ -93,8 +93,8 @@ export const blockchainTopics = [
     topics: [
       "Smart contract legal implications",
       "Security and utility tokens",
-      "Data privacy regulations (e.g., GDPR)",
-      "Anti-money laundering (AML) and know your customer (KYC) aspects",
+      "Data privacy regulations",
+      "Anti-money laundering (AML) and know your customer (KYC)",
     ],
   },
 ];

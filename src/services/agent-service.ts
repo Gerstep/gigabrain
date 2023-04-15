@@ -1,14 +1,14 @@
 /* eslint-disable no-console */
 import {
   createModel,
-  startGoalAgent,
-} from "../utils/chain";
+  extractArray,
+  startGoalAgent} from "../utils/chain";
 
 export async function startAgent(subject: string) {
   const completion = await startGoalAgent(createModel(), subject);
   console.log(typeof completion.text);
   console.log("Completion:" + (completion.text as string));
-  return completion.text as string;
+  return extractArray(completion.text as string);
 }
 
 // export async function createAgent(

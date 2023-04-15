@@ -1,4 +1,5 @@
 /* eslint-disable no-console */
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import * as React from 'react';
 import { useEffect } from 'react';
@@ -32,8 +33,12 @@ export default function Learn() {
 
   const currentTopic = progress.length > 0 ? progress[progress.length - 1].topic : "No topic";
 
-  const handleSetProgress = (topicName: string, percentage: number) => {
-    dispatch(setProgress({ topic: topicName, percentage }));
+  const handleSetProgress = (topicName: string) => {
+    dispatch(setProgress({ topic: topicName }));
+  };
+
+  const handleReSetProgress = () => {
+    dispatch(setProgress({ topic: "No topic" }));
   };
 
   useEffect(() => {
@@ -43,7 +48,7 @@ export default function Learn() {
   }, [subject, proficiency, router]);
 
   const callAgent = () => {
-    const agent = new Agent(subject, proficiency, topic, handleAddMessage);
+    const agent = new Agent(currentTopic, proficiency, currentTopic, handleAddMessage);
     setAgent(agent);
     agent.run();
   }
@@ -65,7 +70,11 @@ export default function Learn() {
           </div>
           <div className='ml-7'>
             <span className="mr-2 font-bold font-mon">Subject:</span>
-            <span className='block'>{subject}</span>
+            <span className='block'>
+              <Link href="" onClick={() => handleReSetProgress()} className='underline'>
+                {subject}
+              </Link>
+            </span>
           </div>
           <div>
             <p className="mr-2 font-bold font-mon">Proficiency:</p>
@@ -80,7 +89,7 @@ export default function Learn() {
             <p className='block'>{currentTopic}</p>
           </div>
         </div>
-        <div className='layout relative flex flex-col items-center justify-center py-12 text-center'>
+        <div className='layout w-full relative flex flex-col items-center justify-center py-12 text-center'>
           {currentTopic==="No topic" && (<ShowTopics blockchainTopics={blockchainTopics} />)}
           {currentTopic!="No topic" && (
             <Study>
@@ -91,8 +100,7 @@ export default function Learn() {
 
         {/* Add control block here with chat input, and contexual buttons */}
         <div className='flex items-center justify-center bg-gray-200 px-4 py-2'>
-          <Button onClick={callAgent}>Call Agent</Button>
-          <Button className='m-4' onClick={() => handleSetProgress(currentTopic, progress.percentage + 1)}>Inc progress</Button>
+          <Button onClick={callAgent}>Start Exploring {currentTopic}</Button>
         </div>
       </section>
     </main>

@@ -18,7 +18,7 @@ const subjectSlice = createSlice({
     },
     setProgress: (state, action) => {
       const { topic  } = action.payload;
-      state.progress.push({ topic });
+      state.progress.length > 0 ? state.progress[state.progress.length - 1] = { topic } : state.progress.push({ topic });
     },
   },
 });
