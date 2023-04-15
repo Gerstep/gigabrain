@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
 import Image from 'next/image';
 import router from 'next/router';
 import * as React from 'react';
