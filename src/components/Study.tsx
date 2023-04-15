@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 import * as React from 'react';
 import { useSelector } from 'react-redux';
 
