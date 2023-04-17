@@ -6,6 +6,8 @@ import type { Message } from '@/components/Agent';
 import Button from "@/components/buttons/Button";
 import Expand from "@/components/motions/expand";
 
+type AgentFunction = (action: string) => void;
+
 interface Window {
   messages: Message[];
 }
@@ -86,8 +88,11 @@ const Window = ( {
 
 const ShowMessage = (props: { 
   message: Message; 
-  callAgent: (action : string) => void; 
-  agent: (action: string) => void;
+  callAgent: AgentFunction; 
+  agent?: {
+    explore: AgentFunction;
+    answerTest: AgentFunction;
+  };
 }) => {
   return(
     <div className="mx-2 my-1 rounded-lg border-[2px] border-emerald-500 bg-emerald-100 p-1 font-mono text-sm hover:border-emerald-700 sm:mx-4 sm:p-3 sm:text-base flex flex-col">
