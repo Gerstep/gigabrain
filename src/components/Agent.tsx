@@ -2,7 +2,7 @@
 import axios from "axios";
 
 export interface Message {
-  type: "thinking" | "action" | "system" | "topic";
+  type: "thinking" | "action" | "system" | "topic" | "test" | "answer";
   info?: string;
   value: string;
   actions?: string[];
@@ -58,6 +58,11 @@ class Agent {
     }
   }
 
+  // get context (learned topics)
+  async test() {
+      this.sendTestMessage("test");
+  }
+
   async getInitialTask(): Promise<string[]>{
     const res = await axios.post(`/api/chain`, {
       subject: this.subject,
@@ -81,8 +86,12 @@ class Agent {
     this.sendMessage({ type: "thinking", value: "" });
   }
 
+  sendTestMessage(value : string) {
+    this.sendMessage({ type: "test", value: value, actions: ["A", "B", "C", "D"] });
+  }
+
   sendAnswerMessage(value : string) {
-    this.sendMessage({ type: "topic", value: value });
+    this.sendMessage({ type: "answer", value: value });
   }
 }
 

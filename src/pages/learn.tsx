@@ -34,7 +34,6 @@ const initialMessage = {
 
 
 export default function Learn() {
-  console.log(blockchainTopics[0].category)
   const dispatch = useDispatch();
   const router = useRouter();
   const { subject, proficiency, topic } = useSelector((state: RootState) => state.subject);
@@ -118,8 +117,8 @@ export default function Learn() {
           )}
           {agent && (
             <div className="flex flex-wrap pt-2">
-            <Button onClick={() => agent.run()}  className="mx-5 px-3 h-8 text-xs">Generate more topics</Button>
-            <Button onClick={() => agent.test()}  className="mx-5 px-3 h-8 text-xs">Test myself</Button>
+            <Button onClick={() => agent.run()}  className="mx-5 px-3 h-10 text-xs">Generate more questions</Button>
+            <Button onClick={() => agent.test()}  className="mx-5 px-3 h-10 text-xs">Test myself</Button>
             </div>
           )}
         </div>
@@ -136,9 +135,6 @@ const ShowTopics = ({blockchainTopics}) => {
   const handleSetProgress = (topicName: string) => {
     dispatch(setProgress({ topic: topicName }));
   };
-
-
-  console.log(progress)
 
   return(
     <div className="container mx-auto">
@@ -164,14 +160,3 @@ const ShowTopics = ({blockchainTopics}) => {
 }
 
 export { ShowTopics }
-/* 
-
-Implement:
-
-[ ] Educational Snippet message type 
-[ ] Test message type 
-[ ] Text input message type 
-[ ] System instructions for the user
-[ ] 
-
-*/

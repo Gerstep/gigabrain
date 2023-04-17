@@ -71,9 +71,9 @@ const Window = ( {
           </>
         )}
           {messages.map((message, index) => (
-            <Expand delay={0.5} type="spring" key={`${index}-${message.type}`}>
+            <>
               <ShowMessage message={message} callAgent={callAgent} agent={agent} />
-            </Expand>
+            </>
           ))}
       </div>
     </div>
@@ -99,7 +99,10 @@ const ShowMessage = (props: {
           {props.message.actions.map((action, index) => (
             <div key={index} className="mr-2 mb-2">
               {props.agent && action === "ask" && props.message.type === "topic" && (
-                <Button onClick={() => props.agent.explore(props.message.value)}  className="px-3 h-6 text-xs">Explore more</Button>
+                <Button onClick={() => props.agent.explore(props.message.value)}  className="px-3 h-6 text-xs">Learn → </Button>
+              )}
+              {props.agent && props.message.type === "test" && (
+                <Button onClick={() => props.agent.answer(action)}  className="px-3 h-6 text-xs bg-amber-600 border-orange-700 hover:bg-amber-900">Answer {action}</Button>
               )}
               {!props.agent && (
                 <Button onClick={() => props.callAgent(action)} className="px-3 h-6 text-xs">
@@ -122,6 +125,10 @@ const getMessagePrefix = (message: Message) => {
       return "Added task:";
     case "thinking":
       return "Thinking...";
+    case "answer":
+      return "Answer:";
+    case "test":
+      return "Test yourself:";
     case "action":
       return message.info ? message.info : "Executing:";
   }

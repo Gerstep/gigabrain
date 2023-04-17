@@ -58,8 +58,8 @@ export default function HomePage() {
               <Image 
               src="/images/gigabrain.png"
               alt="My image"
-              width={500}
-              height={500}
+              width={400}
+              height={400}
             />
             </div>
             <h1 className='mt-4'>
