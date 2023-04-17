@@ -11,9 +11,9 @@ export const config = {
 const handler = async (request: NextRequest) => {
   try {
     const { subject, topic } = (await request.json()) as RequestBody;
-    console.log('starting agent with ' + subject + 
-    ' and ' + topic)
-    const newTask = await startAgent(subject, topic);
+    console.log('starting agent with ' + subject +
+      ' and ' + topic)
+    const newTask = await startAgent(subject as string, topic as string);
     return NextResponse.json({ newTask });
   } catch (e) { /* empty */ }
 

@@ -3,8 +3,9 @@ import {
   createModel,
   extractArray,
   startAnswerAgent,
-  startGoalAgent,  
-  startQuizAgent} from "../utils/chain";
+  startGoalAgent,
+  startQuizAgent
+} from "../utils/chain";
 
 export async function startAgent(subject: string, topic: string) {
   const completion = await startGoalAgent(createModel(), subject, topic);
