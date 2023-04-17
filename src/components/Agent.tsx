@@ -109,7 +109,7 @@ class Agent {
     const res = await axios.post(`/api/quiz`, {
       testSubject: testSubject
     })
-    return res.data.quiz as string;
+    return res.data.quiz as Quiz;
   }
 
   sendTopicMessage(value : string) {
