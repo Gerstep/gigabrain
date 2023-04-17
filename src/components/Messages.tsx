@@ -65,8 +65,11 @@ const Window = ( {
             <Expand delay={0.5} type="spring">
               <ShowMessage message={{
                 type: "system",
-                value: "Welcome to GigaBrain Academy 🤯"
-              }} />
+                value: "Welcome to GigaBrain Academy 🤯",
+                }}
+                callAgent={callAgent}
+                agent={agent}
+               />
             </Expand>
           </>
         )}
