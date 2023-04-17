@@ -98,7 +98,7 @@ const ShowMessage = (props: {
         <div className="flex flex-wrap pt-2">
           {props.message.actions.map((action, index) => (
             <div key={index} className="mr-2 mb-2">
-              {props.agent && (
+              {props.agent && action === "ask" && props.message.type === "topic" && (
                 <Button onClick={() => props.agent.explore(props.message.value)}  className="px-3 h-6 text-xs">Explore more</Button>
               )}
               {!props.agent && (

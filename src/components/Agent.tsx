@@ -51,7 +51,7 @@ class Agent {
       this.sendThinkingMessage();
       this.answer = await this.getAnswer(question);
       console.log(' GOT ANSWER ::: ' + this.answer)
-      this.sendTopicMessage(this.answer);
+      this.sendAnswerMessage(this.answer);
     } catch (e) {
       console.log(e);
       return;
@@ -74,11 +74,15 @@ class Agent {
   }
 
   sendTopicMessage(value : string) {
-    this.sendMessage({ type: "topic", value: value, actions: ["answer"] });
+    this.sendMessage({ type: "topic", value: value, actions: ["ask"] });
   }
 
   sendThinkingMessage() {
     this.sendMessage({ type: "thinking", value: "" });
+  }
+
+  sendAnswerMessage(value : string) {
+    this.sendMessage({ type: "topic", value: value });
   }
 }
 

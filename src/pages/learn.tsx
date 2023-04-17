@@ -10,6 +10,7 @@ import { useDispatch } from 'react-redux';
 
 import type Message from '@/components/Agent'
 import Agent from '@/components/Agent';
+import Button from '@/components/buttons/Button';
 import Layout from '@/components/layout/Layout';
 import UnderlineLink from '@/components/links/UnderlineLink';
 import Messages from '@/components/Messages';
@@ -27,8 +28,7 @@ const initialMessage = {
   value: "Choose your action",
   actions: [
     "learn",
-    "test",
-    "ask"
+    "test"
   ]
 };
 
@@ -108,13 +108,20 @@ export default function Learn() {
           </div>
         </div>
         <div className='layout w-full relative flex flex-col items-center justify-center py-12 text-center'>
-          {currentTopic==="No topic" && (<ShowTopics blockchainTopics={blockchainTopics} />)}
+          {currentTopic==="No topic" && (
+            <ShowTopics blockchainTopics={blockchainTopics} />
+          )}
           {currentTopic!="No topic" && (
             <Study>
               <Messages messages={messages} callAgent={callAgent} agent={agent} />
             </Study>
           )}
-          {agent && (<p>agent exists</p>)}
+          {agent && (
+            <div className="flex flex-wrap pt-2">
+            <Button onClick={() => agent.run()}  className="mx-5 px-3 h-8 text-xs">Generate more topics</Button>
+            <Button onClick={() => agent.test()}  className="mx-5 px-3 h-8 text-xs">Test myself</Button>
+            </div>
+          )}
         </div>
       </section>
     </main>
