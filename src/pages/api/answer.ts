@@ -11,7 +11,7 @@ export const config = {
 const handler = async (request: NextRequest) => {
   try {
     const { question } = (await request.json()) as RequestBody;
-    const answer = await askAgent(question);
+    const answer = await askAgent(question as string);
     return NextResponse.json({ answer });
   } catch (e) { /* empty */ }
 
