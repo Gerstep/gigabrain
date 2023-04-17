@@ -11,21 +11,20 @@ export const blockchainTopics = [
   {
     category: "Smart contract platforms",
     topics: [
-      "Ethereum (most popular)",
+      "Ethereum",
       "Binance Smart Chain",
       "Cardano",
       "Solana",
       "Polkadot",
       "Avalanche",
-      "Other emerging platforms",
     ],
   },
   {
-    category: "Programming languages and tools",
+    category: "Smart contract programming languages",
     topics: [
-      "Solidity (most popular for Ethereum)",
-      "Vyper (alternative for Ethereum)",
-      "Rust (for Solana and Polkadot)",
+      "Solidity",
+      "Vyper",
+      "Rust",
       "Plutus",
       "Development frameworks",
       "Integrated development environments",

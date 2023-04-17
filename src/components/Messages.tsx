@@ -3,7 +3,7 @@ import * as React from 'react';
 import { useEffect, useRef, useState } from 'react';
 
 import type { Message } from '@/components/Agent';
-import ButtonLink from "@/components/links/ButtonLink";
+import Button from "@/components/buttons/Button";
 import Expand from "@/components/motions/expand";
 
 interface Window {
@@ -12,7 +12,7 @@ interface Window {
 
 const messageListId = "chat-window-message-list";
 
-const Window = ( {messages} : {messages: Message[]} ) => {
+const Window = ( {messages, callAgent} : {messages: Message[], callAgent: () => void} ) => {
   const [hasUserScrolled, setHasUserScrolled] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -51,10 +51,7 @@ const Window = ( {messages} : {messages: Message[]} ) => {
           onScroll={handleScroll}
           id={messageListId}
         >
-          {messages.map((message, index) => (
-            <ShowMessage key={`${index}-${message.type}`} message={message} />
-          ))}
-        {messages.length === 0 && (
+        {messages.length === 1 && (
           <>
             <Expand delay={0.5} type="spring">
               <ShowMessage message={{
@@ -62,47 +59,43 @@ const Window = ( {messages} : {messages: Message[]} ) => {
                 value: "Welcome to GigaBrain Academy 🤯"
               }} />
             </Expand>
-
-            <Expand delay={0.9} type="spring">
-              <ShowMessage message={{
-                type: "action",
-                value: "Choose your action",
-                actions: [
-                  "Learn Terms and Definitions",
-                  "Explore the Topic",
-                  "Test Yourself"
-                ]
-              }} />
-            </Expand>
           </>
         )}
+          {messages.map((message, index) => (
+            <Expand delay={0.5} type="spring" key={`${index}-${message.type}`}>
+              <ShowMessage message={message} callAgent={callAgent} />
+            </Expand>
+          ))}
       </div>
     </div>
     </>
   )
 }
 
-const ShowMessage = ({message} : {message : Message}) => {
+const ShowMessage = (props: { 
+  message: Message; 
+  callAgent: () => void; 
+}) => {
   return(
-    <>
-    <div className="mx-2 my-1 rounded-lg border-[2px] border-emerald-500 bg-emerald-100 p-1 font-mono text-sm hover:border-emerald-700 sm:mx-4 sm:p-3 sm:text-base"> 
-      <span className="mr-2 font-bold">🧪 {getMessagePrefix(message)}</span>
-      <div className="mb-2">
-        <span>{message.value}</span>
+    <div className="mx-2 my-1 rounded-lg border-[2px] border-emerald-500 bg-emerald-100 p-1 font-mono text-sm hover:border-emerald-700 sm:mx-4 sm:p-3 sm:text-base flex flex-col">
+      <div className="flex flex-wrap">
+        <span className="mr-2 font-bold">🧪 {getMessagePrefix(props.message)}</span>
+        <div className="mb-2 flex-1 text-left">
+          <span>{props.message.value}</span>
+        </div>
       </div>
-      {message.actions && (
-        <div className="flex flex-wrap">
-          {message.actions.map((action, index) => (
+      {props.message.actions && (
+        <div className="flex flex-wrap pt-2">
+          {props.message.actions.map((action, index) => (
             <div key={index} className="mr-2 mb-2">
-              <ButtonLink href="" className="px-3">
+              <Button onClick={() => props.callAgent()} className="px-3 h-6 text-xs">
                 {action}
-              </ButtonLink>
+              </Button>
             </div>
           ))}
         </div>
       )}
     </div>
-    </>
   )
 }
 

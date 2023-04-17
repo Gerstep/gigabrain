@@ -10,10 +10,9 @@ import { useDispatch } from 'react-redux';
 
 import type Message from '@/components/Agent'
 import Agent from '@/components/Agent';
-import Button from '@/components/buttons/Button';
 import Layout from '@/components/layout/Layout';
 import UnderlineLink from '@/components/links/UnderlineLink';
-import Window from '@/components/Messages';
+import Messages from '@/components/Messages';
 import Seo from '@/components/Seo';
 import Study from '@/components/Study';
 import TopMenu from '@/components/TopMenu';
@@ -22,6 +21,16 @@ import { RootState } from '@/store/store';
 import { setProgress } from '@/store/subjectSlice';
 
 import { blockchainTopics } from '@/utils/topics';
+
+const initialMessage = {
+  type: "action",
+  value: "Choose your action",
+  actions: [
+    "learn",
+    "test",
+    "ask"
+  ]
+};
 
 
 export default function Learn() {
@@ -44,6 +53,12 @@ export default function Learn() {
   };
 
   useEffect(() => {
+    if (!messages || messages.length === 0) {
+      setMessages([initialMessage]);
+    }
+  }, [messages]);
+
+  useEffect(() => {
     if (!subject || !proficiency) {
       router.push('/');
     }
@@ -56,7 +71,6 @@ export default function Learn() {
   }
 
   const handleAddMessage = (message : Message) => {
-    console.log(messages);
     setMessages((prev) => [...prev, message]);
   };
 
@@ -82,10 +96,6 @@ export default function Learn() {
             <p className="mr-2 font-bold font-mon">Proficiency:</p>
             <p className='block'>{proficiency}</p>
           </div>
-          <div>
-            <p className="mr-2 font-bold font-mon">Current Progress:</p>
-            <p className='block'>{progress.length}</p>
-          </div>
           <div className='mr-7'>
             <p className="mr-2 font-bold font-mon">Current Topic:</p>
             <p className='block'>{currentTopic}</p>
@@ -95,14 +105,9 @@ export default function Learn() {
           {currentTopic==="No topic" && (<ShowTopics blockchainTopics={blockchainTopics} />)}
           {currentTopic!="No topic" && (
             <Study>
-              <Window messages={messages} />
+              <Messages messages={messages} callAgent={callAgent} />
             </Study>
           )}
-        </div>
-
-        {/* Add control block here with chat input, and contexual buttons */}
-        <div className='flex items-center justify-center bg-gray-200 px-4 py-2'>
-          <Button onClick={callAgent}>Start Exploring {currentTopic}</Button>
         </div>
       </section>
     </main>

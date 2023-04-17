@@ -63,7 +63,7 @@ export default function HomePage() {
             />
             </div>
             <h1 className='mt-4'>
-              GigaBrain University
+              GigaBrain Academy
             </h1>
             <p className='mt-2 text-sm text-gray-800'>
             Select the subject you wish to study today
