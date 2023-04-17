@@ -12,18 +12,22 @@ class Agent {
   subject: string;
   proficiency: string;
   topic: string;
+  action: string;
   tasks: string[] = [];
+  answer: string | undefined;
   sendMessage: (message: Message) => void;
 
   constructor(
     subject: string,
     proficiency: string,
     topic: string,
+    action: string,
     addMessage: (message: Message) => void
   ){
     this.subject = subject;
     this.proficiency = proficiency;
     this.topic = topic;
+    this.action = action;
     this.sendMessage = addMessage;
   }
 
@@ -42,15 +46,35 @@ class Agent {
     }
   }
 
+  async explore(question : string) {
+    try {
+      this.sendThinkingMessage();
+      this.answer = await this.getAnswer(question);
+      console.log(' GOT ANSWER ::: ' + this.answer)
+      this.sendTopicMessage(this.answer);
+    } catch (e) {
+      console.log(e);
+      return;
+    }
+  }
+
   async getInitialTask(): Promise<string[]>{
     const res = await axios.post(`/api/chain`, {
-      subject: this.subject
+      subject: this.subject,
+      topic: this.topic
     })
     return res.data.newTask as string[];
   }
 
+  async getAnswer(question : string) {
+    const res = await axios.post(`/api/answer`, {
+      question: question
+    })
+    return res.data.answer as string;
+  }
+
   sendTopicMessage(value : string) {
-    this.sendMessage({ type: "topic", value: value, actions: ["Learn more → "] });
+    this.sendMessage({ type: "topic", value: value, actions: ["answer"] });
   }
 
   sendThinkingMessage() {

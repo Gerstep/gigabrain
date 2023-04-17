@@ -20,3 +20,7 @@ export const actionParser = StructuredOutputParser.fromZodSchema(
 export const tasksParser = StructuredOutputParser.fromZodSchema(
   z.array(z.string()).describe("A study plan")
 );
+
+export const answerParser = StructuredOutputParser.fromZodSchema(
+  z.string().describe("An answer to a question")
+);

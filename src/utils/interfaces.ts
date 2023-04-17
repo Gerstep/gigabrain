@@ -2,8 +2,10 @@ import type { ModelSettings } from "./types";
 
 export interface RequestBody {
   modelSettings: ModelSettings;
-  subject: string;
+  subject?: string;
+  topic?: string;
   task?: string;
+  question?: string;
   tasks?: string[];
   lastTask?: string;
   result?: string;

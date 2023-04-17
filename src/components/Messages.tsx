@@ -12,7 +12,16 @@ interface Window {
 
 const messageListId = "chat-window-message-list";
 
-const Window = ( {messages, callAgent} : {messages: Message[], callAgent: () => void} ) => {
+const Window = ( {
+  messages,
+  callAgent,
+  agent} : 
+  {
+    messages: Message[], 
+    callAgent: () => void,
+    agent: () => void,
+  } 
+) => {
   const [hasUserScrolled, setHasUserScrolled] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -63,7 +72,7 @@ const Window = ( {messages, callAgent} : {messages: Message[], callAgent: () => 
         )}
           {messages.map((message, index) => (
             <Expand delay={0.5} type="spring" key={`${index}-${message.type}`}>
-              <ShowMessage message={message} callAgent={callAgent} />
+              <ShowMessage message={message} callAgent={callAgent} agent={agent} />
             </Expand>
           ))}
       </div>
@@ -74,7 +83,8 @@ const Window = ( {messages, callAgent} : {messages: Message[], callAgent: () => 
 
 const ShowMessage = (props: { 
   message: Message; 
-  callAgent: () => void; 
+  callAgent: (action : string) => void; 
+  agent: (action: string) => void;
 }) => {
   return(
     <div className="mx-2 my-1 rounded-lg border-[2px] border-emerald-500 bg-emerald-100 p-1 font-mono text-sm hover:border-emerald-700 sm:mx-4 sm:p-3 sm:text-base flex flex-col">
@@ -88,9 +98,14 @@ const ShowMessage = (props: {
         <div className="flex flex-wrap pt-2">
           {props.message.actions.map((action, index) => (
             <div key={index} className="mr-2 mb-2">
-              <Button onClick={() => props.callAgent()} className="px-3 h-6 text-xs">
-                {action}
+              {props.agent && (
+                <Button onClick={() => props.agent.explore(props.message.value)}  className="px-3 h-6 text-xs">Explore more</Button>
+              )}
+              {!props.agent && (
+                <Button onClick={() => props.callAgent(action)} className="px-3 h-6 text-xs">
+                  {action}
               </Button>
+              )}
             </div>
           ))}
         </div>

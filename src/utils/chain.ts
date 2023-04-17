@@ -3,7 +3,7 @@ import { LLMChain } from "langchain/chains";
 import { OpenAI } from "langchain/llms/openai";
 import { PromptTemplate } from "langchain/prompts";
 
-import { tasksParser } from "./parsers";
+import {tasksParser } from "./parsers";
 
 export const createModel = () =>
   new OpenAI({
@@ -15,18 +15,33 @@ export const createModel = () =>
 
 const startGoalPrompt = new PromptTemplate({
   template:
-    "You need to teach me `{subject}`.\n{format_instructions}",
-  inputVariables: ["subject"],
+    "Your goal is to provide a list of 2-3 questions regarding `{topic}` in `{subject}`.\n{format_instructions}",
+  inputVariables: ["subject", "topic"],
   partialVariables: {
     format_instructions: tasksParser.getFormatInstructions(),
   },
 });
-export const startGoalAgent = async (model: OpenAI, subject: string) => {
+export const startGoalAgent = async (model: OpenAI, subject: string, topic: string) => {
   return await new LLMChain({
     llm: model,
     prompt: startGoalPrompt,
   }).call({
     subject,
+    topic,
+  });
+};
+
+const startAnswerPrompt = new PromptTemplate({
+  template:
+    "Give me answer to the following question: `{question}`.",
+  inputVariables: ["question"]
+});
+export const startAnswerAgent = async (model: OpenAI, question: string) => {
+  return await new LLMChain({
+    llm: model,
+    prompt: startAnswerPrompt,
+  }).call({
+    question
   });
 };
 

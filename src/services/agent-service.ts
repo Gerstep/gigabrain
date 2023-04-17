@@ -2,13 +2,21 @@
 import {
   createModel,
   extractArray,
+  startAnswerAgent,
   startGoalAgent} from "../utils/chain";
 
-export async function startAgent(subject: string) {
-  const completion = await startGoalAgent(createModel(), subject);
+export async function startAgent(subject: string, topic: string) {
+  const completion = await startGoalAgent(createModel(), subject, topic);
   console.log(typeof completion.text);
   console.log("Completion:" + (completion.text as string));
   return extractArray(completion.text as string);
+}
+
+export async function askAgent(question: string) {
+  const completion = await startAnswerAgent(createModel(), question);
+  console.log(typeof completion.text);
+  console.log("Completion:" + (completion.text as string));
+  return completion.text as string;
 }
 
 // export async function createAgent(

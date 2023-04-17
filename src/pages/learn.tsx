@@ -39,7 +39,7 @@ export default function Learn() {
   const router = useRouter();
   const { subject, proficiency, topic } = useSelector((state: RootState) => state.subject);
   const progress = useSelector((state: RootState) => state.subject.progress);
-  const [, setAgent] = React.useState<Agent | null>(null);
+  const [agent, setAgent] = React.useState<Agent | null>(null);
   const [messages, setMessages] = React.useState<Message[]>([]);
 
   const currentTopic = progress.length > 0 ? progress[progress.length - 1].topic : "No topic";
@@ -64,8 +64,14 @@ export default function Learn() {
     }
   }, [subject, proficiency, router]);
 
-  const callAgent = () => {
-    const agent = new Agent(currentTopic, proficiency, currentTopic, handleAddMessage);
+  const callAgent = (action : string) => {
+    console.log('ACTION ::: ' + action)
+    const agent = new Agent(
+      subject, 
+      proficiency, 
+      currentTopic, 
+      action,
+      handleAddMessage);
     setAgent(agent);
     agent.run();
   }
@@ -105,9 +111,10 @@ export default function Learn() {
           {currentTopic==="No topic" && (<ShowTopics blockchainTopics={blockchainTopics} />)}
           {currentTopic!="No topic" && (
             <Study>
-              <Messages messages={messages} callAgent={callAgent} />
+              <Messages messages={messages} callAgent={callAgent} agent={agent} />
             </Study>
           )}
+          {agent && (<p>agent exists</p>)}
         </div>
       </section>
     </main>

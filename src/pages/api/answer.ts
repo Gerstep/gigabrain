@@ -1,7 +1,7 @@
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 
-import { startAgent } from "../../services/agent-service";
+import { askAgent } from "../../services/agent-service";
 import type { RequestBody } from "../../utils/interfaces";
 
 export const config = {
@@ -10,11 +10,9 @@ export const config = {
 
 const handler = async (request: NextRequest) => {
   try {
-    const { subject, topic } = (await request.json()) as RequestBody;
-    console.log('starting agent with ' + subject + 
-    ' and ' + topic)
-    const newTask = await startAgent(subject, topic);
-    return NextResponse.json({ newTask });
+    const { question } = (await request.json()) as RequestBody;
+    const answer = await askAgent(question);
+    return NextResponse.json({ answer });
   } catch (e) { /* empty */ }
 
   return NextResponse.error();
