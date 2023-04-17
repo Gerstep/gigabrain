@@ -3,7 +3,8 @@ import {
   createModel,
   extractArray,
   startAnswerAgent,
-  startGoalAgent} from "../utils/chain";
+  startGoalAgent,  
+  startQuizAgent} from "../utils/chain";
 
 export async function startAgent(subject: string, topic: string) {
   const completion = await startGoalAgent(createModel(), subject, topic);
@@ -15,8 +16,18 @@ export async function startAgent(subject: string, topic: string) {
 export async function askAgent(question: string) {
   const completion = await startAnswerAgent(createModel(), question);
   console.log(typeof completion.text);
-  console.log("Completion:" + (completion.text as string));
+  console.log("Answer text:" + (completion.text as string));
   return completion.text as string;
+}
+
+export async function quizAgent(testSubject: string) {
+  const completion = await startQuizAgent(createModel(), testSubject);
+  const prefixLength = 7;
+  const suffixLength = 3;
+  const question = JSON.parse(completion.text.slice(prefixLength, -suffixLength));
+  console.log(typeof question);
+  console.log("Quiz question:" + question);
+  return question as object;
 }
 
 // export async function createAgent(

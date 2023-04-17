@@ -3,7 +3,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  subject: '',
+  subjectId: '',
+  subjectName: '',
   proficiency: '',
   topic: '',
   progress: [],
@@ -14,7 +15,8 @@ const subjectSlice = createSlice({
   initialState,
   reducers: {
     setSubject: (state, action) => {
-      state.subject = action.payload.subject;
+      state.subjectId = action.payload.subjectId;
+      state.subjectName = action.payload.subjectName;
       state.proficiency = action.payload.proficiency;
       state.topic = action.payload.topic;
     },

@@ -2,10 +2,16 @@
 import axios from "axios";
 
 export interface Message {
-  type: "thinking" | "action" | "system" | "topic" | "test" | "answer";
+  type: "thinking" | "action" | "system" | "topic" | "test" | "answer" | "result";
   info?: string;
+  options?: string[];
   value: string;
   actions?: string[];
+}
+
+export interface Quiz {
+  question: string;
+  answers: string[];
 }
 
 class Agent {
@@ -14,7 +20,12 @@ class Agent {
   topic: string;
   action: string;
   tasks: string[] = [];
+  options: string[] = [];
   answer: string | undefined;
+  quiz: Quiz = {
+    question: "",
+    answers: []
+  };
   sendMessage: (message: Message) => void;
 
   constructor(
@@ -59,8 +70,24 @@ class Agent {
   }
 
   // get context (learned topics)
-  async test() {
-      this.sendTestMessage("test");
+  async test(testSubject : string) {
+    try {
+      this.sendThinkingMessage();
+      this.quiz = await this.getTest(testSubject);
+      this.sendTestMessage(this.quiz.question, this.quiz.answers);
+    } catch (e) {
+      console.log(e);
+      return;
+    }
+  }
+
+  async answerTest(answer : string) {
+    this.sendThinkingMessage();
+    if(answer.endsWith("(correct)")){
+      this.sendResultMessage("CONGRATS!")
+    } else {
+      this.sendResultMessage("You failed")
+    }
   }
 
   async getInitialTask(): Promise<string[]>{
@@ -78,16 +105,27 @@ class Agent {
     return res.data.answer as string;
   }
 
+  async getTest(testSubject : string) {
+    const res = await axios.post(`/api/quiz`, {
+      testSubject: testSubject
+    })
+    return res.data.quiz as string;
+  }
+
   sendTopicMessage(value : string) {
     this.sendMessage({ type: "topic", value: value, actions: ["ask"] });
+  }
+
+  sendResultMessage(value : string) {
+    this.sendMessage({ type: "result", value: value });
   }
 
   sendThinkingMessage() {
     this.sendMessage({ type: "thinking", value: "" });
   }
 
-  sendTestMessage(value : string) {
-    this.sendMessage({ type: "test", value: value, actions: ["A", "B", "C", "D"] });
+  sendTestMessage(value : string, options : string[]) {
+    this.sendMessage({ type: "test", value: value, actions: options });
   }
 
   sendAnswerMessage(value : string) {

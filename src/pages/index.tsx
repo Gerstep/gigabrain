@@ -11,13 +11,7 @@ import Seo from '@/components/Seo';
 
 import { setSubject } from '@/store/subjectSlice';
 
-const subjects = [
-  { id: 1, name: 'Blockchain Development', status: 'open' },
-  { id: 2, name: 'Python Programming', status: 'closed' },
-  { id: 3, name: 'AI for work', status: 'closed' },
-  { id: 4, name: 'Corporate Law', status: 'closed' },
-  { id: 5, name: 'Digital Marketing', status: 'closed' },
-];
+import { subjects } from '@/utils/topics';
 
 
 export default function HomePage() {
@@ -39,7 +33,8 @@ export default function HomePage() {
     setSelectedProficiency(proficiency);
     dispatch(
       setSubject({
-        subject: selectedSubject.name,
+        subjectId: selectedSubject.id,
+        subjectName: selectedSubject.name,
         proficiency
       })
     );
@@ -66,7 +61,7 @@ export default function HomePage() {
               GigaBrain Academy
             </h1>
             <p className='mt-2 text-sm text-gray-800'>
-            Select the subject you wish to study today
+            Select what you want to learn today
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 pt-8">
@@ -80,7 +75,7 @@ export default function HomePage() {
                   style={subject.status !== 'open' ? { pointerEvents: 'none' } : {}}
                   >
                   <span className=''>{subject.name}</span>
-                  <span className='font-normal pt-5'>(course {subject.status})</span>
+                  {/* <span className='font-normal pt-5'>(course {subject.status})</span> */}
                 </ButtonLink>
               </div>
               ))}

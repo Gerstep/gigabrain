@@ -3,7 +3,7 @@ import { LLMChain } from "langchain/chains";
 import { OpenAI } from "langchain/llms/openai";
 import { PromptTemplate } from "langchain/prompts";
 
-import {tasksParser } from "./parsers";
+import {quizParser,tasksParser } from "./parsers";
 
 export const createModel = () =>
   new OpenAI({
@@ -42,6 +42,24 @@ export const startAnswerAgent = async (model: OpenAI, question: string) => {
     prompt: startAnswerPrompt,
   }).call({
     question
+  });
+};
+
+
+const quizPrompt = new PromptTemplate({
+  template:
+    "Create a single quizz question with four potential answers for the following material: `{testSubject}`. You need to offer 4 quizz answers to this question out of which exactly one will be correct. You need to mark correct answer with (correct) tag.\n{format_instructions}",
+  inputVariables: ["testSubject"],
+  partialVariables: {
+    format_instructions: quizParser.getFormatInstructions(),
+  },
+});
+export const startQuizAgent = async (model: OpenAI, testSubject: string) => {
+  return await new LLMChain({
+    llm: model,
+    prompt: quizPrompt,
+  }).call({
+    testSubject
   });
 };
 

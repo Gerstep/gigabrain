@@ -24,3 +24,17 @@ export const tasksParser = StructuredOutputParser.fromZodSchema(
 export const answerParser = StructuredOutputParser.fromZodSchema(
   z.string().describe("An answer to a question")
 );
+
+export const quizParser = StructuredOutputParser.fromZodSchema(
+  z.object ({
+    question: z
+      .string()
+      .describe(`A quizz question`),
+    answers: z
+      .array(
+        z
+          .string()
+          .describe(`A quizz answer`)
+      )
+  })
+);

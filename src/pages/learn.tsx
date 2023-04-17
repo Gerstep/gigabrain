@@ -21,14 +21,13 @@ import TopMenu from '@/components/TopMenu';
 import { RootState } from '@/store/store';
 import { setProgress } from '@/store/subjectSlice';
 
-import { blockchainTopics } from '@/utils/topics';
+import { subjects } from '@/utils/topics';
 
 const initialMessage = {
   type: "action",
   value: "Choose your action",
   actions: [
-    "learn",
-    "test"
+    "Start"
   ]
 };
 
@@ -36,7 +35,7 @@ const initialMessage = {
 export default function Learn() {
   const dispatch = useDispatch();
   const router = useRouter();
-  const { subject, proficiency, topic } = useSelector((state: RootState) => state.subject);
+  const { subjectId, subjectName, proficiency, topic } = useSelector((state: RootState) => state.subject);
   const progress = useSelector((state: RootState) => state.subject.progress);
   const [agent, setAgent] = React.useState<Agent | null>(null);
   const [messages, setMessages] = React.useState<Message[]>([]);
@@ -58,15 +57,15 @@ export default function Learn() {
   }, [messages]);
 
   useEffect(() => {
-    if (!subject || !proficiency) {
+    if (!subjectId || !proficiency) {
       router.push('/');
     }
-  }, [subject, proficiency, router]);
+  }, [subjectId, proficiency, router]);
 
   const callAgent = (action : string) => {
     console.log('ACTION ::: ' + action)
     const agent = new Agent(
-      subject, 
+      subjectName, 
       proficiency, 
       currentTopic, 
       action,
@@ -93,7 +92,7 @@ export default function Learn() {
             <span className="mr-2 font-bold font-mon">Subject:</span>
             <span className='block'>
               <Link href="" onClick={() => handleReSetProgress()} className='underline'>
-                {subject}
+                {subjectName}
               </Link>
             </span>
           </div>
@@ -107,8 +106,8 @@ export default function Learn() {
           </div>
         </div>
         <div className='layout w-full relative flex flex-col items-center justify-center py-12 text-center'>
-          {currentTopic==="No topic" && (
-            <ShowTopics blockchainTopics={blockchainTopics} />
+          {subjectId && currentTopic==="No topic" && (
+            <ShowTopics subjectId={subjectId} />
           )}
           {currentTopic!="No topic" && (
             <Study>
@@ -117,8 +116,14 @@ export default function Learn() {
           )}
           {agent && (
             <div className="flex flex-wrap pt-2">
-            <Button onClick={() => agent.run()}  className="mx-5 px-3 h-10 text-xs">Generate more questions</Button>
-            <Button onClick={() => agent.test()}  className="mx-5 px-3 h-10 text-xs">Test myself</Button>
+            <Button onClick={() => agent.run()}  className="mx-5 px-3 h-10 text-xs">Learn more topics</Button>
+            <Button onClick={() => {
+              const answerMessages = messages.filter(message => message.type === "answer");
+              const testSubject = answerMessages.length > 0
+                ? answerMessages.map(message => message.value).join(". ")
+                : `${subjectName}${proficiency}${currentTopic}`;
+              agent.test(testSubject);
+            }} className="mx-5 px-3 h-10 text-xs">Test myself</Button>
             </div>
           )}
         </div>
@@ -128,7 +133,7 @@ export default function Learn() {
   );
 };
 
-const ShowTopics = ({blockchainTopics}) => {
+const ShowTopics = ({subjectId}) => {
   const progress = useSelector((state: RootState) => state.subject.progress);
   const dispatch = useDispatch();
 
@@ -140,7 +145,7 @@ const ShowTopics = ({blockchainTopics}) => {
     <div className="container mx-auto">
       <h1 className="text-3xl font-bold text-center mb-8">Welcome! To start, choose a topic:</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
-        {blockchainTopics.map((category, index) => (
+        {subjects.find(subject => subject.id === subjectId).categories.map((category, index) => (
           <div key={index} className="bg-white p-4 rounded-md shadow-md">
             <h2 className="text-xl font-bold mb-2">{category.category}</h2>
             <div className="list-disc list-inside text-left">

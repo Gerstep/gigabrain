@@ -101,8 +101,8 @@ const ShowMessage = (props: {
               {props.agent && action === "ask" && props.message.type === "topic" && (
                 <Button onClick={() => props.agent.explore(props.message.value)}  className="px-3 h-6 text-xs">Learn → </Button>
               )}
-              {props.agent && props.message.type === "test" && (
-                <Button onClick={() => props.agent.answer(action)}  className="px-3 h-6 text-xs bg-amber-600 border-orange-700 hover:bg-amber-900">Answer {action}</Button>
+              {props.agent && props.message.type === "test" &&(
+                <Button onClick={() => props.agent.answerTest(action)}  className="px-3 h-6 text-xs bg-amber-600 border-orange-700 hover:bg-amber-900">{action.endsWith("(correct)") ? action.replace("(correct)", "") : action}</Button>
               )}
               {!props.agent && (
                 <Button onClick={() => props.callAgent(action)} className="px-3 h-6 text-xs">
@@ -124,11 +124,13 @@ const getMessagePrefix = (message: Message) => {
     case "system":
       return "Added task:";
     case "thinking":
-      return "Thinking...";
+      return "Working on it...";
     case "answer":
       return "Answer:";
     case "test":
       return "Test yourself:";
+    case "result":
+      return "Your answer:";
     case "action":
       return message.info ? message.info : "Executing:";
   }
