@@ -16,6 +16,7 @@ import { subjects } from '@/utils/topics';
 
 export default function HomePage() {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
+  const [isCreatorModalOpen, setIsCreatorModalOpen] = React.useState(false);
   const [selectedSubject, setSelectedSubject] = React.useState(null);
   const [, setSelectedProficiency] = React.useState(null);
   const [selectedType, setSelectedType] = React.useState('');
@@ -29,6 +30,14 @@ export default function HomePage() {
 
   function closeModal() {
     setIsModalOpen(false);
+  }
+
+  function openCreatorModal() {
+    setIsCreatorModalOpen(true);
+  }
+
+  function closeCreatorModal() {
+    setIsCreatorModalOpen(false);
   }
 
   function setProficiencyAndProceed(proficiency) {
@@ -97,6 +106,13 @@ export default function HomePage() {
                 </ButtonLink>
               </div>
               ))}
+              <ButtonLink 
+                variant="primary" 
+                href="" 
+                className="w-full h-40 bg-green-50 rounded-lg flex flex-col items-center justify-center text-black text-xl font-semibold cursor-pointer transform transition duration-300 ease-in-out hover:scale-110 m-5"
+                onClick={() => openCreatorModal()}>
+                <span className='text-emerald-950 text-lg z-30'>🛠 Create your own course</span>
+              </ButtonLink>
             </div>
 
             {isModalOpen && (
@@ -129,6 +145,29 @@ export default function HomePage() {
                 </div>
               </div>
             )}
+
+
+            {isCreatorModalOpen && (
+              <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50">
+              <div className="bg-white rounded-lg p-8 relative">
+              <div className="absolute top-0 right-0 cursor-pointer" onClick={closeCreatorModal}>X</div>
+              <div className="flex flex-col space-y-2">
+                <label htmlFor="input" className="text-gray-700 font-medium">
+                  Name for your course
+                </label>
+                <input
+                  id="input"
+                  type="text"
+                  className="px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:border-emerald-500"
+                />
+                <button className="bg-emerald-500 hover:bg-emerald-600 text-white py-2 px-4 rounded-lg shadow-sm">
+                  Submit
+                </button>
+              </div>
+              </div>
+            </div>
+            )}
+          
             <footer className='absolute bottom-2 text-gray-700'>
               © {new Date().getFullYear()} GigaBrain Academy
             </footer>

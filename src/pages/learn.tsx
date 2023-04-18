@@ -28,7 +28,9 @@ const initialMessage = {
   type: "action",
   value: "Choose your action",
   actions: [
-    "Start"
+    "Generate questions",
+    "Learn key concepts",
+    "Glossary"
   ]
 };
 
@@ -80,14 +82,6 @@ export default function Learn() {
       window.removeEventListener('mouseup', handleSelection);
     };
   }, []);
-
-  const handleExplainClick = () => {
-    console.log(selectedText);
-  }
-
-  const handleSetProgress = (topicName: string) => {
-    dispatch(setProgress({ topic: topicName }));
-  };
 
   const handleReSetProgress = () => {
     dispatch(setProgress({ topic: "No topic" }));
@@ -149,7 +143,7 @@ export default function Learn() {
             <p className='block'>{currentTopic}</p>
           </div>
         </div>
-        <div className='layout w-full relative flex flex-col items-center justify-center py-12 text-center' onMouseUp={handleSelection}>
+        <div className='layout w-full relative flex flex-col items-center justify-center py-4 text-center' onMouseUp={handleSelection}>
           {subjectId && currentTopic==="No topic" && (
             <ShowTopics subjectId={subjectId} />
           )}
@@ -176,7 +170,7 @@ export default function Learn() {
             </Study>
           )}
           {agent && (
-            <div className="flex flex-wrap pt-2">
+            <div className="flex-wrap p-2 border-green-600 border-e-2 border-s-2 rounded-lg bg-green-200 w-1/2">
             <Button onClick={() => agent.run()}  className="mx-5 px-3 h-10 text-xs">Explore more topics</Button>
             <Button onClick={() => {
               const answerMessages = messages.filter(message => message.type === "answer");

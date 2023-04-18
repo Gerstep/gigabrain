@@ -6,7 +6,6 @@ import { useEffect, useRef, useState } from 'react';
 
 import type { Message } from '@/components/Agent';
 import Button from "@/components/buttons/Button";
-import Expand from "@/components/motions/expand";
 
 interface Window {
   messages: Message[];
@@ -64,7 +63,7 @@ const Window = ( {
         >
         {messages.length === 1 && (
           <>
-            <Expand delay={0.5} type="spring">
+            
               <ShowMessage message={{
                 type: "system",
                 value: "Welcome to GigaBrain Academy 🤯",
@@ -72,12 +71,14 @@ const Window = ( {
                 callAgent={callAgent}
                 agent={agent}
                />
-            </Expand>
+            
           </>
         )}
           {messages.map((message, index) => (
             <>
-              <ShowMessage message={message} callAgent={callAgent} agent={agent} />
+              {/* <Expand delay={0.5} type="spring"> */}
+                <ShowMessage message={message} callAgent={callAgent} agent={agent} key={index} />
+              {/* </Expand> */}
             </>
           ))}
       </div>
@@ -98,6 +99,7 @@ const ShowMessage = (props: {
         <div className="mb-2 flex-1 text-left">
           <pre className="break-words whitespace-pre-wrap">{props.message.value}</pre>
         </div>
+         {props.message.type === "answer" && (<span className="mr-2 font-bold">save</span>)}
       </div>
       {props.message.actions && (
         <div className="flex flex-wrap pt-2">
@@ -127,7 +129,7 @@ const getMessagePrefix = (message: Message) => {
     case "topic":
       return "Topic:";
     case "system":
-      return "Added task:";
+      return "";
     case "thinking":
       return "Working on it...";
     case "answer":
@@ -137,7 +139,7 @@ const getMessagePrefix = (message: Message) => {
     case "result":
       return "Your answer:";
     case "action":
-      return message.info ? message.info : "Executing:";
+      return message.info ? message.info : "";
   }
 };
 
