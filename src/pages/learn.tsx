@@ -177,7 +177,7 @@ export default function Learn() {
           )}
           {agent && (
             <div className="flex flex-wrap pt-2">
-            <Button onClick={() => agent.run()}  className="mx-5 px-3 h-10 text-xs">Learn more topics</Button>
+            <Button onClick={() => agent.run()}  className="mx-5 px-3 h-10 text-xs">Explore more topics</Button>
             <Button onClick={() => {
               const answerMessages = messages.filter(message => message.type === "answer");
               const testSubject = answerMessages.length > 0

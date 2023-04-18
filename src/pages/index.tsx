@@ -9,7 +9,7 @@ import Layout from '@/components/layout/Layout';
 import ButtonLink from '@/components/links/ButtonLink';
 import Seo from '@/components/Seo';
 
-import { setSubject } from '@/store/subjectSlice';
+import { setProgress, setSubject } from '@/store/subjectSlice';
 
 import { subjects } from '@/utils/topics';
 
@@ -19,6 +19,7 @@ export default function HomePage() {
   const [selectedSubject, setSelectedSubject] = React.useState(null);
   const [, setSelectedProficiency] = React.useState(null);
   const dispatch = useDispatch();
+  const defaultTopic = "No topic";
 
   function openModal(subject: React.SetStateAction<null>) {
     setSelectedSubject(subject);
@@ -35,9 +36,13 @@ export default function HomePage() {
       setSubject({
         subjectId: selectedSubject.id,
         subjectName: selectedSubject.name,
-        proficiency
+        proficiency,
       })
     );
+    dispatch(      
+      setProgress({
+        topic: defaultTopic
+    }));
     router.push('/learn');
   }
 
