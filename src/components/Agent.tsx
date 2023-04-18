@@ -14,6 +14,8 @@ export interface Quiz {
   answers: string[];
 }
 
+
+// shutdown() -> call when user exists the learning session
 class Agent {
   subject: string;
   proficiency: string;

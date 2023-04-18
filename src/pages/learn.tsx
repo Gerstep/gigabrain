@@ -54,7 +54,7 @@ export default function Learn() {
       const selectionRect = window.getSelection().getRangeAt(0).getBoundingClientRect();
       if (buttonRef.current) {
         setButtonPosition({
-          top: selectionRect.top - buttonRef.current.offsetHeight - 5,
+          top: selectionRect.top - buttonRef.current.offsetHeight,
           left: selectionRect.left + (selectionRect.width - buttonRef.current.offsetWidth) / 2,
         });
       }
@@ -141,7 +141,7 @@ export default function Learn() {
             </span>
           </div>
           <div>
-            <p className="mr-2 font-bold font-mon">Proficiency:</p>
+            <p className="mr-2 font-bold font-mon">Level:</p>
             <p className='block'>{proficiency}</p>
           </div>
           <div className='mr-7'>

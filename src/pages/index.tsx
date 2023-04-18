@@ -18,6 +18,7 @@ export default function HomePage() {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   const [selectedSubject, setSelectedSubject] = React.useState(null);
   const [, setSelectedProficiency] = React.useState(null);
+  const [selectedType, setSelectedType] = React.useState('');
   const dispatch = useDispatch();
   const defaultTopic = "No topic";
 
@@ -69,8 +70,23 @@ export default function HomePage() {
             Select what you want to learn today
             </p>
 
+            <select
+              value={selectedType}
+              onChange={(e) => setSelectedType(e.target.value)}
+              className="px-4 py-2 mt-3 rounded-md border-gray-300 focus:border-green-500 focus:ring focus:ring-green-500 focus:ring-opacity-50"
+            >
+              <option value="">All subjects</option>
+              {[...new Set(subjects.map((subject) => subject.type))].map((type) => (
+                <option key={type} value={type}>
+                  {type}
+                </option>
+              ))}
+            </select>
+
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 pt-8">
-              {subjects.map((subject) => (
+              {subjects
+                .filter((subject) => selectedType === '' || subject.type === selectedType)
+                .map((subject) => (
               <div key={subject.id}>
                 <ButtonLink 
                   variant="primary" 

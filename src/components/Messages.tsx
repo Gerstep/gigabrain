@@ -96,7 +96,7 @@ const ShowMessage = (props: {
       <div className="flex flex-wrap">
         <span className="mr-2 font-bold">🧪 {getMessagePrefix(props.message)}</span>
         <div className="mb-2 flex-1 text-left">
-          <pre>{props.message.value}</pre>
+          <pre className="break-words whitespace-pre-wrap">{props.message.value}</pre>
         </div>
       </div>
       {props.message.actions && (
