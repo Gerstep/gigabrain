@@ -92,11 +92,8 @@ export default function HomePage() {
                   variant="primary" 
                   href="" 
                   className="w-full h-40 bg-green-200 rounded-lg flex flex-col items-center justify-center text-black text-xl font-semibold cursor-pointer transform transition duration-300 ease-in-out hover:scale-110 m-5"
-                  onClick={() => openModal(subject)}
-                  style={subject.status !== 'open' ? { pointerEvents: 'none' } : {}}
-                  >
-                  <span className=''>{subject.name}</span>
-                  {/* <span className='font-normal pt-5'>(course {subject.status})</span> */}
+                  onClick={() => openModal(subject)}>
+                  <span className='text-emerald-950 text-lg z-30'>{subject.name}</span>
                 </ButtonLink>
               </div>
               ))}

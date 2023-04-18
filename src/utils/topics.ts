@@ -888,7 +888,7 @@ export const subjects = [
   },
   {
     id: 16,
-    name: "Architecture Fundamentals",
+    name: "Architecture",
     status: "open",
     type: "Arts and Humanities",
     categories: [
