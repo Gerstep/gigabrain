@@ -6,6 +6,7 @@ export interface RequestBody {
   topic?: string;
   task?: string;
   question?: string;
+  concept?: string;
   testSubject?: string;
   tasks?: string[];
   lastTask?: string;

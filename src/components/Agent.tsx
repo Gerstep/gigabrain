@@ -90,6 +90,17 @@ class Agent {
     }
   }
 
+  async explain(concept : string) {
+    this.sendThinkingMessage();
+    try {
+      const explanation = await this.getExplanation(concept);
+      this.sendAnswerMessage(explanation)
+    } catch (e) {
+      console.log(e);
+      return;
+    }
+  }
+
   async getInitialTask(): Promise<string[]>{
     const res = await axios.post(`/api/chain`, {
       subject: this.subject,
@@ -103,6 +114,15 @@ class Agent {
       question: question
     })
     return res.data.answer as string;
+  }
+
+  async getExplanation(concept : string) {
+    const res = await axios.post(`/api/explain`, {
+      concept: concept,
+      subject: this.subject,
+      topic: this.topic
+    })
+    return res.data.explanation as string;
   }
 
   async getTest(testSubject : string) {

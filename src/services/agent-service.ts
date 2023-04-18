@@ -3,6 +3,7 @@ import {
   createModel,
   extractArray,
   startAnswerAgent,
+  startExplainAgent,
   startGoalAgent,
   startQuizAgent
 } from "../utils/chain";
@@ -18,6 +19,13 @@ export async function askAgent(question: string) {
   const completion = await startAnswerAgent(createModel(), question);
   console.log(typeof completion.text);
   console.log("Answer text:" + (completion.text as string));
+  return completion.text as string;
+}
+
+export async function explainAgent(concept: string, subject: string, topic: string) {
+  const completion = await startExplainAgent(createModel(), concept, subject, topic);
+  console.log(typeof completion.text);
+  console.log("Explain text:" + (completion.text as string));
   return completion.text as string;
 }
 

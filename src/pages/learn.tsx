@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import * as React from 'react';
 import { useEffect } from 'react';
+import { useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 
@@ -39,8 +40,50 @@ export default function Learn() {
   const progress = useSelector((state: RootState) => state.subject.progress);
   const [agent, setAgent] = React.useState<Agent | null>(null);
   const [messages, setMessages] = React.useState<Message[]>([]);
+  const [selectedText, setSelectedText] = React.useState('');
+  const [buttonPosition, setButtonPosition] = React.useState({ top: 0, left: 0 });
+  const buttonRef = useRef(null);
 
   const currentTopic = progress.length > 0 ? progress[progress.length - 1].topic : "No topic";
+
+  const handleSelection = () => {
+    const selection = window.getSelection().toString();
+    setSelectedText(selection);
+
+    if (window.getSelection().rangeCount > 0) {
+      const selectionRect = window.getSelection().getRangeAt(0).getBoundingClientRect();
+      if (buttonRef.current) {
+        setButtonPosition({
+          top: selectionRect.top - buttonRef.current.offsetHeight - 5,
+          left: selectionRect.left + (selectionRect.width - buttonRef.current.offsetWidth) / 2,
+        });
+      }
+    }
+  }
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (buttonRef.current && !buttonRef.current.contains(event.target)) {
+        setSelectedText('');
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener('mouseup', handleSelection);
+    return () => {
+      window.removeEventListener('mouseup', handleSelection);
+    };
+  }, []);
+
+  const handleExplainClick = () => {
+    console.log(selectedText);
+  }
 
   const handleSetProgress = (topicName: string) => {
     dispatch(setProgress({ topic: topicName }));
@@ -49,6 +92,7 @@ export default function Learn() {
   const handleReSetProgress = () => {
     dispatch(setProgress({ topic: "No topic" }));
   };
+
 
   useEffect(() => {
     if (!messages || messages.length === 0) {
@@ -105,13 +149,30 @@ export default function Learn() {
             <p className='block'>{currentTopic}</p>
           </div>
         </div>
-        <div className='layout w-full relative flex flex-col items-center justify-center py-12 text-center'>
+        <div className='layout w-full relative flex flex-col items-center justify-center py-12 text-center' onMouseUp={handleSelection}>
           {subjectId && currentTopic==="No topic" && (
             <ShowTopics subjectId={subjectId} />
           )}
           {currentTopic!="No topic" && (
             <Study>
+              {/* <div onMouseUp={handleSelection} className='w-full'> */}
+                {selectedText && agent && (
+                  <div
+                  ref={buttonRef}
+                  style={{
+                    position: 'absolute',
+                    top: buttonPosition.top,
+                    left: buttonPosition.left,
+                    zIndex: 9999,
+                  }}
+                  >
+                    <Button onClick={() => agent.explain(selectedText)}>
+                      Explain
+                    </Button>
+                </div>
+                )}
               <Messages messages={messages} callAgent={callAgent} agent={agent} />
+              {/* </div> */}
             </Study>
           )}
           {agent && (

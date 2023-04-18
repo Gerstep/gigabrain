@@ -3,7 +3,7 @@ import { LLMChain } from "langchain/chains";
 import { OpenAI } from "langchain/llms/openai";
 import { PromptTemplate } from "langchain/prompts";
 
-import {quizParser,tasksParser } from "./parsers";
+import { quizParser, tasksParser } from "./parsers";
 
 export const createModel = () =>
   new OpenAI({
@@ -42,6 +42,22 @@ export const startAnswerAgent = async (model: OpenAI, question: string) => {
     prompt: startAnswerPrompt,
   }).call({
     question
+  });
+};
+
+const explainPrompt = new PromptTemplate({
+  template:
+    "Explain me `{concept}` in the context of `{topic}` in `{subject}`.",
+  inputVariables: ["concept", "subject", "topic"]
+});
+export const startExplainAgent = async (model: OpenAI, concept: string, subject: string, topic: string) => {
+  return await new LLMChain({
+    llm: model,
+    prompt: explainPrompt,
+  }).call({
+    concept,
+    subject,
+    topic
   });
 };
 
