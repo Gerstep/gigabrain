@@ -11,10 +11,11 @@ export default function Footer() {
         <UnderlineLink href="/"> Home</UnderlineLink>
         &nbsp; | &nbsp;
         <UnderlineLink href="/about"> About</UnderlineLink>
-        &nbsp; | &nbsp;
+      </div>
+      <div>
         <Button
           size='sm'
-          variant='outline'
+          variant='ghost'
           data-tally-open="31XoqM" data-tally-emoji-text="👋" data-tally-emoji-animation="wave"
         >
           Leave Feedback
