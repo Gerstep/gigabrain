@@ -1,5 +1,6 @@
 import { AppProps } from 'next/app';
 import { Provider } from 'react-redux';
+import 'flowbite';
 
 import '@/styles/globals.css';
 

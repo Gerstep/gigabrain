@@ -81,13 +81,12 @@ const ShowMessage = (props: {
   agent?: (action: string) => void;
 }) => {
   return (
-    <div className="mx-2 my-1 rounded-lg border-[2px] border-emerald-500 bg-emerald-100 p-1 font-mono text-sm hover:border-emerald-700 sm:mx-4 sm:p-3 sm:text-base flex flex-col">
+    <div className="mx-2 my-1 rounded-lg border-[2px] border-emerald-500 bg-emerald-100 p-1 text-sm hover:border-emerald-700 sm:mx-4 sm:p-3 sm:text-base flex flex-col">
       <div className="flex flex-wrap">
         <span className="mr-2 font-bold">{getMessageEmoji(props.message)} {getMessagePrefix(props.message)}</span>
         <div className="mb-2 flex-1 text-left">
           <pre className="break-words whitespace-pre-wrap">{props.message.value}</pre>
         </div>
-        {props.message.type === "answer" && (<span className="mr-2 font-bold">save</span>)}
       </div>
       {props.message.actions && (
         <div className="flex flex-wrap pt-2">
@@ -100,7 +99,7 @@ const ShowMessage = (props: {
                 <Button onClick={() => props.agent.answerTest(action)} className="px-3 h-6 text-xs bg-amber-600 border-orange-700 hover:bg-amber-900">{action.endsWith("(correct)") ? action.replace("(correct)", "") : action}</Button>
               )}
               {!props.agent && (
-                <Button onClick={() => props.callAgent(action)} className="px-3 h-10 text-xs">
+                <Button onClick={() => props.callAgent(action)} className="px-3 h-10 text-xs bg-green-600 border-green-700 hover:bg-green-900">
                   <BsRocketTakeoffFill /> &nbsp; {action}
                 </Button>
               )}

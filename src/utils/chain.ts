@@ -33,15 +33,17 @@ export const startGoalAgent = async (model: OpenAI, subject: string, topic: stri
 
 const startAnswerPrompt = new PromptTemplate({
   template:
-    "Give me answer to the following question: `{question}`.",
-  inputVariables: ["question"]
+    "Give me answer to the following question: `{question}` in the context of `{topic}` in `{subject}`..",
+  inputVariables: ["question", "subject", "topic"]
 });
-export const startAnswerAgent = async (model: OpenAI, question: string) => {
+export const startAnswerAgent = async (model: OpenAI, question: string, subject: string, topic: string) => {
   return await new LLMChain({
     llm: model,
     prompt: startAnswerPrompt,
   }).call({
-    question
+    question,
+    subject,
+    topic
   });
 };
 

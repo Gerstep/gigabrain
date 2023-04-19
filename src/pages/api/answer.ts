@@ -10,8 +10,8 @@ export const config = {
 
 const handler = async (request: NextRequest) => {
   try {
-    const { question } = (await request.json()) as RequestBody;
-    const answer = await askAgent(question as string);
+    const { question, subject, topic } = (await request.json()) as RequestBody;
+    const answer = await askAgent(question as string, subject as string, topic as string);
     return NextResponse.json({ answer });
   } catch (e) { /* empty */ }
 

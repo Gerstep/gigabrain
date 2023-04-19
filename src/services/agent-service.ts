@@ -15,8 +15,8 @@ export async function startAgent(subject: string, topic: string) {
   return extractArray(completion.text as string);
 }
 
-export async function askAgent(question: string) {
-  const completion = await startAnswerAgent(createModel(), question);
+export async function askAgent(question: string, subject: string, topic: string) {
+  const completion = await startAnswerAgent(createModel(), question, subject, topic);
   console.log(typeof completion.text);
   console.log("Answer text:" + (completion.text as string));
   return completion.text as string;

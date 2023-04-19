@@ -36,7 +36,7 @@ class Agent {
     topic: string,
     action: string,
     addMessage: (message: Message) => void
-  ){
+  ) {
     this.subject = subject;
     this.proficiency = proficiency;
     this.topic = topic;
@@ -44,10 +44,15 @@ class Agent {
     this.sendMessage = addMessage;
   }
 
-  async run() {
-    try {
-      this.sendThinkingMessage();
+  async start() {
+    this.sendThinkingMessage();
 
+    const initExplain = "why this topic is important";
+    const explanation = await this.getExplanation(initExplain);
+    this.sendAnswerMessage(explanation);
+    this.sendSystemMessage("Here's a few starting questions for you to start learning " + this.topic)
+
+    try {
       this.tasks = await this.getInitialTask();
       for (const task of this.tasks) {
         await new Promise((r) => setTimeout(r, 800));
@@ -59,11 +64,37 @@ class Agent {
     }
   }
 
-  async explore(question : string) {
+  async run() {
+    this.sendThinkingMessage();
+
+    try {
+      this.tasks = await this.getInitialTask();
+      for (const task of this.tasks) {
+        await new Promise((r) => setTimeout(r, 800));
+        this.sendTopicMessage(task);
+      }
+    } catch (e) {
+      console.log(e);
+      return;
+    }
+  }
+
+  async explore(question: string) {
     try {
       this.sendThinkingMessage();
       this.answer = await this.getAnswer(question);
-      console.log(' GOT ANSWER ::: ' + this.answer)
+      this.sendAnswerMessage(this.answer);
+    } catch (e) {
+      console.log(e);
+      return;
+    }
+  }
+
+  async ask(question: string) {
+    try {
+      this.sendThinkingMessage();
+      this.answer = await this.getAnswer(question);
+      console.log(' GOT ANSWER from chat ::: ' + this.answer)
       this.sendAnswerMessage(this.answer);
     } catch (e) {
       console.log(e);
@@ -72,7 +103,7 @@ class Agent {
   }
 
   // get context (learned topics)
-  async test(testSubject : string) {
+  async test(testSubject: string) {
     try {
       this.sendThinkingMessage();
       this.quiz = await this.getTest(testSubject);
@@ -83,16 +114,16 @@ class Agent {
     }
   }
 
-  async answerTest(answer : string) {
+  async answerTest(answer: string) {
     this.sendThinkingMessage();
-    if(answer.endsWith("(correct)")){
+    if (answer.endsWith("(correct)")) {
       this.sendResultMessage("CONGRATS!")
     } else {
       this.sendResultMessage("You failed")
     }
   }
 
-  async explain(concept : string) {
+  async explain(concept: string) {
     this.sendThinkingMessage();
     try {
       const explanation = await this.getExplanation(concept);
@@ -103,7 +134,7 @@ class Agent {
     }
   }
 
-  async getInitialTask(): Promise<string[]>{
+  async getInitialTask(): Promise<string[]> {
     const res = await axios.post(`/api/chain`, {
       subject: this.subject,
       topic: this.topic
@@ -111,14 +142,16 @@ class Agent {
     return res.data.newTask as string[];
   }
 
-  async getAnswer(question : string) {
+  async getAnswer(question: string) {
     const res = await axios.post(`/api/answer`, {
-      question: question
+      question: question,
+      subject: this.subject,
+      topic: this.topic
     })
     return res.data.answer as string;
   }
 
-  async getExplanation(concept : string) {
+  async getExplanation(concept: string) {
     const res = await axios.post(`/api/explain`, {
       concept: concept,
       subject: this.subject,
@@ -127,30 +160,34 @@ class Agent {
     return res.data.explanation as string;
   }
 
-  async getTest(testSubject : string) {
+  async getTest(testSubject: string) {
     const res = await axios.post(`/api/quiz`, {
       testSubject: testSubject
     })
     return res.data.quiz as Quiz;
   }
 
-  sendTopicMessage(value : string) {
+  sendTopicMessage(value: string) {
     this.sendMessage({ type: "topic", value: value, actions: ["ask"] });
   }
 
-  sendResultMessage(value : string) {
+  sendResultMessage(value: string) {
     this.sendMessage({ type: "result", value: value });
+  }
+
+  sendSystemMessage(value: string) {
+    this.sendMessage({ type: "system", value: value });
   }
 
   sendThinkingMessage() {
     this.sendMessage({ type: "thinking", value: "" });
   }
 
-  sendTestMessage(value : string, options : string[]) {
+  sendTestMessage(value: string, options: string[]) {
     this.sendMessage({ type: "test", value: value, actions: options });
   }
 
-  sendAnswerMessage(value : string) {
+  sendAnswerMessage(value: string) {
     this.sendMessage({ type: "answer", value: value });
   }
 }

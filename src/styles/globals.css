@@ -69,6 +69,49 @@
     @apply font-primary text-base font-bold md:text-lg;
   }
 
+  /* Tooltip container */
+  .tooltip {
+    position: relative;
+    display: inline-block;
+  }
+
+  /* Tooltip text */
+  .tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: #f9fafb;
+    color: #047857;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 5px;
+    border: 2px solid #059669;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  /* Tooltip arrow */
+  .tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #059669 transparent transparent transparent;
+  }
+
+  /* Show the tooltip text when you hover over the tooltip container */
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+  }
+
   body,
   .p {
     @apply font-primary text-sm md:text-base;
