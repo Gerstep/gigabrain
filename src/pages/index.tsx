@@ -119,7 +119,7 @@ export default function HomePage() {
             {isModalOpen && (
               <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50">
                 <div className="bg-white rounded-lg p-8 relative">
-                  <div className="absolute top-0 right-0 cursor-pointer" onClick={closeModal}>X</div>
+                  <div className="absolute top-1 right-1 cursor-pointer font-extrabold p-1 hover:bg-emerald-100" onClick={closeModal}>X</div>
                   <h2 className="text-2xl font-bold mb-4">
                     Select your proficiency level for {selectedSubject?.name}
                   </h2>

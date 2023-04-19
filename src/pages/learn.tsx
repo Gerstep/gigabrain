@@ -7,7 +7,6 @@ import * as React from 'react';
 import { useEffect } from 'react';
 import { useRef } from 'react';
 import { FiSend } from 'react-icons/fi'
-import { ImProfile } from 'react-icons/im';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 
@@ -16,6 +15,7 @@ import Agent from '@/components/Agent';
 import Button from '@/components/buttons/Button';
 import Layout from '@/components/layout/Layout';
 import UnderlineLink from '@/components/links/UnderlineLink';
+import LoginButton from '@/components/LoginButton';
 import Messages from '@/components/Messages';
 import Seo from '@/components/Seo';
 import Study from '@/components/Study';
@@ -26,7 +26,6 @@ import { setProgress } from '@/store/subjectSlice';
 import { setContext } from '@/store/subjectSlice';
 
 import { subjects } from '@/utils/topics';
-
 const initialMessage = {
   type: "action",
   value: "Choose your action",
@@ -161,7 +160,7 @@ export default function Learn() {
               <p className='block'>{currentTopic}</p>
             </div>
             <div className=''>
-              <div> <ImProfile /></div>
+              <div><LoginButton /></div>
             </div>
           </div>
           <div className='layout w-full relative flex flex-col items-center justify-center py-4 text-center' onMouseUp={handleSelection}>
