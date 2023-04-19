@@ -7,6 +7,7 @@ import * as React from 'react';
 import { useEffect } from 'react';
 import { useRef } from 'react';
 import { FiSend } from 'react-icons/fi'
+import { ImProfile } from 'react-icons/im';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 
@@ -155,13 +156,12 @@ export default function Learn() {
                 </Link>
               </span>
             </div>
-            <div>
-              <p className="mr-2 font-bold">Level:</p>
-              <p className='block'>{proficiency}</p>
-            </div>
             <div className='mr-7'>
               <p className="mr-2 font-bold">Current Topic:</p>
               <p className='block'>{currentTopic}</p>
+            </div>
+            <div className=''>
+              <div> <ImProfile /></div>
             </div>
           </div>
           <div className='layout w-full relative flex flex-col items-center justify-center py-4 text-center' onMouseUp={handleSelection}>
