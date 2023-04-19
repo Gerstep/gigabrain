@@ -1,3 +1,4 @@
+import { Analytics } from '@vercel/analytics/react';
 import { AppProps } from 'next/app';
 import { SessionProvider } from "next-auth/react"
 import { Provider } from 'react-redux';
@@ -12,6 +13,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
     <SessionProvider session={session}>
       <Provider store={store}>
         <Component {...pageProps} />
+        <Analytics />
       </Provider>
     </SessionProvider>
   );
