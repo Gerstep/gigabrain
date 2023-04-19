@@ -978,5 +978,46 @@ export const subjects = [
         ]
       }
     ]
+  },
+  {
+    "id": 18,
+    "name": "Mycology",
+    "status": "open",
+    "type": "Natural Sciences",
+    "categories": [
+      {
+        "category": "Introduction to Mycology",
+        "topics": [
+          "Mycology History and Movements",
+          "Classification and Morphology",
+          "Growth and Development",
+          "Ecology and Biodiversity",
+          "Pathology and Control",
+          "Biotechnology and Applications",
+        ]
+      },
+      {
+        "category": "Fungal Diversity and Taxonomy",
+        "topics": [
+          "Mycorrhizae and Symbiotic Relationships",
+          "Fungal Genetics and Molecular Biology",
+          "Lichenology and Fungal-Plant Interactions",
+          "Fungal Biogeography and Evolution",
+          "Fungal Conservation and Biodiversity",
+          "Fungal Systematics and Nomenclature",
+        ]
+      },
+      {
+        "category": "Applied Mycology",
+        "topics": [
+          "Agriculture and Horticulture",
+          "Bioremediation and Decomposition",
+          "Fermentation and Biotechnology",
+          "Fungal Food and Beverage Production",
+          "Fungal Medicine and Pharmacology",
+          "Fungal Bioprospecting and Natural Products",
+        ]
+      }
+    ]
   }
 ]
