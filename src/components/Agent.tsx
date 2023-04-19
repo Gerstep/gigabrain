@@ -115,11 +115,10 @@ class Agent {
   }
 
   async answerTest(answer: string) {
-    this.sendThinkingMessage();
     if (answer.endsWith("(correct)")) {
       this.sendResultMessage("🥳 Correct! 🥳")
     } else {
-      this.sendResultMessage("Try again")
+      this.sendResultMessage("Wrong, try again!")
     }
   }
 

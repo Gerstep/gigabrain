@@ -7,7 +7,7 @@ export default function Footer() {
   return (
     <footer className='bg-white  pt-5 w-full text-center py-4 bottom-0 left-0  text-gray-700'>
       © {new Date().getFullYear()} GigaBrain Academy
-      <div>
+      <div className="pt-2">
         <UnderlineLink href="/"> Home</UnderlineLink>
         &nbsp; | &nbsp;
         <UnderlineLink href="/about"> About</UnderlineLink>

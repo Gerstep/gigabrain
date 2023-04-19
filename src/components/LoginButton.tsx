@@ -21,7 +21,7 @@ export default function LoginButton() {
           <MdArrowDropDown />
         </Button>
         {isDropdownVisible && (
-          <div className="absolute top-14 bg-emerald-200 right-2 text-black border-emerald-700 border-2 rounded-md z-50 border-dashed">
+          <div className="absolute top-14 bg-emerald-200 right-2 text-black border-emerald-700 border-2 rounded-md z-50 border-dashed opacity-90">
             {session && (
               <div className="m-2">
                 <p className="p-2">Signed in as {session.user.email}</p>

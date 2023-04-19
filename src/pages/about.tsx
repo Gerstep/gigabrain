@@ -18,7 +18,7 @@ const BenefitBox = ({ icon, title, description }: BenefitBoxProps) => {
   return (
     <motion.div
       className="w-full md:w-1/3 p-4 pb-10"
-      whileHover={{ scale: 1.1 }}
+      whileHover={{ scale: 1.05, backgroundColor: "rgb(209 250 229)" }}
       whileTap={{ scale: 0.95 }}
     >
       <div className="flex items-center justify-center w-20 h-20 rounded-md bg-emerald-500 text-white">
@@ -37,10 +37,11 @@ export default function About() {
       <Seo />
 
       <div className="">
-        <div className="py-20 text-center bg-emerald-500 text-white">
-          <h1 className="text-4xl font-bold mb-4"><Link href="/">GigaBrain</Link></h1>
-          <p className="text-xl mb-8">
-            Personalized education is not available for anyone, anywhere, for free
+        <div className="py-14 text-center bg-emerald-500 text-white">
+          <p className="text-4xl mb-8"><Link href="/">GigaBrain</Link></p>
+          <p className="text-2xl font leading-relaxed">
+            Personalized education:<br />
+            <b>any subject,<br /> any language,<br /> anywhere, <br /> for free.</b>
           </p>
         </div>
 

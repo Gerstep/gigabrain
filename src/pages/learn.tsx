@@ -234,7 +234,7 @@ export default function Learn() {
 // Chat input -> agent(text)
 // <Chat agent={agent} 
 
-const ShowTopics = ({ subjectId }) => {
+const ShowTopics = ({ subjectId, messages }) => {
   const dispatch = useDispatch();
 
   const handleSetProgress = (topicName: string) => {
@@ -252,7 +252,7 @@ const ShowTopics = ({ subjectId }) => {
             <div className="list-disc list-inside text-left">
               {category.topics.map((topic, index) => (
                 <div className="pt-1" key={index}>
-                  <UnderlineLink href="" onClick={() => handleSetProgress(topic)}>
+                  <UnderlineLink href="" onClick={() => { handleSetProgress(topic) }}>
                     {topic}
                   </UnderlineLink>
                 </div>

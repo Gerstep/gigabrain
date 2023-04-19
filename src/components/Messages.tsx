@@ -135,7 +135,7 @@ const getMessagePrefix = (message: Message) => {
     case "thinking":
       return "Working on it...";
     case "answer":
-      return "Answer:";
+      return "Info:";
     case "test":
       return "Test yourself:";
     case "result":
