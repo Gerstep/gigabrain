@@ -3,8 +3,8 @@ import Link from 'next/link';
 import * as React from "react";
 import { MdOutlinePersonPinCircle, MdOutlineSmartToy, MdWatchLater } from 'react-icons/md'
 
+import Footer from '@/components/layout/Footer';
 import ButtonLink from '@/components/links/ButtonLink';
-import UnderlineLink from '@/components/links/UnderlineLink';
 import Seo from "@/components/Seo";
 
 interface BenefitBoxProps {
@@ -77,11 +77,7 @@ export default function About() {
         </div>
       </div>
 
-      <footer className='bg-white  pt-5 w-full text-center py-4 bottom-0 left-0  text-gray-700'>
-        © {new Date().getFullYear()} GigaBrain Academy | &nbsp;
-        <UnderlineLink href="/"> Home</UnderlineLink> &nbsp;
-        <UnderlineLink href="/about"> About</UnderlineLink>
-      </footer>
+      <Footer />
 
     </>
   );

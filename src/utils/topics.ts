@@ -938,4 +938,45 @@ export const subjects = [
       },
     ],
   },
+  {
+    id: 17,
+    name: "Oceanology",
+    status: "open",
+    type: "Science",
+    categories: [
+      {
+        "category": "Introduction to Oceanography",
+        "topics": [
+          "Introduction to the World Ocean",
+          "Oceanography History and Movements",
+          "Physical Properties of Seawater",
+          "Ocean Circulation and Currents",
+          "Ocean Waves and Tides",
+          "Marine Ecology and Ecosystems",
+        ]
+      },
+      {
+        "category": "Marine Geology",
+        "topics": [
+          "Plate Tectonics and Seafloor Spreading",
+          "Sedimentology and Seafloor Morphology",
+          "Volcanism and Hydrothermal Vents",
+          "Coral Reefs and Carbonate Platforms",
+          "Marine Minerals and Resources",
+          "Seismic Surveys and Ocean Mapping",
+        ]
+      },
+      {
+        "category": "Marine Biology",
+        "topics": [
+          "Marine Organisms and Biodiversity",
+          "Plankton and Nekton",
+          "Marine Food Webs and Trophic Interactions",
+          "Marine Biogeochemistry and Climate Change",
+          "Marine Conservation and Management",
+          "Marine Biotechnology and Biomimicry",
+        ]
+      }
+    ]
+  }
 ]

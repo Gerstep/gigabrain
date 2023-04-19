@@ -5,9 +5,9 @@ import router from 'next/router';
 import * as React from 'react';
 import { useDispatch } from 'react-redux';
 
+import Footer from '@/components/layout/Footer';
 import Layout from '@/components/layout/Layout';
 import ButtonLink from '@/components/links/ButtonLink';
-import UnderlineLink from '@/components/links/UnderlineLink';
 import Seo from '@/components/Seo';
 
 import { setProgress, setSubject } from '@/store/subjectSlice';
@@ -184,10 +184,7 @@ export default function HomePage() {
               </div>
             )}
 
-            <footer className='absolute bottom-2 text-gray-700'>
-              © {new Date().getFullYear()} GigaBrain Academy | &nbsp;
-              <UnderlineLink href="/about"> About</UnderlineLink>
-            </footer>
+            <Footer />
           </div>
         </section>
       </main>

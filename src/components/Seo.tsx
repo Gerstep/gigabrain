@@ -84,6 +84,7 @@ export default function Seo(props: SeoProps) {
       <meta name='msapplication-TileColor' content='#ffffff' />
       <meta name='msapplication-config' content='/favicon/browserconfig.xml' />
       <meta name='theme-color' content='#ffffff' />
+      <script async src="https://tally.so/widgets/embed.js"></script>
     </Head>
   );
 }
