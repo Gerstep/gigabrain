@@ -78,6 +78,14 @@ export default function About() {
               description="Free for learners, available on any device"
             />
           </div>
+          <h2 className="text-3xl font-bold text-emerald-500 mb-6">Roadmap</h2>
+          <div className="text-lg text-gray-600 mb-6">
+            <ul className="list-disc list-inside mt-4">
+              <li>Language coaching</li>
+              <li>Code tutoring</li>
+              <li>Knowledge graph visualization</li>
+            </ul>
+          </div>
         </div>
       </div>
       <div className="bg-emerald-500 pt-12 pb-10">
