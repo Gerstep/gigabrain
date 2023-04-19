@@ -21,6 +21,7 @@ import TopMenu from '@/components/TopMenu';
 
 import { RootState } from '@/store/store';
 import { setProgress } from '@/store/subjectSlice';
+import { setContext } from '@/store/subjectSlice';
 
 import { subjects } from '@/utils/topics';
 
@@ -43,6 +44,7 @@ export default function Learn() {
   const router = useRouter();
   const { subjectId, subjectName, proficiency, topic } = useSelector((state: RootState) => state.subject);
   const progress = useSelector((state: RootState) => state.subject.progress);
+  const contextData = useSelector((state: RootState) => state.subject.contextData);
   const [agent, setAgent] = React.useState<Agent | null>(null);
   const [messages, setMessages] = React.useState<Message[]>([]);
   const [selectedText, setSelectedText] = React.useState('');
@@ -89,6 +91,17 @@ export default function Learn() {
   const handleReSetProgress = () => {
     dispatch(setProgress({ topic: "No topic" }));
   };
+
+  const handleSetContextData = (context) => {
+    dispatch(setContext({ contextData: context }));
+  };
+
+  useEffect(() => {
+    const lastMessage = messages[messages.length-1]
+    if(lastMessage && lastMessage.type === "answer") {
+      handleSetContextData(lastMessage.value);
+    }
+  }, [messages]);
 
 
   useEffect(() => {
@@ -184,13 +197,10 @@ export default function Learn() {
 
             <div className="flex-wrap p-2 border-green-600 border-e-2 border-s-2 rounded-lg bg-green-200 w-1/2">
             <Button onClick={() => agent.run()}  className="mx-5 px-3 h-10 text-xs">Explore more topics</Button>
-            <Button onClick={() => {
-              const answerMessages = messages.filter(message => message.type === "answer");
-              const testSubject = answerMessages.length > 0
-                ? answerMessages.map(message => message.value).join(". ")
-                : `${subjectName}${proficiency}${currentTopic}`;
-              agent.test(testSubject);
-            }} className="mx-5 px-3 h-10 text-xs">Test myself</Button>
+            
+            {contextData!='' && (
+              <Button onClick={() => {agent.test(contextData)}} className="mx-5 px-3 h-10 text-xs">Test myself (learned {contextData.length} items)</Button>
+            )}
             </div>
             
           )}
@@ -202,11 +212,11 @@ export default function Learn() {
 };
 
 const ShowTopics = ({subjectId}) => {
-  const progress = useSelector((state: RootState) => state.subject.progress);
   const dispatch = useDispatch();
 
   const handleSetProgress = (topicName: string) => {
     dispatch(setProgress({ topic: topicName }));
+    dispatch(setContext({ contextData : 'reset' }));
   };
 
   return(

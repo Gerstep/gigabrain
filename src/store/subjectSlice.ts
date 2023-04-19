@@ -8,6 +8,7 @@ const initialState = {
   proficiency: '',
   topic: '',
   progress: [],
+  contextData: '',
 };
 
 const subjectSlice = createSlice({
@@ -21,11 +22,18 @@ const subjectSlice = createSlice({
       state.topic = action.payload.topic;
     },
     setProgress: (state, action) => {
-      const { topic  } = action.payload;
+      const { topic } = action.payload;
       state.progress.length > 0 ? state.progress[state.progress.length - 1] = { topic } : state.progress.push({ topic });
     },
+    setContext: (state, action) => {
+      if (action.payload.contextData === 'reset') {
+        state.contextData = '';
+      } else {
+        state.contextData = state.contextData + action.payload.contextData;
+      }
+    }
   },
 });
 
-export const { setSubject, setProgress } = subjectSlice.actions;
+export const { setSubject, setProgress, setContext } = subjectSlice.actions;
 export default subjectSlice.reducer;
