@@ -7,7 +7,14 @@ import ButtonLink from '@/components/links/ButtonLink';
 import UnderlineLink from '@/components/links/UnderlineLink';
 import Seo from "@/components/Seo";
 
-const BenefitBox = ({ icon, title, description }) => {
+interface BenefitBoxProps {
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+}
+
+
+const BenefitBox = ({ icon, title, description }: BenefitBoxProps) => {
   return (
     <motion.div
       className="w-full md:w-1/3 p-4"
