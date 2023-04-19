@@ -61,19 +61,6 @@ const Window = ( {
           onScroll={handleScroll}
           id={messageListId}
         >
-        {messages.length === 1 && (
-          <>
-            
-              <ShowMessage message={{
-                type: "system",
-                value: "Welcome to GigaBrain Academy 🤯",
-                }}
-                callAgent={callAgent}
-                agent={agent}
-               />
-            
-          </>
-        )}
           {messages.map((message, index) => (
             <>
               {/* <Expand delay={0.5} type="spring"> */}
@@ -95,7 +82,7 @@ const ShowMessage = (props: {
   return(
     <div className="mx-2 my-1 rounded-lg border-[2px] border-emerald-500 bg-emerald-100 p-1 font-mono text-sm hover:border-emerald-700 sm:mx-4 sm:p-3 sm:text-base flex flex-col">
       <div className="flex flex-wrap">
-        <span className="mr-2 font-bold">🧪 {getMessagePrefix(props.message)}</span>
+        <span className="mr-2 font-bold">{getMessageEmoji(props.message)} {getMessagePrefix(props.message)}</span>
         <div className="mb-2 flex-1 text-left">
           <pre className="break-words whitespace-pre-wrap">{props.message.value}</pre>
         </div>
@@ -122,6 +109,21 @@ const ShowMessage = (props: {
       )}
     </div>
   )
+}
+
+const getMessageEmoji = (message : Message) => {
+  switch(message.type) {
+    case "system":
+      return "🧠";
+    case "thinking":
+      return "🤔";
+    case "test":
+      return "👨🏻‍🏫"
+    case "answer":
+      return "🧪";
+    case "result":
+      return "🔎";
+  }
 }
 
 const getMessagePrefix = (message: Message) => {

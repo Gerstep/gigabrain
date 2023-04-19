@@ -30,10 +30,13 @@ const initialMessage = {
   actions: [
     "Generate questions",
     "Learn key concepts",
-    "Glossary"
+    // "Glossary"
   ]
-};
+}
 
+const initialMessageTwo = {
+  type: "system",
+  value: "My name is GigaBrain 👋 You can ask me any question, or let me come up with a few topic to start the journey.\n\nDuring the education you can select any term or phrase to learn more about that topic. You can also choose to test your knowledge based on the material we already studied."}
 
 export default function Learn() {
   const dispatch = useDispatch();
@@ -90,7 +93,10 @@ export default function Learn() {
 
   useEffect(() => {
     if (!messages || messages.length === 0) {
-      setMessages([initialMessage]);
+      setMessages([initialMessageTwo]);
+    }
+    if (messages.length === 1){
+      handleAddMessage(initialMessage)
     }
   }, [messages]);
 
@@ -170,6 +176,12 @@ export default function Learn() {
             </Study>
           )}
           {agent && (
+
+            // Save context to redux
+            // Erase context when topic opened
+            // Chat input -> agent(text)
+            // <Chat agent={agent} 
+
             <div className="flex-wrap p-2 border-green-600 border-e-2 border-s-2 rounded-lg bg-green-200 w-1/2">
             <Button onClick={() => agent.run()}  className="mx-5 px-3 h-10 text-xs">Explore more topics</Button>
             <Button onClick={() => {
@@ -180,6 +192,7 @@ export default function Learn() {
               agent.test(testSubject);
             }} className="mx-5 px-3 h-10 text-xs">Test myself</Button>
             </div>
+            
           )}
         </div>
       </section>
