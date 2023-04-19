@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import * as React from "react";
-import { MdOutlinePersonPinCircle, MdOutlineSmartToy, MdWatchLater } from 'react-icons/md'
+import { MdExtension, MdOutlineMoneyOffCsred, MdOutlinePersonPinCircle, MdOutlineShuffleOn, MdOutlineSmartToy, MdWatchLater } from 'react-icons/md'
 
 import Footer from '@/components/layout/Footer';
 import ButtonLink from '@/components/links/ButtonLink';
@@ -17,11 +17,11 @@ interface BenefitBoxProps {
 const BenefitBox = ({ icon, title, description }: BenefitBoxProps) => {
   return (
     <motion.div
-      className="w-full md:w-1/3 p-4"
+      className="w-full md:w-1/3 p-4 pb-10"
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.95 }}
     >
-      <div className="flex items-center justify-center w-12 h-12 rounded-md bg-emerald-500 text-white">
+      <div className="flex items-center justify-center w-20 h-20 rounded-md bg-emerald-500 text-white">
         {icon}
       </div>
       <h3 className="text-lg font-medium mt-4 mb-2">{title}</h3>
@@ -47,19 +47,34 @@ export default function About() {
         <div className="container mx-auto max-w-5xl py-8">
           <div className="flex flex-wrap">
             <BenefitBox
-              icon={<MdOutlineSmartToy />}
+              icon={<MdOutlineSmartToy size={50} />}
               title="Knowledgeable"
               description="Has access to most of the world's knowledge"
             />
             <BenefitBox
-              icon={<MdWatchLater />}
+              icon={<MdWatchLater size={50} />}
               title="Patient"
-              description="A tutor that is never tired"
+              description="A tutor that is never tired, distracted, or lazy"
             />
             <BenefitBox
-              icon={<MdOutlinePersonPinCircle />}
+              icon={<MdOutlinePersonPinCircle size={50} />}
               title="Personalized"
               description="Always adapting to your own pace and interests"
+            />
+            <BenefitBox
+              icon={<MdExtension size={50} />}
+              title="Extendable"
+              description="Improve GigaBrains bot with your own course material"
+            />
+            <BenefitBox
+              icon={<MdOutlineShuffleOn size={50} />}
+              title="Flexible"
+              description="Learn in any language or difficulty level"
+            />
+            <BenefitBox
+              icon={<MdOutlineMoneyOffCsred size={50} />}
+              title="Accessible"
+              description="Free for learners, available on any device"
             />
           </div>
         </div>
