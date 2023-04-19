@@ -64,7 +64,7 @@ export default function About() {
           </div>
         </div>
       </div>
-      <div className="bg-emerald-500 pt-12">
+      <div className="bg-emerald-500 pt-12 pb-10">
         <div className="max-w-screen-lg mx-auto flex flex-col items-center">
           <h2 className="text-3xl font-bold text-white mb-6">Get in Touch</h2>
           <p className="text-white mb-12 text-center">Use GigaBrains in your application or educational process</p>
@@ -77,7 +77,7 @@ export default function About() {
         </div>
       </div>
 
-      <footer className='bg-white  pt-5 w-full text-center py-4 absolute bottom-2 text-gray-700'>
+      <footer className='bg-white  pt-5 w-full text-center py-4 bottom-0 left-0  text-gray-700'>
         © {new Date().getFullYear()} GigaBrain Academy | &nbsp;
         <UnderlineLink href="/"> Home</UnderlineLink> &nbsp;
         <UnderlineLink href="/about"> About</UnderlineLink>

@@ -117,9 +117,9 @@ class Agent {
   async answerTest(answer: string) {
     this.sendThinkingMessage();
     if (answer.endsWith("(correct)")) {
-      this.sendResultMessage("CONGRATS!")
+      this.sendResultMessage("🥳 Correct! 🥳")
     } else {
-      this.sendResultMessage("You failed")
+      this.sendResultMessage("Try again")
     }
   }
 

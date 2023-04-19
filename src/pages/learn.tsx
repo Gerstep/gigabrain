@@ -37,7 +37,7 @@ const initialMessage = {
 
 const initialMessageTwo = {
   type: "system",
-  value: "My name is GigaBrain 👋 You can ask me any question, or let me come up with a few topic to start the journey.\n\nDuring the education you can select any term or phrase to learn more about that topic. You can also choose to test your knowledge based on the material we already studied."
+  value: "My name is GigaBrain, you personal tutor 👋\n\nAsk me questions or explore the topic with me. Select any term or phrase to learn more about it. Test your knowledge based on the material we already studied."
 }
 
 export default function Learn() {
