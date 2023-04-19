@@ -161,6 +161,21 @@ export default function HomePage() {
                   type="text"
                   className="px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:border-emerald-500"
                 />
+                <label htmlFor="file-input" className="text-gray-700 font-medium">
+                  Upload PDF with your course content
+                </label>
+                <div className="relative rounded-md shadow-sm pb-12">
+                  <input
+                    id="file-input"
+                    type="file"
+                    accept=".pdf"
+                    className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                  />
+                  <div className="absolute inset-0 py-2 px-3 rounded-md bg-white flex items-center justify-between border border-gray-300">
+                    <span className="text-gray-500">No file selected</span>
+                    <span className="text-gray-700">Choose File</span>
+                  </div>
+                </div>
                 <button className="bg-emerald-500 hover:bg-emerald-600 text-white py-2 px-4 rounded-lg shadow-sm">
                   Submit
                 </button>

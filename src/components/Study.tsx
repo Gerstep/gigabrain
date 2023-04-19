@@ -13,13 +13,8 @@ const Study = ({ children }) => {
   return (
     <>
       <div className='text-2xl text-emerald-900 font-bold'>Learning {currentTopic}</div>
-      <div
-            id="layout"
-            className="flex h-full w-full max-w-screen-lg flex-col items-center justify-between gap-3 py-5 md:justify-center"
-          >
-      {/* <Expand> */}      
+      <div id="layout" className="flex h-full w-full max-w-screen-lg flex-col items-center justify-between gap-3 py-5 md:justify-center">
         {children}
-      {/* </Expand> */}
       </div>
     </>
   );

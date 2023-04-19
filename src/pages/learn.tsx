@@ -29,15 +29,15 @@ const initialMessage = {
   type: "action",
   value: "Choose your action",
   actions: [
-    "Generate questions",
-    "Learn key concepts",
+    "Start Exploring",
     // "Glossary"
   ]
 }
 
 const initialMessageTwo = {
   type: "system",
-  value: "My name is GigaBrain 👋 You can ask me any question, or let me come up with a few topic to start the journey.\n\nDuring the education you can select any term or phrase to learn more about that topic. You can also choose to test your knowledge based on the material we already studied."}
+  value: "My name is GigaBrain 👋 You can ask me any question, or let me come up with a few topic to start the journey.\n\nDuring the education you can select any term or phrase to learn more about that topic. You can also choose to test your knowledge based on the material we already studied."
+}
 
 export default function Learn() {
   const dispatch = useDispatch();
@@ -50,6 +50,7 @@ export default function Learn() {
   const [selectedText, setSelectedText] = React.useState('');
   const [buttonPosition, setButtonPosition] = React.useState({ top: 0, left: 0 });
   const buttonRef = useRef(null);
+  const [inputValue, setInputValue] = React.useState('');
 
   const currentTopic = progress.length > 0 ? progress[progress.length - 1].topic : "No topic";
 
@@ -97,8 +98,8 @@ export default function Learn() {
   };
 
   useEffect(() => {
-    const lastMessage = messages[messages.length-1]
-    if(lastMessage && lastMessage.type === "answer") {
+    const lastMessage = messages[messages.length - 1]
+    if (lastMessage && lastMessage.type === "answer") {
       handleSetContextData(lastMessage.value);
     }
   }, [messages]);
@@ -108,7 +109,7 @@ export default function Learn() {
     if (!messages || messages.length === 0) {
       setMessages([initialMessageTwo]);
     }
-    if (messages.length === 1){
+    if (messages.length === 1) {
       handleAddMessage(initialMessage)
     }
   }, [messages]);
@@ -119,107 +120,129 @@ export default function Learn() {
     }
   }, [subjectId, proficiency, router]);
 
-  const callAgent = (action : string) => {
+  const callAgent = (action: string) => {
     console.log('ACTION ::: ' + action)
     const agent = new Agent(
-      subjectName, 
-      proficiency, 
-      currentTopic, 
+      subjectName,
+      proficiency,
+      currentTopic,
       action,
       handleAddMessage);
     setAgent(agent);
     agent.run();
   }
 
-  const handleAddMessage = (message : Message) => {
+  const handleAddMessage = (message: Message) => {
     setMessages((prev) => [...prev, message]);
   };
 
   return (
     <Layout>
-    {/* <Seo templateTitle='Home' /> */}
-    <Seo />
-    <main>
-      <section className='bg-white'>
-        <div className="bg-gray-200 text-black px-4 py-2 flex justify-between items-center">
-          <div className='ml-7'>
-            <span className="mr-2 font-bold font-mon"><TopMenu /></span>
+      {/* <Seo templateTitle='Home' /> */}
+      <Seo />
+      <main>
+        <section className='bg-white'>
+          <div className="bg-gray-200 text-black px-4 py-2 flex justify-between items-center">
+            <div className='ml-7'>
+              <span className="mr-2 font-bold font-mon"><TopMenu /></span>
+            </div>
+            <div className='ml-7'>
+              <span className="mr-2 font-bold font-mon">Subject:</span>
+              <span className='block'>
+                <Link href="" onClick={() => handleReSetProgress()} className='underline'>
+                  {subjectName}
+                </Link>
+              </span>
+            </div>
+            <div>
+              <p className="mr-2 font-bold font-mon">Level:</p>
+              <p className='block'>{proficiency}</p>
+            </div>
+            <div className='mr-7'>
+              <p className="mr-2 font-bold font-mon">Current Topic:</p>
+              <p className='block'>{currentTopic}</p>
+            </div>
           </div>
-          <div className='ml-7'>
-            <span className="mr-2 font-bold font-mon">Subject:</span>
-            <span className='block'>
-              <Link href="" onClick={() => handleReSetProgress()} className='underline'>
-                {subjectName}
-              </Link>
-            </span>
-          </div>
-          <div>
-            <p className="mr-2 font-bold font-mon">Level:</p>
-            <p className='block'>{proficiency}</p>
-          </div>
-          <div className='mr-7'>
-            <p className="mr-2 font-bold font-mon">Current Topic:</p>
-            <p className='block'>{currentTopic}</p>
-          </div>
-        </div>
-        <div className='layout w-full relative flex flex-col items-center justify-center py-4 text-center' onMouseUp={handleSelection}>
-          {subjectId && currentTopic==="No topic" && (
-            <ShowTopics subjectId={subjectId} />
-          )}
-          {currentTopic!="No topic" && (
-            <Study>
-              {/* <div onMouseUp={handleSelection} className='w-full'> */}
+          <div className='layout w-full relative flex flex-col items-center justify-center py-4 text-center' onMouseUp={handleSelection}>
+            {subjectId && currentTopic === "No topic" && (
+              <ShowTopics subjectId={subjectId} />
+            )}
+            {currentTopic != "No topic" && (
+              <Study>
                 {selectedText && agent && (
-                  <div
-                  ref={buttonRef}
-                  style={{
-                    position: 'absolute',
-                    top: buttonPosition.top,
-                    left: buttonPosition.left,
-                    zIndex: 9999,
-                  }}
-                  >
+                  <div ref={buttonRef} style={{ position: 'absolute', top: buttonPosition.top, left: buttonPosition.left, zIndex: 9999, }}>
                     <Button onClick={() => agent.explain(selectedText)}>
                       Explain
                     </Button>
-                </div>
+                  </div>
                 )}
-              <Messages messages={messages} callAgent={callAgent} agent={agent} />
-              {/* </div> */}
-            </Study>
-          )}
-          {agent && (
-
-            // Save context to redux
-            // Erase context when topic opened
-            // Chat input -> agent(text)
-            // <Chat agent={agent} 
-
-            <div className="flex-wrap p-2 border-green-600 border-e-2 border-s-2 rounded-lg bg-green-200 w-1/2">
-            <Button onClick={() => agent.run()}  className="mx-5 px-3 h-10 text-xs">Explore more topics</Button>
-            
-            {contextData!='' && (
-              <Button onClick={() => {agent.test(contextData)}} className="mx-5 px-3 h-10 text-xs">Test myself (learned {contextData.length} items)</Button>
+                <Messages messages={messages} callAgent={callAgent} agent={agent} />
+              </Study>
             )}
+            <div className="flex flex-col items-center justify-center w-full py-4">
+              <div className="w-full max-w-screen-lg flex flex-col items-center justify-between py-5 md:flex-row">
+                <div className="flex justify-center items-center w-full md:w-1/2 md:justify-start">
+                  <input type="text" placeholder="Type your message here" className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-emerald-500 focus:border-emerald-500" value={inputValue} onChange={(e) => setInputValue(e.target.value)} />
+                </div>
+                <div className="flex justify-center items-center w-full md:w-1/2 md:justify-end mt-4 md:mt-0">
+                  <button
+                    className="bg-emerald-500 hover:bg-emerald-600 text-white py-2 px-4 rounded-md mr-4"
+                    disabled={!agent}
+                    onClick={() => { agent.ask(inputValue) }}
+                  >
+                    Ask Tutor
+                  </button>
+                  <button
+                    className="bg-emerald-500 hover:bg-gray-300 text-white py-2 px-4 rounded-md mr-4"
+                    onClick={() => { agent ? agent.run() : callAgent() }}
+                  >
+                    Explore Topics
+                  </button>
+
+                  <button
+                    className="bg-emerald-500 hover:bg-gray-300 text-white py-2 px-4 rounded-md"
+                    disabled={contextData.length === 0}
+                    onClick={() => { agent.test(contextData) }}
+                  >
+                    Test Myself ({contextData.length})
+                    <span class="tooltiptext">Start the lesson first</span>
+                  </button>
+
+                </div>
+              </div>
             </div>
-            
-          )}
-        </div>
-      </section>
-    </main>
+            {agent && (
+
+
+
+              <div className="flex-wrap p-2 border-green-600 border-e-2 border-s-2 rounded-lg bg-green-200 w-1/2">
+                <Button onClick={() => agent.run()} className="mx-5 px-3 h-10 text-xs">Explore more topics</Button>
+
+                {contextData != '' && (
+                  <Button onClick={() => { agent.test(contextData) }} className="mx-5 px-3 h-10 text-xs">Test myself ({contextData.length})</Button>
+                )}
+              </div>
+
+            )}
+          </div>
+        </section>
+      </main>
     </Layout>
   );
 };
 
-const ShowTopics = ({subjectId}) => {
+// Chat input -> agent(text)
+// <Chat agent={agent} 
+
+const ShowTopics = ({ subjectId }) => {
   const dispatch = useDispatch();
 
   const handleSetProgress = (topicName: string) => {
     dispatch(setProgress({ topic: topicName }));
-    dispatch(setContext({ contextData : 'reset' }));
+    dispatch(setContext({ contextData: 'reset' }));
   };
 
-  return(
+  return (
     <div className="container mx-auto">
       <h1 className="text-3xl font-bold text-center mb-8">Welcome! To start, choose a topic:</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
@@ -230,7 +253,7 @@ const ShowTopics = ({subjectId}) => {
               {category.topics.map((topic, index) => (
                 <div className="pt-1" key={index}>
                   <UnderlineLink href="" onClick={() => handleSetProgress(topic)}>
-                  {topic}
+                    {topic}
                   </UnderlineLink>
                 </div>
               ))}
