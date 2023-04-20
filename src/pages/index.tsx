@@ -5,6 +5,8 @@ import router from 'next/router';
 import * as React from 'react';
 import { useDispatch } from 'react-redux';
 
+import { supabase } from '@/lib/supabaseClient';
+
 import Footer from '@/components/layout/Footer';
 import Layout from '@/components/layout/Layout';
 import ButtonLink from '@/components/links/ButtonLink';
@@ -15,8 +17,17 @@ import { setProgress, setSubject } from '@/store/subjectSlice';
 
 import { subjects } from '@/utils/topics';
 
+export async function getServerSideProps() {
+  const { data } = await supabase.from('profiles').select()
 
-export default function HomePage() {
+  return {
+    props: {
+      profiles: data
+    },
+  }
+}
+
+export default function HomePage({ profiles }) {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   const [isCreatorModalOpen, setIsCreatorModalOpen] = React.useState(false);
   const [selectedSubject, setSelectedSubject] = React.useState(null);
@@ -65,7 +76,7 @@ export default function HomePage() {
 
       <main>
         <section className='bg-white'>
-          <div className='bg-green-100 shadow-lg text-black px-4 py-2 flex justify-end'>
+          <div className='text-black px-4 py-2 flex justify-end'>
             <LoginButton />
           </div>
           <div className='layout relative flex min-h-screen flex-col items-center justify-center py-12 text-center'>

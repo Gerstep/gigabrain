@@ -22,15 +22,15 @@ export default function LoginButton() {
 
   return (
     <>
-      <div className="relative bg-green-100 text-white p-2">
-        <Button className="bg-green-100 border-0" onClick={toggleDropdown}>
+      <div className="relative bg-green-100 text-white p-2 rounded-lg">
+        <Button className="bg-green-100 border-0 shadow-none" onClick={toggleDropdown}>
           <RiUserSmileFill size={30} color="green" />
           <MdArrowDropDown size={20} color="green" />
         </Button>
         {isDropdownVisible && (
           <div className="absolute top-14 bg-green-100 right-2 text-black border-emerald-700 border-2 rounded-md z-50 w-96 border-dashed p-5">
             {!session ? (
-              <Auth supabaseClient={supabase} appearance={{ theme: ThemeSupa }} theme="dark" />
+              <Auth supabaseClient={supabase} providers={['google']} appearance={{ theme: ThemeSupa }} theme="dark" />
             ) : (
               <Account session={session} />
             )}
