@@ -6,7 +6,7 @@ const defaultMeta = {
   title: 'GigaBrain Academy',
   siteName: 'GigaBrain Academy',
   description:
-    'AI University',
+    'Personalized university: learn anything, anywhere, for free.',
   /** Without additional '/' on the end, e.g. https://theodorusclarence.com */
   url: 'https://gigabrain.vercel.app',
   type: 'website',
