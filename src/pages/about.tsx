@@ -5,6 +5,7 @@ import { MdExtension, MdOutlineMoneyOffCsred, MdOutlinePersonPinCircle, MdOutlin
 
 import Footer from '@/components/layout/Footer';
 import ButtonLink from '@/components/links/ButtonLink';
+import UnderlineLink from '@/components/links/UnderlineLink';
 import Seo from "@/components/Seo";
 
 interface BenefitBoxProps {
@@ -78,24 +79,20 @@ export default function About() {
               description="Free for learners, available on any device"
             />
           </div>
-          <h2 className="text-3xl font-bold text-emerald-500 mb-6">Roadmap</h2>
-          <div className="text-lg text-gray-600 mb-6">
-            <ul className="list-disc list-inside mt-4">
-              <li>Language coaching</li>
-              <li>Code tutoring</li>
-              <li>Knowledge graph visualization</li>
-            </ul>
-          </div>
         </div>
       </div>
       <div className="bg-emerald-500 pt-12 pb-10">
         <div className="max-w-screen-lg mx-auto flex flex-col items-center">
           <h2 className="text-3xl font-bold text-white mb-6">Get in Touch</h2>
-          <p className="text-white mb-12 text-center">Use GigaBrains in your application or educational process</p>
+          <p className="text-white mb-2 text-center">Use GigaBrains in your application or educational process</p>
+          <p className="text-white mb-12 text-center">Contact <UnderlineLink href="https://twitter/sgershuni">Stepan Gershuni</UnderlineLink> for details</p>
 
           <div className="flex justify-center">
-            <ButtonLink href="mailto:gershuni.stepan@gmail.com" className="bg-white hover:bg-gray-100 text-emerald-500 font-bold py-2 px-4 rounded-full transition-all duration-200">
-              Contact
+            <ButtonLink href="mailto:gershuni.stepan@gmail.com" className="bg-white mr-5 hover:bg-gray-100 text-emerald-500 font-bold py-2 px-4 rounded-full transition-all duration-200">
+              Send a note
+            </ButtonLink>
+            <ButtonLink href="https://calendly.com/stepa-dot-eth" className="bg-white hover:bg-gray-100 text-emerald-500 font-bold py-2 px-4 rounded-full transition-all duration-200">
+              Book a Call
             </ButtonLink>
           </div>
         </div>
