@@ -1,21 +1,24 @@
+import { createBrowserSupabaseClient } from '@supabase/auth-helpers-nextjs'
+import { Session, SessionContextProvider } from '@supabase/auth-helpers-react'
 import { Analytics } from '@vercel/analytics/react';
 import { AppProps } from 'next/app';
-import { SessionProvider } from "next-auth/react"
+import { useState } from 'react'
 import { Provider } from 'react-redux';
-import 'flowbite';
 
 import '@/styles/globals.css';
 
 import { store } from '@/store/store'
 
-function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
+function MyApp({ Component, pageProps }: AppProps<{ initialSession: Session, }>) {
+  const [supabase] = useState(() => createBrowserSupabaseClient())
+
   return (
-    <SessionProvider session={session}>
+    <SessionContextProvider supabaseClient={supabase} initialSession={pageProps.initialSession}>
       <Provider store={store}>
         <Component {...pageProps} />
         <Analytics />
       </Provider>
-    </SessionProvider>
+    </SessionContextProvider>
   );
 }
 export default MyApp;

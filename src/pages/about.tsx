@@ -88,7 +88,7 @@ export default function About() {
           <p className="text-white mb-12 text-center">Contact <UnderlineLink href="https://twitter/sgershuni">Stepan Gershuni</UnderlineLink> for details</p>
 
           <div className="flex justify-center">
-            <ButtonLink href="mailto:gershuni.stepan@gmail.com" className="bg-white mr-5 hover:bg-gray-100 text-emerald-500 font-bold py-2 px-4 rounded-full transition-all duration-200">
+            <ButtonLink href="https://t.me/sgershuni" className="bg-white mr-5 hover:bg-gray-100 text-emerald-500 font-bold py-2 px-4 rounded-full transition-all duration-200">
               Send a note
             </ButtonLink>
             <ButtonLink href="https://calendly.com/stepa-dot-eth" className="bg-white hover:bg-gray-100 text-emerald-500 font-bold py-2 px-4 rounded-full transition-all duration-200">
