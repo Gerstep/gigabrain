@@ -204,7 +204,7 @@ export default function Learn() {
                       className="bg-emerald-500 hover:bg-emerald-600 text-white py-2 px-4 rounded-md mr-4"
                       onClick={() => { agent ? agent.run() : callAgent() }}
                     >
-                      Explore Topics
+                      Generate Questions
                     </button>
 
                     <div class="group flex relative">
@@ -214,7 +214,7 @@ export default function Learn() {
                         disabled={contextData.length === 0}
                         onClick={() => { agent.test(contextData) }}
                       >
-                        Test Myself ({contextData.length})
+                        Test Myself
                       </button>
                       {contextData.length === 0 && (<span class="group-hover:opacity-100 transition-opacity bg-emerald-700 px-1 text-sm text-gray-100 rounded-md absolute left-1/2 -translate-x-1/2 translate-y-full opacity-0 m-2 mx-auto w-48">Complete at least one topic first</span>)}
                     </div>
