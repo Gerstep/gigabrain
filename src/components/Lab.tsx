@@ -9,7 +9,7 @@ const Lab = () => {
   const { subjectId, subjectName, topicTitle, classType } = useSelector((state: RootState) => state.subject);
   return (
     <>
-
+      <div className=' text-center m-10 text-xl'>This is a lab - WIP</div>
     </>
   );
 };

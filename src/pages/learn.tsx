@@ -13,6 +13,7 @@ import type Message from '@/components/Agent'
 import Agent from '@/components/Agent';
 import Button from '@/components/buttons/Button';
 import { CourseOverview } from '@/components/CourseOverview';
+import Lab from '@/components/Lab';
 import Layout from '@/components/layout/Layout';
 import LoginButton from '@/components/LoginButton';
 import Messages from '@/components/Messages';
@@ -210,7 +211,7 @@ export default function Learn() {
             </div>
           )}
           {currentTopic != "No topic" && classType === 'laboratory' && (
-            <></>
+            <Lab />
           )}
         </section>
       </main>
