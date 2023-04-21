@@ -43,7 +43,8 @@ class Agent {
   }
 
   async discuss() {
-    this.sendAnswerMessage('abc');
+    const chatMessage = await this.getDiscuss();
+    this.sendAnswerMessage(chatMessage);
   }
 
   async start() {
@@ -153,6 +154,14 @@ class Agent {
       topic: this.topic
     })
     return res.data.answer as string;
+  }
+
+  async getDiscuss() {
+    const res = await axios.post(`/api/chat`, {
+      subject: this.subject,
+      topic: this.topic
+    })
+    return res.data.discussMessage as string;
   }
 
   async getChatMessage(question: string) {

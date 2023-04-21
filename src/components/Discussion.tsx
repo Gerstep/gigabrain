@@ -56,7 +56,6 @@ const Discussion = () => {
       subjectName,
       currentTopic,
       action,
-      person,
       handleAddMessage);
     setAgent(agent);
     agent.discuss();
