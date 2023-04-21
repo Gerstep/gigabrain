@@ -85,7 +85,7 @@ export default function About() {
         <div className="max-w-screen-lg mx-auto flex flex-col items-center">
           <h2 className="text-3xl font-bold text-white mb-6">Get in Touch</h2>
           <p className="text-white mb-2 text-center">Use GigaBrains in your application or educational process</p>
-          <p className="text-white mb-12 text-center">Contact <UnderlineLink href="https://twitter/sgershuni">Stepan Gershuni</UnderlineLink> for details</p>
+          <p className="text-white mb-12 text-center">Contact <UnderlineLink href="https://twitter.com/sgershuni">Stepan Gershuni</UnderlineLink> for details</p>
 
           <div className="flex justify-center">
             <ButtonLink href="https://t.me/sgershuni" className="bg-white mr-5 hover:bg-gray-100 text-emerald-500 font-bold py-2 px-4 rounded-full transition-all duration-200">

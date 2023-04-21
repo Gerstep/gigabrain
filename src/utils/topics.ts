@@ -1,5 +1,123 @@
 export const subjects = [
   {
+    id: 221,
+    name: "Blockchain Development",
+    status: "open",
+    type: "IT",
+    version: 2,
+    description: "Learn blockchain engineering, marketing, product development and legal aspects of building decentralized financial systems.",
+    categories: [
+      {
+        category: "Blockchain fundamentals",
+        topics: [
+          {
+            title: "Distributed ledger technology (DLT)",
+            type: "lecture"
+          },
+          {
+            title: "Distributed ledger technology (DLT)",
+            type: "seminar"
+          },
+          {
+            title: "Distributed ledger technology (DLT)",
+            type: "laboratory"
+          },
+          {
+            title: "Consensus mechanisms",
+            type: "lecture"
+          },
+          {
+            title: "Consensus mechanisms",
+            type: "seminar"
+          },
+          {
+            title: "Types of tokens",
+            type: "lecture"
+          },
+          {
+            title: "Blockchain types",
+            type: "lecture"
+          },
+          {
+            title: "Blockchain types",
+            type: "seminar"
+          },
+          {
+            title: "Consensus mechanisms",
+            type: "lecture"
+          },
+          {
+            title: "Consensus mechanisms",
+            type: "seminar"
+          }
+        ],
+      },
+      {
+        category: "Decentralized protocols",
+        topics: [
+          {
+            title: "Bitcoin",
+            type: "lecture"
+          },
+          {
+            title: "Bitcoin as digital gold",
+            type: "seminar"
+          },
+          {
+            title: "Ethereum",
+            type: "lecture"
+          },
+          {
+            title: "Building first smart contract",
+            type: "seminar"
+          },
+          {
+            title: "Filecoin",
+            type: "lecture"
+          },
+          {
+            title: "Arweave",
+            type: "lecture"
+          }
+        ],
+      },
+    ],
+  },
+  {
+    id: 222,
+    name: "Mycology",
+    status: "open",
+    type: "Science",
+    version: 2,
+    description: "Mycology is the branch of biology concerned with the study of fungi, including their genetic and biochemical properties, their taxonomy and their use to humans, including as a source for tinder, traditional medicine, food, and entheogens, as well as their dangers, such as toxicity or infection.",
+    "categories": [
+      {
+        category: "Introduction to Mycology",
+        "topics": [
+          {
+            title: "Mycology History and Movements",
+            type: "lecture"
+          },
+          {
+            title: "Classification and Morphology",
+            type: "lecture"
+          },
+          {
+            title: "Growth and Development",
+            type: "lecture"
+          },
+          {
+            title: "Pathology and Control",
+            type: "lecture"
+          }
+        ],
+      },
+    ],
+  },
+]
+
+export const oldSubjects = [
+  {
     id: 1,
     name: "Blockchain Development",
     status: "open",

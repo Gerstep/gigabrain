@@ -5,9 +5,9 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   subjectId: '',
   subjectName: '',
-  proficiency: '',
+  classType: '',
+  topicTitle: '',
   topic: '',
-  progress: [],
   contextData: '',
 };
 
@@ -18,22 +18,22 @@ const subjectSlice = createSlice({
     setSubject: (state, action) => {
       state.subjectId = action.payload.subjectId;
       state.subjectName = action.payload.subjectName;
-      state.proficiency = action.payload.proficiency;
-      state.topic = action.payload.topic;
     },
     setProgress: (state, action) => {
-      const { topic } = action.payload;
-      state.progress.length > 0 ? state.progress[state.progress.length - 1] = { topic } : state.progress.push({ topic });
+      state.topicTitle = action.payload.topicTitle;
+    },
+    setClassType: (state, action) => {
+      state.classType = action.payload.classType;
     },
     setContext: (state, action) => {
       if (action.payload.contextData === 'reset') {
         state.contextData = '';
       } else {
-        state.contextData = state.contextData + action.payload.contextData;
+        state.contextData = action.payload.contextData;
       }
     }
   },
 });
 
-export const { setSubject, setProgress, setContext } = subjectSlice.actions;
+export const { setSubject, setProgress, setContext, setClassType } = subjectSlice.actions;
 export default subjectSlice.reducer;

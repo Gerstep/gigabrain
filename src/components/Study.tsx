@@ -6,9 +6,9 @@ import { useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
 
 const Study = ({ children }) => {
-  const progress = useSelector((state: RootState) => state.subject.progress);
+  const topicTitle = useSelector((state: RootState) => state.subject.topicTitle);
 
-  const currentTopic = progress.length > 0 ? progress[progress.length - 1].topic : "No topic";
+  const currentTopic = topicTitle ? topicTitle : "No topic";
 
   return (
     <>

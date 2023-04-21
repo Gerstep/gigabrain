@@ -53,18 +53,16 @@ export default function HomePage({ profiles }) {
     setIsCreatorModalOpen(false);
   }
 
-  function setProficiencyAndProceed(proficiency) {
-    setSelectedProficiency(proficiency);
+  function setProficiencyAndProceed() {
     dispatch(
       setSubject({
         subjectId: selectedSubject.id,
         subjectName: selectedSubject.name,
-        proficiency,
       })
     );
     dispatch(
       setProgress({
-        topic: defaultTopic
+        topicTitle: defaultTopic
       }));
     router.push('/learn');
   }

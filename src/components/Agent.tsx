@@ -18,7 +18,6 @@ export interface Quiz {
 // shutdown() -> call when user exists the learning session
 class Agent {
   subject: string;
-  proficiency: string;
   topic: string;
   action: string;
   tasks: string[] = [];
@@ -32,13 +31,11 @@ class Agent {
 
   constructor(
     subject: string,
-    proficiency: string,
     topic: string,
     action: string,
     addMessage: (message: Message) => void
   ) {
     this.subject = subject;
-    this.proficiency = proficiency;
     this.topic = topic;
     this.action = action;
     this.sendMessage = addMessage;
@@ -115,6 +112,10 @@ class Agent {
   }
 
   async answerTest(answer: string) {
+    if (answer.endsWith("(incorrect)")) {
+      answer = answer.slice(0, answer.length - 11);
+    }
+
     if (answer.endsWith("(correct)")) {
       this.sendResultMessage("🥳 Correct! 🥳")
     } else {
