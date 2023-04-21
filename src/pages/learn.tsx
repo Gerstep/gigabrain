@@ -153,7 +153,7 @@ export default function Learn() {
           {subjectId && currentTopic === "No topic" && (
             <CourseOverview subjectId={subjectId} agent={agent} killAgent={killAgent} />
           )}
-          {currentTopic != "No topic" && classType === 'seminar' && (
+          {currentTopic != "No topic" && (classType === 'seminar' || classType === 'lecture') && (
             <div className='layout w-full relative flex flex-col justify-center py-4 text-center' onMouseUp={handleSelection}>
               <Study>
                 {selectedText && agent && (
