@@ -30,11 +30,27 @@ export async function getServerSideProps() {
 export default function HomePage({ profiles }) {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   const [isCreatorModalOpen, setIsCreatorModalOpen] = React.useState(false);
-  const [selectedSubject, setSelectedSubject] = React.useState(null);
   const [, setSelectedProficiency] = React.useState(null);
   const [selectedType, setSelectedType] = React.useState('');
+
+  const [selectedSubject, setSelectedSubject] = React.useState<null | Subject>(null);
   const dispatch = useDispatch();
   const defaultTopic = "No topic";
+
+  // async function startCourse(subject: React.SetStateAction<null>) {
+  //   await (setSelectedSubject(subject) as Promise<unknown>);
+  //   dispatch(
+  //     setSubject({
+  //       subjectId: selectedSubject.id,
+  //       subjectName: selectedSubject.name,
+  //     })
+  //   );
+  //   dispatch(
+  //     setProgress({
+  //       topicTitle: defaultTopic
+  //     }));
+  //   router.push('/learn');
+  // }
 
   function openModal(subject: React.SetStateAction<null>) {
     setSelectedSubject(subject);
@@ -66,6 +82,8 @@ export default function HomePage({ profiles }) {
       }));
     router.push('/learn');
   }
+
+
 
   return (
     <Layout>
@@ -134,26 +152,15 @@ export default function HomePage({ profiles }) {
                 <div className="bg-white rounded-lg p-8 relative">
                   <div className="absolute top-1 right-1 cursor-pointer font-extrabold p-1 hover:bg-emerald-100" onClick={closeModal}>X</div>
                   <h2 className="text-2xl font-bold mb-4">
-                    Select your proficiency level for {selectedSubject?.name}
+                    You are about to start {selectedSubject?.name} course
                   </h2>
-                  <div className="flex flex-wrap justify-center">
+                  <div className='mb-5'>{selectedSubject?.description}</div>
+                  <div className="justify-center">
                     <button
                       onClick={() => setProficiencyAndProceed('beginner')}
-                      className="bg-green-500 text-white px-4 py-2 rounded-lg m-2 bg-blue-500 hover:bg-yellow-500 transition-colors duration-500 ease-in-out"
+                      className="bg-green-500 text-white px-4 py-2 rounded-lg m-2 h-12 text-xl w-1/2 hover:bg-yellow-500 transition-colors duration-500 ease-in-out"
                     >
-                      Beginner
-                    </button>
-                    <button
-                      onClick={() => setProficiencyAndProceed('intermediate')}
-                      className="bg-blue-500 text-white px-4 py-2 rounded-lg m-2 bg-blue-500 hover:bg-yellow-500 transition-colors duration-500 ease-in-out"
-                    >
-                      Intermediate
-                    </button>
-                    <button
-                      onClick={() => setProficiencyAndProceed('advanced')}
-                      className="bg-red-500 text-white px-4 py-2 rounded-lg m-2 bg-blue-500 hover:bg-yellow-500 transition-colors duration-500 ease-in-out"
-                    >
-                      Advanced
+                      Begin!
                     </button>
                   </div>
                 </div>

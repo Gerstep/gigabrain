@@ -13,12 +13,13 @@ import type Message from '@/components/Agent'
 import Agent from '@/components/Agent';
 import Button from '@/components/buttons/Button';
 import { CourseOverview } from '@/components/CourseOverview';
+import Discussion from '@/components/Discussion';
 import Lab from '@/components/Lab';
+import Footer from '@/components/layout/Footer';
 import Layout from '@/components/layout/Layout';
 import LoginButton from '@/components/LoginButton';
 import Messages from '@/components/Messages';
 import Seo from '@/components/Seo';
-import Study from '@/components/Study';
 import TopMenu from '@/components/TopMenu';
 
 import { RootState } from '@/store/store';
@@ -155,7 +156,7 @@ export default function Learn() {
           )}
           {currentTopic != "No topic" && (classType === 'seminar' || classType === 'lecture') && (
             <div className='layout w-full relative flex flex-col justify-center py-4 text-center' onMouseUp={handleSelection}>
-              <Study>
+              <div id="layout" className="flex h-full w-full max-w-screen-lg flex-col items-center justify-between gap-3 py-5 md:justify-center">
                 {selectedText && agent && (
                   <div ref={buttonRef} style={{ position: 'absolute', top: buttonPosition.top, left: buttonPosition.left, zIndex: 9999, }}>
                     <Button onClick={() => agent.explain(selectedText)}>
@@ -164,7 +165,7 @@ export default function Learn() {
                   </div>
                 )}
                 <Messages messages={messages} callAgent={callAgent} agent={agent} />
-              </Study>
+              </div>
               <div className="w-full max-w-screen-lg flex flex-col items-center justify-between py-5 md:flex-row">
                 <div className="flex justify-center items-center w-full md:w-1/2 md:justify-start flex-1">
                   <input type="text" placeholder="Ask any question here" className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-emerald-500 focus:border-emerald-500" value={inputValue} onChange={(e) => setInputValue(e.target.value)} onKeyUp={(e) => {
@@ -213,8 +214,12 @@ export default function Learn() {
           {currentTopic != "No topic" && classType === 'laboratory' && (
             <Lab />
           )}
+          {currentTopic != "No topic" && classType === 'discussion' && (
+            <Discussion />
+          )}
         </section>
       </main>
+      <Footer />
     </Layout >
   );
 };

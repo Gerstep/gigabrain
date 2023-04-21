@@ -19,8 +19,9 @@ export const subjects = [
             type: "seminar"
           },
           {
-            title: "Distributed ledger technology (DLT)",
-            type: "laboratory"
+            title: "Discuss Bitcoin with Satoshi Nakamoto",
+            type: "discussion",
+            person: "Satoshi Nakamoto",
           },
           {
             title: "Consensus mechanisms",

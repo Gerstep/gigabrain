@@ -99,7 +99,7 @@
     padding-left: 15px;
   }
   .step-progress-item:not(:last-child) {
-    padding-bottom: 50px;
+    padding-bottom: 35px;
   }
   .step-progress-item::before {
     display: inline-block;

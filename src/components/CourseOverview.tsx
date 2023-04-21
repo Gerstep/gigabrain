@@ -59,6 +59,8 @@ const getTopicType = (type: string) => {
       return "bg-blue-300";
     case "laboratory":
       return "bg-red-300";
+    default:
+      return "bg-violet-400";
   }
 }
 

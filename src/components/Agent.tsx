@@ -21,9 +21,10 @@ class Agent {
   topic: string;
   action: string;
   tasks: string[] = [];
-  options: string[] = [];
-  answer: string | undefined;
-  quiz: Quiz = {
+  options?: string[] = [];
+  answer?: string | undefined;
+  person?: string;
+  quiz?: Quiz = {
     question: "",
     answers: []
   };
@@ -33,12 +34,18 @@ class Agent {
     subject: string,
     topic: string,
     action: string,
+    person?: string,
     addMessage: (message: Message) => void
   ) {
     this.subject = subject;
     this.topic = topic;
     this.action = action;
+    this.person = person;
     this.sendMessage = addMessage;
+  }
+
+  async discuss() {
+    this.sendAnswerMessage('abc');
   }
 
   async start() {
@@ -99,7 +106,6 @@ class Agent {
     }
   }
 
-  // get context (learned topics)
   async test(testSubject: string) {
     try {
       this.sendThinkingMessage();
@@ -147,6 +153,16 @@ class Agent {
       question: question,
       subject: this.subject,
       topic: this.topic
+    })
+    return res.data.answer as string;
+  }
+
+  async getChatMessage(question: string) {
+    const res = await axios.post(`/api/chat`, {
+      question: question,
+      subject: this.subject,
+      topic: this.topic,
+      person: this.person,
     })
     return res.data.answer as string;
   }
