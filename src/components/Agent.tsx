@@ -34,8 +34,8 @@ class Agent {
     subject: string,
     topic: string,
     action: string,
-    addMessage: (message: Message) => void,
     person?: string,
+    addMessage: (message: Message) => void
   ) {
     this.subject = subject;
     this.topic = topic;
