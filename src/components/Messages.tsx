@@ -17,11 +17,13 @@ const messageListId = "chat-window-message-list";
 const Window = ({
   messages,
   callAgent,
-  agent }:
+  agent,
+  height }:
   {
     messages: Message[],
     callAgent: () => void,
     agent: () => void,
+    height: '',
   }
 ) => {
   const [hasUserScrolled, setHasUserScrolled] = useState(false);
@@ -38,6 +40,8 @@ const Window = ({
     }
   };
 
+  height ? height : 'h-[34em] overflow-y-auto overflow-x-hidden sm-h:h-[17em] md-h:h-[22em] lg-h:h-[30em]'
+
   useEffect(() => {
     // Scroll to bottom on re-renders
     if (scrollRef && scrollRef.current) {
@@ -51,22 +55,18 @@ const Window = ({
     scrollRef.current && autoAnimate(scrollRef.current);
   }, [messages]);
 
-  console.log(messages)
-
   return (
     <>
       <div className="border-translucent flex w-full flex-col rounded-2xl border-2 border-white/20 bg-emerald-50 text-black shadow-2xl drop-shadow-lg ">
         <div
-          className="mb-2 mr-2 h-[34em] overflow-y-auto overflow-x-hidden sm-h:h-[17em] md-h:h-[22em] lg-h:h-[30em] "
+          className={`mb-2 mr-2 ${height} h-[34em] overflow-y-auto overflow-x-hidden sm-h:h-[17em] md-h:h-[22em] lg-h:h-[30em]`}
           ref={scrollRef}
           onScroll={handleScroll}
           id={messageListId}
         >
           {messages.map((message, index) => (
             <>
-              {/* <Expand delay={0.5} type="spring"> */}
               <ShowMessage message={message} callAgent={callAgent} agent={agent} key={index} />
-              {/* </Expand> */}
             </>
           ))}
         </div>
@@ -117,6 +117,8 @@ const getMessageEmoji = (message: Message) => {
       return "🧠";
     case "thinking":
       return "🤔";
+    case "verifying":
+      return "👓";
     case "test":
       return "👨🏻‍🏫"
     case "answer":
@@ -134,6 +136,8 @@ const getMessagePrefix = (message: Message) => {
       return "";
     case "thinking":
       return "Working on it...";
+    case "verifying":
+      return "Verifying your answer";
     case "answer":
       return "Info:";
     case "test":

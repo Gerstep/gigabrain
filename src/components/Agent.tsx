@@ -2,7 +2,7 @@
 import axios from "axios";
 
 export interface Message {
-  type: "thinking" | "action" | "system" | "topic" | "test" | "answer" | "result";
+  type: "thinking" | "action" | "system" | "topic" | "test" | "answer" | "result" | "verifying";
   info?: string;
   options?: string[];
   value: string;
@@ -44,6 +44,7 @@ class Agent {
   }
 
   async discuss(person: string, chatMessage: string) {
+    this.sendThinkingMessage();
     const discussionMessage = await this.getDiscuss(person, chatMessage);
     this.sendAnswerMessage(discussionMessage);
   }
@@ -140,6 +141,28 @@ class Agent {
     }
   }
 
+  async verify(task: string, inputValue: string) {
+    this.sendVerifyingMessage();
+
+    try {
+      const result = await this.getVerification(task, inputValue);
+      this.sendAnswerMessage(result)
+    } catch (e) {
+      console.log(e);
+      return;
+    }
+  }
+
+  async getVerification(task: string, inputValue: string) {
+    const res = await axios.post(`/api/verify`, {
+      task: task,
+      inputValue: inputValue,
+      subject: this.subject,
+      topic: this.topic
+    })
+    return res.data.result as string;
+  }
+
   async getInitialTask(): Promise<string[]> {
     const res = await axios.post(`/api/chain`, {
       subject: this.subject,
@@ -207,6 +230,10 @@ class Agent {
 
   sendThinkingMessage() {
     this.sendMessage({ type: "thinking", value: "" });
+  }
+
+  sendVerifyingMessage() {
+    this.sendMessage({ type: "verifying", value: "" });
   }
 
   sendTestMessage(value: string, options: string[]) {

@@ -63,6 +63,23 @@ export const startExplainAgent = async (model: OpenAI, concept: string, subject:
   });
 };
 
+const verifyPrompt = new PromptTemplate({
+  template:
+    "You are a teacher and I am a student. Your goal is to verify my work and provide feedback. Provide you feedback, starting with overall assessment of the my work. Then give me a feedback. Think through how you would improve it. Provide suggestions. Help fix bugs & errors. Point out areas of improvement. Commend what was done well. Add your thoughts on anything you think is worth commenting on. The assigment is `{task}` in the context of `{topic}` in `{subject}`. My response is `{inputValue}`.",
+  inputVariables: ["task", "inputValue", "subject", "topic"]
+});
+export const startVerifyAgent = async (model: OpenAI, task: string, inputValue: string, subject: string, topic: string) => {
+  return await new LLMChain({
+    llm: model,
+    prompt: verifyPrompt,
+  }).call({
+    task,
+    inputValue,
+    subject,
+    topic
+  });
+};
+
 
 const quizPrompt = new PromptTemplate({
   template:

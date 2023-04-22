@@ -10,6 +10,7 @@ export interface RequestBody {
   chatMessage?: string;
   concept?: string;
   testSubject?: string;
+  inputValue?: string;
   tasks?: string[];
   lastTask?: string;
   result?: string;

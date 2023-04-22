@@ -5,7 +5,8 @@ import {
   startAnswerAgent,
   startExplainAgent,
   startGoalAgent,
-  startQuizAgent
+  startQuizAgent,
+  startVerifyAgent,
 } from "../utils/chain";
 
 export async function startAgent(subject: string, topic: string) {
@@ -26,6 +27,13 @@ export async function explainAgent(concept: string, subject: string, topic: stri
   const completion = await startExplainAgent(createModel(), concept, subject, topic);
   console.log(typeof completion.text);
   console.log("Explain text:" + (completion.text as string));
+  return completion.text as string;
+}
+
+export async function verifyAgent(task: string, inputValue: string, subject: string, topic: string) {
+  const completion = await startVerifyAgent(createModel(), task, inputValue, subject, topic);
+  console.log(typeof completion.text);
+  console.log("Verify test:" + (completion.text as string));
   return completion.text as string;
 }
 

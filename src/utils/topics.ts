@@ -29,7 +29,8 @@ export const subjects = [
           },
           {
             title: "Consensus mechanisms",
-            type: "seminar"
+            type: "laboratory",
+            task: "Write down at least four consensus mechanisms",
           },
           {
             title: "Types of tokens",
@@ -41,14 +42,6 @@ export const subjects = [
           },
           {
             title: "Blockchain types",
-            type: "seminar"
-          },
-          {
-            title: "Consensus mechanisms",
-            type: "lecture"
-          },
-          {
-            title: "Consensus mechanisms",
             type: "seminar"
           }
         ],
