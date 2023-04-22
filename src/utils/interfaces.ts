@@ -6,6 +6,8 @@ export interface RequestBody {
   topic?: string;
   task?: string;
   question?: string;
+  person?: string;
+  chatMessage?: string;
   concept?: string;
   testSubject?: string;
   tasks?: string[];
