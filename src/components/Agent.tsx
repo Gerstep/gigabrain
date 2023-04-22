@@ -24,6 +24,7 @@ class Agent {
   options?: string[] = [];
   answer?: string | undefined;
   person?: string;
+  chatMessage?: string;
   quiz?: Quiz = {
     question: "",
     answers: []
@@ -42,9 +43,9 @@ class Agent {
     this.sendMessage = addMessage;
   }
 
-  async discuss() {
-    const chatMessage = await this.getDiscuss();
-    this.sendAnswerMessage(chatMessage);
+  async discuss(person: string, chatMessage: string) {
+    const discussionMessage = await this.getDiscuss(person, chatMessage);
+    this.sendAnswerMessage(discussionMessage);
   }
 
   async start() {
@@ -156,10 +157,12 @@ class Agent {
     return res.data.answer as string;
   }
 
-  async getDiscuss() {
+  async getDiscuss(person, chatMessage) {
     const res = await axios.post(`/api/chat`, {
       subject: this.subject,
-      topic: this.topic
+      topic: this.topic,
+      person: person,
+      chatMessage: chatMessage,
     })
     return res.data.discussMessage as string;
   }

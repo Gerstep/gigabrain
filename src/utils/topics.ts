@@ -19,7 +19,7 @@ export const subjects = [
             type: "seminar"
           },
           {
-            title: "Discuss Bitcoin with Satoshi Nakamoto",
+            title: "Bitcoin blockchain and peer-to-peer cash",
             type: "discussion",
             person: "Satoshi Nakamoto",
           },

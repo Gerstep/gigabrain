@@ -32,15 +32,16 @@ const CourseOverview = ({ subjectId, agent, setMessages }) => {
                 <div className="step-progress-item" key={index}>
                   <UnderlineLink href="" className="font-bold" onClick={
                     () => {
-                      if (agent) {
-                        killAgent();
-
-                      }
+                      if (agent) { killAgent(); }
                       handleSetProgress(topic.title, topic.type)
                     }} >
                     {topic.title} &nbsp; <HiArrowRight />
                   </UnderlineLink>
-                  <div className={`rounded-lg h-6 mt-2 text-center opacity-70 hover:opacity-100 w-20 ${getTopicType(topic.type)}`}>{topic.type}</div>
+                  <div className={`rounded-lg h-fit mt-2 text-center opacity-70 hover:opacity-100 w-fit px-2 ${getTopicType(topic.type)}`}>
+                    {topic.type} {topic.type === 'discussion' && (
+                      <span>with {topic.person}</span>
+                    )}
+                  </div>
                 </div>
               ))}
             </>
@@ -58,9 +59,11 @@ const getTopicType = (type: string) => {
     case "lecture":
       return "bg-blue-300";
     case "laboratory":
-      return "bg-red-300";
+      return "bg-violet-300";
+    case "discussion":
+      return "bg-red-400";
     default:
-      return "bg-violet-400";
+      return "bg-gray-400";
   }
 }
 
