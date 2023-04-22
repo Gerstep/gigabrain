@@ -51,7 +51,7 @@ export default function About() {
             <BenefitBox
               icon={<MdOutlineSmartToy size={50} />}
               title="Knowledgeable"
-              description="Has access to most of the world's knowledge"
+              description="Has access to majority of the world's knowledge"
             />
             <BenefitBox
               icon={<MdWatchLater size={50} />}

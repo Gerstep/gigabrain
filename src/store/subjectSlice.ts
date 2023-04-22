@@ -11,6 +11,7 @@ const initialState = {
   topicTask: '',
   topicPerson: '',
   contextData: '',
+  definitions: []
 };
 
 const subjectSlice = createSlice({
@@ -32,6 +33,12 @@ const subjectSlice = createSlice({
     },
     setTask: (state, action) => {
       state.topicTask = action.payload.topicTask;
+    },
+
+    // Array of definitions
+    // Definition: {term: term, definition: definition}
+    setTask: (state, action) => {
+      state.definitions.push(action.payload.definition);
     },
     setContext: (state, action) => {
       if (action.payload.contextData === 'reset') {

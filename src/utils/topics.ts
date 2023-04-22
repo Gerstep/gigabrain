@@ -1,3 +1,43 @@
+/*
+To add:
+
+Product Management
+Product Marketing
+
+Political Philosophy
+Philosophy of science
+Epistemology
+
+English literature
+French literature
+Creative writing
+
+C++ programming
+Python programming
+Rust programming
+
+History of Buddhism
+History of Judaism
+
+Information theory
+Chaos theory
+
+Deep Learning
+SQL Fundamentals
+
+Classical mechanics
+Quantum physics
+Theory of relativity
+
+Chemistry
+
+Architecture
+Oceanology
+
+Dermatology
+
+*/
+
 export const subjects = [
   {
     id: 221,
@@ -5,6 +45,7 @@ export const subjects = [
     status: "open",
     type: "IT",
     version: 2,
+    isTop: true,
     description: "Learn blockchain engineering, marketing, product development and legal aspects of building decentralized financial systems.",
     categories: [
       {
@@ -15,22 +56,13 @@ export const subjects = [
             type: "lecture"
           },
           {
-            title: "Distributed ledger technology (DLT)",
-            type: "seminar"
-          },
-          {
-            title: "Bitcoin blockchain and peer-to-peer cash",
-            type: "discussion",
-            person: "Satoshi Nakamoto",
-          },
-          {
             title: "Consensus mechanisms",
             type: "lecture"
           },
           {
             title: "Consensus mechanisms",
             type: "laboratory",
-            task: "Write down at least four consensus mechanisms",
+            task: "Write down at least four consensus mechanisms. You need to describe their key features and differences.",
           },
           {
             title: "Types of tokens",
@@ -40,10 +72,6 @@ export const subjects = [
             title: "Blockchain types",
             type: "lecture"
           },
-          {
-            title: "Blockchain types",
-            type: "seminar"
-          }
         ],
       },
       {
@@ -54,16 +82,19 @@ export const subjects = [
             type: "lecture"
           },
           {
-            title: "Bitcoin as digital gold",
-            type: "seminar"
+            title: "Bitcoin blockchain",
+            type: "discussion",
+            person: "Satoshi Nakamoto",
+            personProfile: "",
           },
           {
             title: "Ethereum",
             type: "lecture"
           },
           {
-            title: "Building first smart contract",
-            type: "seminar"
+            title: "Ethereum blockchain",
+            type: "discussion",
+            person: "Vitalik Buterin",
           },
           {
             title: "Filecoin",
@@ -72,7 +103,253 @@ export const subjects = [
           {
             title: "Arweave",
             type: "lecture"
-          }
+          },
+        ],
+      },
+      {
+        category: "Smart contracts",
+        topics: [
+          {
+            title: "Smart contract security",
+            type: "lecture"
+          },
+          {
+            title: "Solidity programming",
+            type: "lecture"
+          },
+          {
+            title: "Solidity programming language",
+            type: "laboratory",
+            task: "Write a smart contract in Solidity that can manage a simple banking system.",
+          },
+          {
+            title: "Smart contract testing",
+            type: "laboratory",
+            task: "Write test cases for the smart contract that can manage a simple banking system.",
+          },
+          {
+            title: "Oracles",
+            type: "lecture"
+          },
+        ],
+      },
+      {
+        category: "Decentralized applications",
+        topics: [
+          {
+            title: "Decentralized finance (DeFi) applications",
+            type: "lecture"
+          },
+          {
+            title: "Non-fungible tokens (NFTs)",
+            type: "lecture"
+          },
+          {
+            title: "Decentralized identity",
+            type: "lecture"
+          },
+          {
+            title: "Decentralized social media",
+            type: "lecture"
+          },
+          {
+            title: "Decentralized marketplaces",
+            type: "lecture"
+          },
+        ],
+      },
+      {
+        category: "Blockchain deployment and management",
+        topics: [
+          {
+            title: "Blockchain deployment options",
+            type: "lecture"
+          },
+          {
+            title: "Node management",
+            type: "laboratory",
+            task: "Set up and configure a node for the Ethereum network.",
+          },
+          {
+            title: "Blockchain infrastructure management",
+            type: "lecture"
+          },
+          {
+            title: "Blockchain maintenance and upgrades",
+            type: "lecture"
+          },
+          {
+            title: "Legal and regulatory considerations",
+            type: "lecture"
+          },
+        ],
+      },
+    ]
+  },
+  {
+    id: 223,
+    name: "Product Management",
+    status: "open",
+    type: "Business",
+    version: 2,
+    isTop: true,
+    description: "The Product Management course teaches the fundamentals of product management, including defining product vision and strategy, conducting market research, creating and prioritizing product roadmaps, developing and launching products, measuring and optimizing product performance, and using product management tools and techniques. Students will learn how to apply these skills to drive product success in today's competitive market..",
+    categories: [
+      {
+        category: "Product strategy and roadmap",
+        topics: [
+          {
+            title: "Product management overview",
+            type: "lecture"
+          },
+          {
+            title: "Defining product vision and strategy",
+            type: "lecture"
+          },
+          {
+            title: "Market research and analysis",
+            type: "laboratory",
+            task: "Conduct market research and analysis for a product of your choice and present your findings.",
+          },
+          {
+            title: "Creating and prioritizing product roadmap",
+            type: "laboratory",
+            task: "Create a product roadmap for a product of your choice, including key milestones and prioritization.",
+          },
+        ],
+      },
+      {
+        category: "Product development and launch",
+        topics: [
+          {
+            title: "Product design and user experience",
+            type: "lecture"
+          },
+          {
+            title: "Product development process",
+            type: "lecture"
+          },
+          {
+            title: "Agile development methodologies",
+            type: "lecture"
+          },
+          {
+            title: "Minimum viable product (MVP) development",
+            type: "laboratory",
+            task: "Develop an MVP for a product of your choice and present your results.",
+          },
+          {
+            title: "Product launch and go-to-market strategy",
+            type: "lecture"
+          },
+        ],
+      },
+      {
+        category: "Product metrics and optimization",
+        topics: [
+          {
+            title: "Key performance indicators (KPIs) and metrics",
+            type: "lecture"
+          },
+          {
+            title: "Data-driven decision making",
+            type: "lecture"
+          },
+          {
+            title: "A/B testing and experimentation",
+            type: "laboratory",
+            task: "Conduct an A/B test for a feature of a product and present your findings.",
+          },
+          {
+            title: "Continuous product optimization",
+            type: "lecture"
+          },
+        ],
+      },
+      {
+        category: "Product management tools and techniques",
+        topics: [
+          {
+            title: "Product management software",
+            type: "lecture"
+          },
+          {
+            title: "Product management frameworks",
+            type: "lecture"
+          },
+          {
+            title: "Stakeholder management",
+            type: "lecture"
+          },
+          {
+            title: "Product management best practices",
+            type: "lecture"
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: 224,
+    name: "Product Marketing",
+    status: "open",
+    type: "Business",
+    version: 1,
+    isTop: false,
+    description: "The Product Marketing course teaches students how to effectively promote and sell products in today's competitive market. Topics covered include creating effective product positioning, understanding customer personas, developing go-to-market strategies, launching and promoting products, and measuring marketing performance.",
+    categories: [
+      {
+        category: "Product positioning and messaging",
+        topics: [
+          {
+            title: "Introduction to product marketing",
+            type: "lecture"
+          },
+          {
+            title: "Understanding customer personas",
+            type: "lecture"
+          },
+          {
+            title: "Creating effective product positioning",
+            type: "laboratory",
+            task: "Develop product positioning for a product of your choice based on customer research and present your findings.",
+          },
+        ],
+      },
+      {
+        category: "Go-to-market strategy",
+        topics: [
+          {
+            title: "Developing a go-to-market strategy",
+            type: "lecture"
+          },
+          {
+            title: "Product launch planning",
+            type: "lecture"
+          },
+          {
+            title: "Marketing channels and tactics",
+            type: "laboratory",
+            task: "Develop a go-to-market strategy and marketing plan for a new product launch and present your plan.",
+          },
+        ],
+      },
+      {
+        category: "Measuring marketing performance",
+        topics: [
+          {
+            title: "Key performance indicators (KPIs)",
+            type: "lecture"
+          },
+          {
+            title: "Marketing analytics",
+            type: "lecture"
+          },
+          {
+            title: "Reporting and optimization",
+            type: "laboratory",
+            task: "Set up and analyze marketing KPIs for a product campaign and present your findings with recommendations for optimization.",
+          },
         ],
       },
     ],

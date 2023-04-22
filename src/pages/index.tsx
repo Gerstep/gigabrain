@@ -94,22 +94,29 @@ export default function HomePage() {
             <h1 className='mt-4'>
               GigaBrain Academy
             </h1>
-            <p className='mt-2 text-sm text-gray-800'>
-              Select what you want to learn today
+            <div className='mt-6 font-medium text-2xl'> Top courses today</div>
+
+
+            {/* TOP COURSES */}
+
+
+            <p className='mt-2 text-2xl font-medium  text-gray-800'>
+              I want to learn
+              <select
+                value={selectedType}
+                onChange={(e) => setSelectedType(e.target.value)}
+                className=" mt-3 rounded-md font-medium underline-offset-4 decoration-dashed underline text-2xl border-0 border-gray-300 focus:border-green-500 focus:ring focus:ring-green-500 focus:ring-opacity-50 decoration-emerald-500 hover:text-emerald-500"
+              >
+                <option value="">Anything</option>
+                {[...new Set(subjects.map((subject) => subject.type))].map((type) => (
+                  <option key={type} value={type}>
+                    {type}
+                  </option>
+                ))}
+              </select>
             </p>
 
-            <select
-              value={selectedType}
-              onChange={(e) => setSelectedType(e.target.value)}
-              className="px-4 py-2 mt-3 rounded-md border-gray-300 focus:border-green-500 focus:ring focus:ring-green-500 focus:ring-opacity-50"
-            >
-              <option value="">All subjects</option>
-              {[...new Set(subjects.map((subject) => subject.type))].map((type) => (
-                <option key={type} value={type}>
-                  {type}
-                </option>
-              ))}
-            </select>
+
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 pt-6">
               {subjects
@@ -118,19 +125,26 @@ export default function HomePage() {
                   <div key={subject.id} class="h-28 relative cursor-pointer mb-5 m-2">
                     <div class="absolute inset-0 bg-emerald-300 opacity-25 rounded-lg shadow-2xl"></div>
                     <div class="absolute inset-0 transform hover:scale-90 transition duration-300">
-                      <div class="h-full w-full bg-emerald-200 rounded-lg shadow-xl" onClick={() => openModal(subject)}>
+                      <div class="h-full w-full bg-emerald-200 pt-10 rounded-lg shadow-xl" onClick={() => openModal(subject)}>
                         <span className='text-emerald-950 text-lg font-semibold z-30 mt-auto'>{subject.name}</span>
                       </div>
                     </div>
                   </div>
+
+
+
+
                 ))}
+
               <ButtonLink
                 variant="primary"
                 href=""
-                className="w-full h-24 bg-green-50 rounded-lg flex flex-col items-center justify-center text-black text-xl font-semibold cursor-pointer transform transition duration-300 ease-in-out hover:scale-110 m-2"
+                className="w-full h-28 bg-green-50 rounded-lg flex flex-col items-center justify-center text-black text-xl font-semibold cursor-pointer transform transition duration-300 ease-in-out hover:scale-110 m-2"
                 onClick={() => openCreatorModal()}>
                 <span className='text-emerald-950 text-lg z-30'>🛠 Create your own course</span>
               </ButtonLink>
+
+
             </div>
 
             {/* {isModalOpen && (
