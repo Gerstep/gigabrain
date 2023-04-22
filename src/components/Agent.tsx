@@ -157,7 +157,7 @@ class Agent {
     return res.data.answer as string;
   }
 
-  async getDiscuss(person, chatMessage) {
+  async getDiscuss(person: string, chatMessage: string) {
     const res = await axios.post(`/api/chat`, {
       subject: this.subject,
       topic: this.topic,
