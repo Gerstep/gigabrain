@@ -6,18 +6,26 @@ import { useDispatch } from "react-redux";
 
 import UnderlineLink from "@/components/links/UnderlineLink";
 
-import { setClassType, setContext, setProgress } from "@/store/subjectSlice";
+import { setClassType, setContext, setPerson, setProgress, setTask } from "@/store/subjectSlice";
 
 import { subjects } from '@/utils/topics';
 
 
-const CourseOverview = ({ subjectId, agent, setMessages }) => {
+const CourseOverview = ({ subjectId, agent }) => {
   const dispatch = useDispatch();
 
   const handleSetProgress = (topicTitle: string, topicType: string) => {
     dispatch(setProgress({ topicTitle: topicTitle }));
     dispatch(setContext({ contextData: 'reset' }));
     dispatch(setClassType({ classType: topicType }))
+  };
+
+  const handleSetPerson = (topicPerson: string) => {
+    dispatch(setPerson({ topicPerson: topicPerson }));
+  };
+
+  const handleSetTask = (topicTask: string) => {
+    dispatch(setTask({ topicTask: topicTask }));
   };
 
   return (
@@ -34,6 +42,8 @@ const CourseOverview = ({ subjectId, agent, setMessages }) => {
                     () => {
                       if (agent) { killAgent(); }
                       handleSetProgress(topic.title, topic.type)
+                      if (topic.person) { handleSetPerson(topic.person) }
+                      if (topic.task) { handleSetTask(topic.task) }
                     }} >
                     {topic.title} &nbsp; <HiArrowRight />
                   </UnderlineLink>

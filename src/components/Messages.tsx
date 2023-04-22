@@ -121,6 +121,8 @@ const getMessageEmoji = (message: Message) => {
       return "👓";
     case "test":
       return "👨🏻‍🏫"
+    case "user":
+      return "🧑‍🎓"
     case "answer":
       return "🧪";
     case "result":
@@ -140,6 +142,8 @@ const getMessagePrefix = (message: Message) => {
       return "Verifying your answer";
     case "answer":
       return "Info:";
+    case "user":
+      return "Your message:";
     case "test":
       return "Test yourself:";
     case "result":

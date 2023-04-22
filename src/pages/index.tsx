@@ -5,7 +5,6 @@ import router from 'next/router';
 import * as React from 'react';
 import { useDispatch } from 'react-redux';
 
-import Button from '@/components/buttons/Button';
 import Footer from '@/components/layout/Footer';
 import Layout from '@/components/layout/Layout';
 import ButtonLink from '@/components/links/ButtonLink';
@@ -27,12 +26,27 @@ export default function HomePage() {
 
   function openModal(subject: React.SetStateAction<null>) {
     setSelectedSubject(subject);
-    setIsModalOpen(true);
+    dispatch(
+      setSubject({
+        subjectId: subject.id,
+        subjectName: subject.name,
+      })
+    );
+    dispatch(
+      setProgress({
+        topicTitle: defaultTopic
+      }));
+    router.push('/learn');
   }
 
-  function closeModal() {
-    setIsModalOpen(false);
-  }
+  // function openModal(subject: React.SetStateAction<null>) {
+  //   setSelectedSubject(subject);
+  //   setIsModalOpen(true);
+  // }
+
+  // function closeModal() {
+  //   setIsModalOpen(false);
+  // }
 
   function openCreatorModal() {
     setIsCreatorModalOpen(true);
@@ -42,19 +56,19 @@ export default function HomePage() {
     setIsCreatorModalOpen(false);
   }
 
-  function setProficiencyAndProceed() {
-    dispatch(
-      setSubject({
-        subjectId: selectedSubject.id,
-        subjectName: selectedSubject.name,
-      })
-    );
-    dispatch(
-      setProgress({
-        topicTitle: defaultTopic
-      }));
-    router.push('/learn');
-  }
+  // function setProficiencyAndProceed() {
+  //   dispatch(
+  //     setSubject({
+  //       subjectId: selectedSubject.id,
+  //       subjectName: selectedSubject.name,
+  //     })
+  //   );
+  //   dispatch(
+  //     setProgress({
+  //       topicTitle: defaultTopic
+  //     }));
+  //   router.push('/learn');
+  // }
 
 
 
@@ -101,14 +115,11 @@ export default function HomePage() {
               {subjects
                 .filter((subject) => selectedType === '' || subject.type === selectedType)
                 .map((subject) => (
-
-                  <div key={subject.id}>
-                    <div class="h-24 flex flex-col relative cursor-pointer mb-5 m-2">
-                      <div class="absolute inset-0 bg-emerald-300 opacity-25 rounded-lg shadow-2xl"></div>
-                      <div class="absolute inset-0 transform hover:scale-75 transition duration-300 ">
-                        <div class="h-full w-full bg-emerald-300 rounded-lg shadow-xl  text-black text-xl font-semibold" onClick={() => openModal(subject)}>
-                          <span className='text-emerald-950 text-lg z-30'>{subject.name}</span>
-                        </div>
+                  <div key={subject.id} class="h-28 relative cursor-pointer mb-5 m-2">
+                    <div class="absolute inset-0 bg-emerald-300 opacity-25 rounded-lg shadow-2xl"></div>
+                    <div class="absolute inset-0 transform hover:scale-90 transition duration-300">
+                      <div class="h-full w-full bg-emerald-200 rounded-lg shadow-xl" onClick={() => openModal(subject)}>
+                        <span className='text-emerald-950 text-lg font-semibold z-30 mt-auto'>{subject.name}</span>
                       </div>
                     </div>
                   </div>
@@ -122,7 +133,7 @@ export default function HomePage() {
               </ButtonLink>
             </div>
 
-            {isModalOpen && (
+            {/* {isModalOpen && (
               <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50">
                 <div className="bg-white rounded-lg p-8 relative">
                   <div className="absolute top-1 right-1 cursor-pointer font-extrabold p-1 hover:bg-emerald-100" onClick={closeModal}>X</div>
@@ -140,7 +151,7 @@ export default function HomePage() {
                   </div>
                 </div>
               </div>
-            )}
+            )} */}
 
             {isCreatorModalOpen && (
               <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50">

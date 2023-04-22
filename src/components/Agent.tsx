@@ -2,7 +2,7 @@
 import axios from "axios";
 
 export interface Message {
-  type: "thinking" | "action" | "system" | "topic" | "test" | "answer" | "result" | "verifying";
+  type: "thinking" | "user" | "action" | "system" | "topic" | "test" | "answer" | "result" | "verifying";
   info?: string;
   options?: string[];
   value: string;
@@ -44,6 +44,7 @@ class Agent {
   }
 
   async discuss(person: string, chatMessage: string) {
+    this.sendUserChatMessage(chatMessage);
     this.sendThinkingMessage();
     const discussionMessage = await this.getDiscuss(person, chatMessage);
     this.sendAnswerMessage(discussionMessage);
@@ -222,6 +223,10 @@ class Agent {
 
   sendResultMessage(value: string) {
     this.sendMessage({ type: "result", value: value });
+  }
+
+  sendUserChatMessage(value: string) {
+    this.sendMessage({ type: "user", value: value });
   }
 
   sendSystemMessage(value: string) {

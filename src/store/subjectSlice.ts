@@ -8,6 +8,8 @@ const initialState = {
   classType: '',
   topicTitle: '',
   topic: '',
+  topicTask: '',
+  topicPerson: '',
   contextData: '',
 };
 
@@ -25,6 +27,12 @@ const subjectSlice = createSlice({
     setClassType: (state, action) => {
       state.classType = action.payload.classType;
     },
+    setPerson: (state, action) => {
+      state.topicPerson = action.payload.topicPerson;
+    },
+    setTask: (state, action) => {
+      state.topicTask = action.payload.topicTask;
+    },
     setContext: (state, action) => {
       if (action.payload.contextData === 'reset') {
         state.contextData = '';
@@ -35,5 +43,5 @@ const subjectSlice = createSlice({
   },
 });
 
-export const { setSubject, setProgress, setContext, setClassType } = subjectSlice.actions;
+export const { setSubject, setProgress, setContext, setClassType, setPerson, setTask } = subjectSlice.actions;
 export default subjectSlice.reducer;

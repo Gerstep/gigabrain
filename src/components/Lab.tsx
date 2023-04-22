@@ -13,17 +13,15 @@ import { RootState } from '@/store/store';
 
 const Discussion = () => {
   const [messages, setMessages] = React.useState<Message[]>([]);
-  const { subjectName, topicTitle } = useSelector((state: RootState) => state.subject);
+  const { subjectName, topicTitle, topicTask } = useSelector((state: RootState) => state.subject);
   const [inputValue, setInputValue] = React.useState('');
   const [agent, setAgent] = React.useState<Agent | null>(null);
 
-  const task = "who is Satoshi Nakamoto?who is Satoshi Nakamoto?who is Satoshi Nakamoto?who is Satoshi Nakamoto?who is Satoshi Nakamoto?who is Satoshi Nakamoto?who is Satoshi Nakamoto?who is Satoshi Nakamoto?who is Satoshi Nakamoto?who is Satoshi Nakamoto?";
   const currentTopic = topicTitle ? topicTitle : "No topic";
-
 
   const initialMessage = {
     type: "system",
-    value: "Your task: " + task
+    value: "This is you task: \n" + topicTask
   }
 
   const initialMessageTwo = {
@@ -48,14 +46,14 @@ const Discussion = () => {
     }
   };
 
-  const callAgent = (action: string, task: string, inputValue: string) => {
+  const callAgent = (action: string, topicTask: string, inputValue: string) => {
     const agent = new Agent(
       subjectName,
       currentTopic,
       action,
       handleAddMessage);
     setAgent(agent);
-    agent.verify(task, inputValue);
+    agent.verify(topicTask, inputValue);
   }
 
   const handleAddMessage = (message: Message) => {
@@ -77,7 +75,7 @@ const Discussion = () => {
 
             <button
               className="bg-emerald-500 hover:bg-emerald-600 text-white py-2 px-4 rounded-md mr-4 flex items-center"
-              onClick={() => { callAgent("verify", task, inputValue); setInputValue('') }}
+              onClick={() => { callAgent("verify", topicTask, inputValue); setInputValue('') }}
             >
               <FiSend />&nbsp;Send response
             </button>

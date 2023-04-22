@@ -13,11 +13,10 @@ import { RootState } from '@/store/store';
 
 const Discussion = () => {
   const [messages, setMessages] = React.useState<Message[]>([]);
-  const { subjectName, topicTitle } = useSelector((state: RootState) => state.subject);
+  const { subjectName, topicTitle, topicPerson } = useSelector((state: RootState) => state.subject);
   const [inputValue, setInputValue] = React.useState('');
   const [agent, setAgent] = React.useState<Agent | null>(null);
 
-  const person = "Satoshi Nakamoto";
   const currentTopic = topicTitle ? topicTitle : "No topic";
 
 
@@ -31,7 +30,7 @@ const Discussion = () => {
 
   const initialMessageTwo = {
     type: "system",
-    value: "This is a conversation with " + person + " about " + subjectName + " and " + topicTitle
+    value: "This is a conversation with " + topicPerson + " about " + subjectName + " and " + topicTitle
   }
 
 
@@ -58,7 +57,7 @@ const Discussion = () => {
       action,
       handleAddMessage);
     setAgent(agent);
-    agent.discuss(person, 'hey');
+    agent.discuss(topicPerson, 'hey');
   }
 
   const handleAddMessage = (message: Message) => {
@@ -77,7 +76,7 @@ const Discussion = () => {
           <div className="flex justify-center items-center w-full md:w-1/2 md:justify-start flex-1">
             <input type="text" placeholder="Ask any question here" className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-emerald-500 focus:border-emerald-500" value={inputValue} onChange={(e) => setInputValue(e.target.value)} onKeyUp={(e) => {
               if (e.key === "Enter" && agent) {
-                agent.discuss(person, inputValue);
+                agent.discuss(topicPerson, inputValue);
                 setInputValue("");
               }
             }} />
@@ -87,9 +86,9 @@ const Discussion = () => {
               <button
                 className="bg-emerald-500 hover:bg-emerald-600 text-white py-2 px-4 rounded-md mr-4 flex items-center"
                 disabled={!agent}
-                onClick={() => { agent.discuss(person, inputValue); setInputValue('') }}
+                onClick={() => { agent.discuss(topicPerson, inputValue); setInputValue('') }}
               >
-                <FiSend />&nbsp;Ask {person}
+                <FiSend />&nbsp;Ask {topicPerson}
               </button>
               {!agent && (<span class="group-hover:opacity-100 transition-opacity bg-emerald-700 px-1 text-sm text-gray-100 rounded-md absolute left-1/2 -translate-x-1/2 translate-y-full opacity-0 m-7 mx-auto w-48">Start the lesson first</span>)}
             </div>
