@@ -204,7 +204,7 @@ export default function Learn() {
                       Test Myself
 
                     </button>
-                    {contextData.length === 0 && (<span class="group-hover:opacity-100 transition-opacity bg-emerald-700 px-1 text-sm text-gray-100 rounded-md absolute left-1/2 -translate-x-1/2 translate-y-full opacity-0 m-2 mx-auto w-48">Complete at least one topic first</span>)}
+                    {contextData.length === 0 && (<span class="group-hover:opacity-100 transition-opacity bg-emerald-700 -px-1 text-sm text-gray-100 rounded-md absolute left-1/2 -translate-x-1/2 translate-y-full opacity-0 m-2 mx-auto w-30">Complete at least one topic first</span>)}
                   </div>
 
                 </div>

@@ -26,7 +26,7 @@ const Discussion = () => {
 
   const initialMessageTwo = {
     type: "system",
-    value: "This is a practical task. Complete the following assignment and receieve evaluation and feedback on your work."
+    value: "This is a practical task. Complete the following assignment to receieve evaluation and feedback on your work."
   }
 
 
