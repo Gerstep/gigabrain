@@ -94,11 +94,23 @@ export default function HomePage() {
             <h1 className='mt-4'>
               GigaBrain Academy
             </h1>
-            <div className='mt-6 font-medium text-2xl'> Top courses today</div>
+            <div className='mt-6 font-medium text-2xl'>Featured</div>
 
 
-            {/* TOP COURSES */}
-
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 pt-6">
+              {subjects
+                .filter((subject) => subject.isTop === true)
+                .map((subject) => (
+                  <div key={subject.id} class="h-18 relative cursor-pointer mb-5 m-2">
+                    <div class="absolute inset-0 bg-amber-300 opacity-25 rounded-lg shadow-2xl"></div>
+                    <div class="inset-0 transform hover:scale-90 transition duration-300">
+                      <div class="h-full w-full bg-amber-200 py-10 px-5 rounded-lg shadow-xl" onClick={() => openModal(subject)}>
+                        <span className='text-emerald-950 text-lg font-semibold z-30 mt-auto'>{subject.name}</span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+            </div>
 
             <p className='mt-2 text-2xl font-medium  text-gray-800'>
               I want to learn
@@ -130,10 +142,6 @@ export default function HomePage() {
                       </div>
                     </div>
                   </div>
-
-
-
-
                 ))}
 
               <ButtonLink

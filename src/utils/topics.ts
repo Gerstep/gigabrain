@@ -149,40 +149,74 @@ export const subjects = [
             type: "lecture"
           },
           {
-            title: "Decentralized social media",
-            type: "lecture"
+            title: "Decentralized identity and verifiable credentials",
+            type: "laboratory",
+            task: "Write a valid Verifiable Credential JSON",
           },
           {
-            title: "Decentralized marketplaces",
+            title: "Decentralized social media",
             type: "lecture"
-          },
+          }
         ],
       },
       {
-        category: "Blockchain deployment and management",
+        category: "Crypto Economics and Tokenomics",
         topics: [
           {
-            title: "Blockchain deployment options",
+            title: "Introduction to crypto economics",
             type: "lecture"
           },
           {
-            title: "Node management",
-            type: "laboratory",
-            task: "Set up and configure a node for the Ethereum network.",
-          },
-          {
-            title: "Blockchain infrastructure management",
+            title: "Tokenomics and token design",
             type: "lecture"
           },
           {
-            title: "Blockchain maintenance and upgrades",
+            title: "Economic models of popular blockchain networks",
             type: "lecture"
           },
           {
-            title: "Legal and regulatory considerations",
+            title: "Cryptocurrency valuation and market analysis",
+            type: "lecture"
+          }
+        ]
+      },
+      {
+        category: "Decentralized Autonomous Organizations",
+        topics: [
+          {
+            title: "Introduction to DAOs",
             type: "lecture"
           },
-        ],
+          {
+            title: "DAO governance and decision making",
+            type: "lecture"
+          },
+          {
+            title: "DAO security and attack vectors",
+            type: "lecture"
+          },
+          {
+            title: "Real-world examples of DAOs",
+            type: "lecture"
+          }
+        ]
+      },
+      {
+        category: "Crypto Regulation",
+        topics: [
+          {
+            title: "Overview of crypto regulations globally",
+            type: "lecture"
+          },
+          {
+            title: "Regulatory challenges for cryptocurrencies",
+            type: "lecture"
+          },
+          {
+            title: "Decentralized finance and regulatory compliance",
+            type: "lecture"
+          }
+        ]
       },
     ]
   },
@@ -236,7 +270,7 @@ export const subjects = [
           {
             title: "Minimum viable product (MVP) development",
             type: "laboratory",
-            task: "Develop an MVP for a product of your choice and present your results.",
+            task: "Develop a description for the MVP of a product of your choice and present your results.",
           },
           {
             title: "Product launch and go-to-market strategy",
@@ -361,10 +395,10 @@ export const subjects = [
     type: "Science",
     version: 2,
     description: "Mycology is the branch of biology concerned with the study of fungi, including their genetic and biochemical properties, their taxonomy and their use to humans, including as a source for tinder, traditional medicine, food, and entheogens, as well as their dangers, such as toxicity or infection.",
-    "categories": [
+    categories: [
       {
         category: "Introduction to Mycology",
-        "topics": [
+        topics: [
           {
             title: "Mycology History and Movements",
             type: "lecture"
@@ -383,7 +417,496 @@ export const subjects = [
           }
         ],
       },
+      {
+        category: "Fungal Ecology and Interaction",
+        topics: [
+          {
+            title: "Fungal Communities and Ecosystems",
+            type: "lecture"
+          },
+          {
+            title: "Symbiotic Relationships with Plants",
+            type: "lecture"
+          },
+          {
+            title: "Fungal Interactions with Animals and Humans",
+            type: "lecture"
+          },
+          {
+            title: "Laboratory Investigation of Fungal Interactions",
+            type: "laboratory",
+            task: "Perform tests to investigate the interactions between fungi and other organisms",
+          }
+        ],
+      },
+      {
+        category: "Fungal Diversity and Taxonomy",
+        topics: [
+          {
+            title: "Fungal Systematics and Phylogeny",
+            type: "lecture"
+          },
+          {
+            title: "Molecular Techniques for Fungal Identification",
+            type: "lecture"
+          },
+          {
+            title: "Classification of Fungi",
+            type: "lecture"
+          },
+          {
+            title: "Fungal Taxonomy and Nomenclature",
+            type: "lecture"
+          },
+          {
+            title: "Fungal Identification and Isolation",
+            type: "laboratory",
+            task: "Isolate and identify different species of fungi from samples",
+          }
+        ],
+      },
+      {
+        category: "Fungal Biotechnology and Applications",
+        topics: [
+          {
+            title: "Fungal Biotechnology",
+            type: "lecture"
+          },
+          {
+            title: "Fungi in Food and Beverages",
+            type: "lecture"
+          },
+          {
+            title: "Fungi in Agriculture and Industry",
+            type: "lecture"
+          },
+          {
+            title: "Fungi in Medicine and Biotechnology",
+            type: "lecture"
+          },
+          {
+            title: "Fungal Fermentation and Bioprocessing",
+            type: "laboratory",
+            task: "Perform experiments to demonstrate the use of fungi in fermentation and bioprocessing",
+          }
+        ],
+      }
     ],
+  },
+  {
+    id: 333,
+    name: "Political Philosophy",
+    status: "open",
+    type: "Humanities",
+    isTop: true,
+    version: 2,
+    description: "In this course, students will learn about the nature of political power, authority, and the various theories that underpin the rights and duties of citizens. They will also examine different forms of government and the ideal political systems, delving into the ideas that have shaped political philosophy throughout history.",
+    categories: [
+      {
+        category: "Introduction to Political Philosophy",
+        "topics": [
+          {
+            title: "The Concept of Political Power",
+            type: "lecture"
+          },
+          {
+            title: "The Social Contract Theory",
+            type: "lecture"
+          },
+          {
+            title: "The State of Nature",
+            type: "lecture"
+          },
+          {
+            title: "Essay on the State of Nature",
+            type: "laboratory",
+            task: "Write an essay discussing the concept of the state of nature in political philosophy and its implications for the formation of society and government.",
+          }
+        ],
+      },
+      {
+        category: "Major Political Philosophy Movements",
+        "topics": [
+          {
+            title: "Classical Liberalism",
+            type: "lecture"
+          },
+          {
+            title: "Classical Liberalism",
+            type: "discussion",
+            person: "John Locke",
+          },
+          {
+            title: "Communism and Socialism",
+            type: "lecture"
+          },
+          {
+            title: "Communism and Socialism",
+            type: "discussion",
+            person: "Karl Marx",
+          },
+          {
+            title: "Feminism",
+            type: "lecture"
+          },
+          {
+            title: "Essay on Feminism",
+            type: "laboratory",
+            task: "Write an essay discussing the main tenets of feminist political philosophy and their historical and contemporary implications for gender relations and social justice.",
+          }
+        ],
+      },
+      {
+        category: "Contemporary Issues in Political Philosophy",
+        topics: [
+          {
+            title: "Globalization and global justice",
+            type: "lecture"
+          },
+          {
+            title: "Democracy and its critics",
+            type: "lecture"
+          },
+          {
+            title: "Multiculturalism and identity politics",
+            type: "lecture"
+          },
+          {
+            title: "Environmental political philosophy",
+            type: "lecture"
+          },
+          {
+            title: "Human rights and responsibilities",
+            type: "lecture"
+          },
+          {
+            title: "Social and distributive justice",
+            type: "lecture"
+          },
+          {
+            title: "The ethics of war and intervention",
+            type: "lecture"
+          },
+          {
+            title: "Theories of punishment",
+            type: "lecture"
+          },
+          {
+            title: "The ethics of immigration",
+            type: "lecture"
+          }
+        ]
+      },
+      {
+        category: "Application of Political Philosophy",
+        topics: [
+          {
+            title: "Political philosophy in practice: Case studies",
+            type: "lecture"
+          },
+          {
+            title: "The political philosophy of Karl Marx",
+            type: "lecture"
+          },
+          {
+            title: "Feminist political activism and social change",
+            type: "lecture"
+          },
+          {
+            title: "Religion and politics",
+            type: "lecture"
+          },
+          {
+            title: "Political philosophy and public policy",
+            type: "laboratory",
+            task: "Analyze and critique a public policy from a political philosophical perspective"
+          },
+          {
+            title: "Political philosophy and human rights",
+            type: "laboratory",
+            task: "Write an essay on the relationship between political philosophy and human rights"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 444,
+    name: "Philosophy of Science",
+    status: "open",
+    type: "Humanities",
+    version: 1,
+    description: "In this course, students will examine the nature of science and scientific inquiry, exploring the various philosophical theories that underpin scientific practice. They will also learn about the history of science and its evolution, as well as contemporary debates in the field.",
+    categories: [
+      {
+        category: "Introduction to Philosophy of Science",
+        "topics": [
+          {
+            title: "What is Science?",
+            type: "lecture"
+          },
+          {
+            title: "Relation of knowledge and experience",
+            type: "discussion",
+            person: "Aristotle",
+          },
+          {
+            title: "The Scientific Method",
+            type: "lecture"
+          },
+          {
+            title: "The Demarcation Problem",
+            type: "lecture"
+          },
+          {
+            title: "Essay on the Scientific Method",
+            type: "laboratory",
+            task: "Write an essay discussing the scientific method and its role in the formation and validation of scientific theories. Explore its limitations and the ways in which it has been challenged throughout history.",
+          }
+        ],
+      },
+      {
+        category: "Theories of Scientific Inquiry",
+        "topics": [
+          {
+            title: "Positivism and Logical Empiricism",
+            type: "lecture"
+          },
+          {
+            title: "Falsificationism and Critical Rationalism",
+            type: "lecture"
+          },
+          {
+            title: "Constructivism and Social Constructivism",
+            type: "lecture"
+          },
+          {
+            title: "Essay on Constructivism and Social Constructivism",
+            type: "laboratory",
+            task: "Write an essay discussing the theories of constructivism and social constructivism in the philosophy of science. Explore how they challenge traditional notions of objectivity in science and how they account for the role of social and cultural factors in scientific practice.",
+          }
+        ],
+      },
+      {
+        category: "History of Science",
+        "topics": [
+          {
+            title: "Scientific Revolution",
+            type: "lecture"
+          },
+          {
+            title: "Enlightenment Science",
+            type: "lecture"
+          },
+          {
+            title: "19th Century Science",
+            type: "lecture"
+          },
+          {
+            title: "Essay on the Scientific Revolution",
+            type: "laboratory",
+            task: "Write an essay discussing the scientific revolution and its impact on the development of modern science. Explore the key figures and ideas that shaped this period, as well as its legacy in contemporary science.",
+          }
+        ],
+      }
+    ],
+  },
+  {
+    id: 441,
+    name: "Information Theory",
+    status: "open",
+    type: "Science",
+    version: 2,
+    description: "This course introduces students to the mathematical principles of information theory, which studies the quantification, storage, and communication of information. They will learn about entropy, data compression, error correction, and channel capacity, as well as their applications in computer science, electrical engineering, and other fields.",
+    categories: [
+      {
+        category: "Introduction to Information Theory",
+        topics: [
+          {
+            title: "Entropy and Information",
+            type: "lecture"
+          },
+          {
+            title: "Data Compression",
+            type: "lecture"
+          },
+          {
+            title: "Error Correction Codes",
+            type: "lecture"
+          },
+          {
+            title: "Channel Capacity",
+            type: "lecture"
+          },
+          {
+            title: "Essay on Entropy and Information",
+            type: "laboratory",
+            task: "Write an essay explaining the concept of entropy in information theory and how it relates to the amount of information carried by a message or signal. Discuss the role of entropy in data compression and transmission.",
+          },
+          {
+            title: "Essay on Error Correction Codes",
+            type: "laboratory",
+            task: "Write an essay explaining the principles of error correction codes and their applications in communication systems. Discuss the types of errors that can occur in data transmission and the methods used to detect and correct them.",
+          },
+        ],
+      },
+      {
+        category: "Advanced Topics in Information Theory",
+        topics: [
+          {
+            title: "Source Coding Theorem",
+            type: "lecture"
+          },
+          {
+            title: "Channel Coding Theorem",
+            type: "lecture"
+          },
+          {
+            title: "Shannon's Communication Model",
+            type: "lecture"
+          },
+          {
+            title: "Essay on Shannon's Communication Model",
+            type: "laboratory",
+            task: "Write an essay discussing Shannon's Communication Model and its significance in information theory. Analyze the elements of the model, including the source, transmitter, channel, receiver, and destination, and how they relate to the process of information transmission.",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: 555,
+    name: "Chaos Theory",
+    status: "open",
+    type: "Science",
+    version: 2,
+    description: "In this course, students will explore the fascinating world of chaos theory and the behavior of complex systems. They will learn about the principles of chaos theory, including the butterfly effect and sensitive dependence on initial conditions, and their applications in fields such as physics, biology, and economics.",
+    categories: [
+      {
+        category: "Introduction to Chaos Theory",
+        "topics": [
+          {
+            title: "The Principles of Chaos Theory",
+            type: "lecture"
+          },
+          {
+            title: "Deterministic vs. Stochastic Systems",
+            type: "lecture"
+          },
+          {
+            title: "The Butterfly Effect",
+            type: "lecture"
+          },
+          {
+            title: "Sensitive Dependence on Initial Conditions",
+            type: "lecture"
+          },
+          {
+            title: "Essay on the Butterfly Effect",
+            type: "laboratory",
+            task: "Write an essay discussing the butterfly effect and its significance in chaos theory. Explore its origins, its applications in various fields, and its implications for our understanding of complex systems and phenomena.",
+          }
+        ],
+      },
+      {
+        category: "Applications of Chaos Theory",
+        "topics": [
+          {
+            title: "Chaos in Physics",
+            type: "lecture"
+          },
+          {
+            title: "Chaos in Biology",
+            type: "lecture"
+          },
+          {
+            title: "Chaos in Economics",
+            type: "lecture"
+          },
+          {
+            title: "Essay on Applications of Chaos Theory",
+            type: "laboratory",
+            task: "Write an essay exploring the applications of chaos theory in one of the following fields: physics, biology, or economics. Discuss specific examples of chaotic behavior and their implications for our understanding of these systems.",
+          }
+        ],
+      },
+    ],
+  },
+  {
+    id: 666,
+    name: "Classical Mechanics",
+    status: "open",
+    type: "Science",
+    version: 1,
+    description: "In this course, students will explore the fundamental laws that govern the motion of objects in the physical world. They will learn about the principles of classical mechanics and their applications in solving real-world problems.",
+    categories: [
+      {
+        category: "Introduction to Classical Mechanics",
+        topics: [
+          {
+            title: "Kinematics",
+            type: "lecture"
+          },
+          {
+            title: "Newton's Laws",
+            type: "lecture"
+          },
+          {
+            title: "Energy and Work",
+            type: "lecture"
+          },
+          {
+            title: "Essay on Kinematics",
+            type: "laboratory",
+            task: "Write an essay discussing the principles of kinematics and their role in understanding the motion of objects in the physical world. Explore their applications in real-world scenarios and the ways in which they have been used to solve practical problems."
+          }
+        ]
+      },
+      {
+        category: "Dynamics and Applications",
+        topics: [
+          {
+            title: "Circular Motion",
+            type: "lecture"
+          },
+          {
+            title: "Oscillations",
+            type: "lecture"
+          },
+          {
+            title: "Gravitation",
+            type: "lecture"
+          },
+          {
+            title: "Essay on Gravitation",
+            type: "laboratory",
+            task: "Write an essay discussing the principles of gravitation and their role in understanding the motion of objects in the physical world. Explore their applications in real-world scenarios and the ways in which they have been used to solve practical problems."
+          }
+        ]
+      },
+      {
+        category: "Classical Mechanics in Action",
+        topics: [
+          {
+            title: "Projectile Motion",
+            type: "lecture"
+          },
+          {
+            title: "Collisions",
+            type: "lecture"
+          },
+          {
+            title: "Rotational Motion",
+            type: "lecture"
+          },
+          {
+            title: "Essay on Rotational Motion",
+            type: "laboratory",
+            task: "Write an essay discussing the principles of rotational motion and their role in understanding the motion of objects in the physical world. Explore their applications in real-world scenarios and the ways in which they have been used to solve practical problems."
+          }
+        ]
+      }
+    ]
   },
 ]
 
