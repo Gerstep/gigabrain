@@ -164,7 +164,7 @@ const CourseCard = ({ subject, openModal, color }) => {
       case "featured":
         return "amber";
       case "normal":
-        return "emerald";
+        return "primary";
       default:
         return "gray";
     }
