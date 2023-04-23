@@ -114,15 +114,15 @@ export default function Learn() {
     }
   }, [subjectName, router]);
 
+
   const killAgent = () => {
     if (agent) {
       setAgent(null);
-      setMessages();
+      setMessages([]);
     }
   };
 
   const callAgent = (action: string) => {
-    console.log('ACTION ::: ' + action)
     const agent = new Agent(
       subjectName,
       currentTopic,

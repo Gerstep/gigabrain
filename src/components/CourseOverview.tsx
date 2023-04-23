@@ -12,7 +12,7 @@ import { setClassType, setContext, setPerson, setProgress, setTask } from "@/sto
 import { subjects } from '@/utils/topics';
 
 
-const CourseOverview = ({ subjectId, agent }) => {
+const CourseOverview = ({ subjectId, agent, killAgent }) => {
   const dispatch = useDispatch();
 
   const handleSetProgress = (topicTitle: string, topicType: string) => {
@@ -41,7 +41,7 @@ const CourseOverview = ({ subjectId, agent }) => {
                 <div className="step-progress-item" key={index}>
                   <UnderlineLink href="" className="font-bold" onClick={
                     () => {
-                      if (agent) { killAgent(); }
+                      killAgent();
                       handleSetProgress(topic.title, topic.type)
                       if (topic.person) { handleSetPerson(topic.person) }
                       if (topic.task) { handleSetTask(topic.task) }

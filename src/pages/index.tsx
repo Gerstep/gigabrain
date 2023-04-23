@@ -64,7 +64,7 @@ export default function HomePage() {
                 height={360}
               />
             </div>
-            <div className='absolute text-emerald-200 top-10 left-0 right-0 bottom-0 flex items-center justify-center mt-4 text-4xl font-bold'>
+            <div className='absolute text-emerald-200 mt-12 top-80 left-30 right-30 bottom-80 flex items-center justify-center text-4xl font-bold'>
               Gigabrain Academy
             </div>
             <div className='mt-6 font-medium text-2xl'>Featured</div>

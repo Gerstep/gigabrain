@@ -83,7 +83,7 @@ export const startVerifyAgent = async (model: OpenAI, task: string, inputValue: 
 
 const quizPrompt = new PromptTemplate({
   template:
-    "Create a single quizz question with four potential answers for the following material: `{testSubject}`. You need to offer 4 quizz answers to this question out of which exactly one will be correct. You need to mark correct answer with (correct) tag.\n{format_instructions}",
+    "Create a single quizz question with four potential answers for the following material: `{testSubject}`. You need to offer 4 quizz answers to this question out of which exactly one will be correct. You need to mark correct answer with (correct) tag at the end of the answer.\n{format_instructions}",
   inputVariables: ["testSubject"],
   partialVariables: {
     format_instructions: quizParser.getFormatInstructions(),

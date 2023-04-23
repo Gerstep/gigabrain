@@ -2,7 +2,7 @@
 import axios from "axios";
 
 export interface Message {
-  type: "thinking" | "user" | "action" | "system" | "topic" | "test" | "answer" | "result" | "verifying";
+  type: "thinking" | "animated_thinking" | "user" | "action" | "system" | "topic" | "test" | "answer" | "result" | "verifying";
   info?: string;
   options?: string[];
   value: string;
@@ -51,7 +51,7 @@ class Agent {
   }
 
   async start() {
-    this.sendThinkingMessage();
+    this.sendAThinkingMessage();
 
     const initExplain = "why this topic is important";
     const explanation = await this.getExplanation(initExplain);
@@ -235,6 +235,9 @@ class Agent {
 
   sendThinkingMessage() {
     this.sendMessage({ type: "thinking", value: "" });
+  }
+  sendAThinkingMessage() {
+    this.sendMessage({ type: "animated_thinking", value: "" });
   }
 
   sendVerifyingMessage() {

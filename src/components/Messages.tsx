@@ -117,6 +117,8 @@ const getMessageEmoji = (message: Message) => {
       return "🧠";
     case "thinking":
       return "🤔";
+    case "animated_thinking":
+      return "🤔";
     case "verifying":
       return "👓";
     case "test":
@@ -138,6 +140,8 @@ const getMessagePrefix = (message: Message) => {
       return "";
     case "thinking":
       return "Working on it...";
+    case "animated_thinking":
+      return "One sec...";
     case "verifying":
       return "Verifying your answer";
     case "answer":
