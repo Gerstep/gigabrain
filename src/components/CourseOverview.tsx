@@ -1,6 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
 /* eslint-disable no-console */
+import Image from "next/image";
 import { HiArrowRight } from "react-icons/hi";
 import { useDispatch } from "react-redux";
 
@@ -56,6 +57,11 @@ const CourseOverview = ({ subjectId, agent }) => {
               ))}
             </>
           ))}
+          <div className="text-xl font-semibold py-7">
+            <span className="pl-24">Congrats!</span>
+
+            <Image src='/images/chest2.png' alt='' width={300} height={300} />
+          </div>
         </div>
       </div >
     </div >

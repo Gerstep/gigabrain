@@ -852,6 +852,11 @@ export const subjects = [
             type: "lecture"
           },
           {
+            title: "Classical mechanics",
+            type: "discussion",
+            person: "Sir Isaac Newton"
+          },
+          {
             title: "Energy and Work",
             type: "lecture"
           },
