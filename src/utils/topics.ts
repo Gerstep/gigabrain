@@ -908,6 +908,94 @@ export const subjects = [
       }
     ]
   },
+  {
+    id: 667,
+    name: "Poker",
+    status: "open",
+    type: "Life Skills",
+    version: 2,
+    description: "In this course, students will learn the game of poker, including its history, rules, and strategies. They will develop critical thinking and decision-making skills as they navigate different types of poker games, including Texas Hold'em, Omaha, and Seven-Card Stud.",
+    categories: [
+      {
+        category: "Introduction to Poker",
+        "topics": [
+          {
+            title: "The History of Poker",
+            type: "lecture"
+          },
+          {
+            title: "The Rules of Poker",
+            type: "lecture"
+          },
+          {
+            title: "The Ranking of Hands",
+            type: "lecture"
+          },
+          {
+            title: "Types of Poker Games",
+            type: "lecture"
+          },
+          {
+            title: "Essay on the History of Poker",
+            type: "laboratory",
+            task: "Write an essay discussing the origins and evolution of poker. Explore the different cultural influences and how the game has changed over time.",
+          }
+        ],
+      },
+      {
+        category: "Poker Strategies",
+        "topics": [
+          {
+            title: "Basic Poker Strategies",
+            type: "lecture"
+          },
+          {
+            title: "Advanced Poker Strategies",
+            type: "lecture"
+          },
+          {
+            title: "Reading Your Opponents",
+            type: "lecture"
+          },
+          {
+            title: "Bluffing and Tells",
+            type: "lecture"
+          },
+          {
+            title: "Essay on Poker Strategies",
+            type: "laboratory",
+            task: "Write an essay discussing different poker strategies and their effectiveness in different game situations. Analyze the importance of reading opponents and the role of bluffing and tells in the game.",
+          }
+        ],
+      },
+      {
+        category: "Poker Tournaments",
+        "topics": [
+          {
+            title: "Preparing for a Poker Tournament",
+            type: "lecture"
+          },
+          {
+            title: "The Mindset of a Tournament Player",
+            type: "lecture"
+          },
+          {
+            title: "Advanced Tournament Strategies",
+            type: "lecture"
+          },
+          {
+            title: "Poker Etiquette",
+            type: "lecture"
+          },
+          {
+            title: "Essay on Poker Tournaments",
+            type: "laboratory",
+            task: "Write an essay discussing poker tournaments, including the preparation and mindset needed to succeed in these high-pressure environments. Analyze different strategies for tournament play and explore the importance of poker etiquette in these settings.",
+          }
+        ],
+      }
+    ],
+  }
 ]
 
 export const oldSubjects = [
