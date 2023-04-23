@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 
 import { setProgress, setSubject } from '@/store/subjectSlice';
 
-function ShareLinkButton({ subjectId, subjectName, topicTitle }) {
+function ShareLinkButton({ subjectId, subjectName, topicTitle }: { subjectId: number, subjectName: string, topicTitle: string }) {
   const handleShareClick = () => {
     const queryParams = queryString.stringify({
       subjectId,
