@@ -39,7 +39,7 @@ export default function About() {
 
       <div className="">
         <div className="py-14 text-center bg-emerald-500 text-white">
-          <p className="text-4xl mb-8"><Link href="/">GigaBrain</Link></p>
+          <p className="text-4xl mb-8"><Link href="/">Gigabrain</Link></p>
           <p className="text-2xl font leading-relaxed">
             Personalized university:
             <b> any subject, any language, anywhere, for free.</b>

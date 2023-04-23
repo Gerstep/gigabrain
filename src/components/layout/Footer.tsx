@@ -6,7 +6,7 @@ import UnderlineLink from "@/components/links/UnderlineLink";
 export default function Footer() {
   return (
     <footer className='bg-white  pt-5 w-full text-center py-4 bottom-0 left-0  text-gray-700'>
-      © {new Date().getFullYear()} GigaBrain Academy
+      © {new Date().getFullYear()} Gigabrain Academy
       <div className="pt-2">
         <UnderlineLink href="/"> Home</UnderlineLink>
         &nbsp; | &nbsp;

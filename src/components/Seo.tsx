@@ -3,8 +3,8 @@ import { useRouter } from 'next/router';
 import Script from 'next/script'
 
 const defaultMeta = {
-  title: 'GigaBrain Academy',
-  siteName: 'GigaBrain Academy',
+  title: 'Gigabrain Academy',
+  siteName: 'Gigabrain Academy',
   description:
     'Personalized university: learn anything, anywhere, for free.',
   /** Without additional '/' on the end, e.g. https://theodorusclarence.com */

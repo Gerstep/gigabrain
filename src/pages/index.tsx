@@ -55,18 +55,18 @@ export default function HomePage() {
           <div className='text-black px-4 py-2 flex justify-end'>
             <LoginButton />
           </div>
-          <div className='layout relative flex min-h-screen flex-col items-center justify-center py-12 text-center'>
-            <div className='rounded-full overflow-hidden'>
+          <div className='layout flex min-h-screen flex-col items-center justify-center text-center'>
+            <div className='rounded-lg overflow-hidden relative'>
               <Image
                 src="/images/gigabrain.png"
                 alt="My image"
-                width={350}
-                height={350}
+                width={360}
+                height={360}
               />
             </div>
-            <h1 className='mt-4'>
-              GigaBrain Academy
-            </h1>
+            <div className='absolute text-emerald-200 top-10 left-0 right-0 bottom-0 flex items-center justify-center mt-4 text-4xl font-bold'>
+              Gigabrain Academy
+            </div>
             <div className='mt-6 font-medium text-2xl'>Featured</div>
 
 
