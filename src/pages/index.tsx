@@ -16,7 +16,6 @@ import { setProgress, setSubject } from '@/store/subjectSlice';
 import { subjects } from '@/utils/topics';
 
 export default function HomePage() {
-  const [isModalOpen, setIsModalOpen] = React.useState(false);
   const [isCreatorModalOpen, setIsCreatorModalOpen] = React.useState(false);
   const [selectedType, setSelectedType] = React.useState('');
 
@@ -39,15 +38,6 @@ export default function HomePage() {
     router.push('/learn');
   }
 
-  // function openModal(subject: React.SetStateAction<null>) {
-  //   setSelectedSubject(subject);
-  //   setIsModalOpen(true);
-  // }
-
-  // function closeModal() {
-  //   setIsModalOpen(false);
-  // }
-
   function openCreatorModal() {
     setIsCreatorModalOpen(true);
   }
@@ -56,25 +46,8 @@ export default function HomePage() {
     setIsCreatorModalOpen(false);
   }
 
-  // function setProficiencyAndProceed() {
-  //   dispatch(
-  //     setSubject({
-  //       subjectId: selectedSubject.id,
-  //       subjectName: selectedSubject.name,
-  //     })
-  //   );
-  //   dispatch(
-  //     setProgress({
-  //       topicTitle: defaultTopic
-  //     }));
-  //   router.push('/learn');
-  // }
-
-
-
   return (
     <Layout>
-      {/* <Seo templateTitle='Home' /> */}
       <Seo />
 
       <main>
@@ -101,14 +74,9 @@ export default function HomePage() {
               {subjects
                 .filter((subject) => subject.isTop === true)
                 .map((subject) => (
-                  <div key={subject.id} class="h-18 relative cursor-pointer mb-5 m-2">
-                    <div class="absolute inset-0 bg-amber-300 opacity-25 rounded-lg shadow-2xl"></div>
-                    <div class="inset-0 transform hover:scale-90 transition duration-300">
-                      <div class="h-full w-full bg-amber-200 py-10 px-5 rounded-lg shadow-xl" onClick={() => openModal(subject)}>
-                        <span className='text-emerald-950 text-lg font-semibold z-30 mt-auto'>{subject.name}</span>
-                      </div>
-                    </div>
-                  </div>
+                  <>
+                    <CourseCard subject={subject} openModal={openModal} color="featured" />
+                  </>
                 ))}
             </div>
 
@@ -128,20 +96,13 @@ export default function HomePage() {
               </select>
             </p>
 
-
-
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 pt-6">
               {subjects
                 .filter((subject) => selectedType === '' || subject.type === selectedType)
                 .map((subject) => (
-                  <div key={subject.id} class="h-28 relative cursor-pointer mb-5 m-2">
-                    <div class="absolute inset-0 bg-emerald-300 opacity-25 rounded-lg shadow-2xl"></div>
-                    <div class="absolute inset-0 transform hover:scale-90 transition duration-300">
-                      <div class="h-full w-full bg-emerald-200 pt-10 rounded-lg shadow-xl" onClick={() => openModal(subject)}>
-                        <span className='text-emerald-950 text-lg font-semibold z-30 mt-auto'>{subject.name}</span>
-                      </div>
-                    </div>
-                  </div>
+                  <>
+                    <CourseCard subject={subject} openModal={openModal} color="normal" />
+                  </>
                 ))}
 
               <ButtonLink
@@ -151,29 +112,7 @@ export default function HomePage() {
                 onClick={() => openCreatorModal()}>
                 <span className='text-emerald-950 text-lg z-30'>🛠 Create your own course</span>
               </ButtonLink>
-
-
             </div>
-
-            {/* {isModalOpen && (
-              <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50">
-                <div className="bg-white rounded-lg p-8 relative">
-                  <div className="absolute top-1 right-1 cursor-pointer font-extrabold p-1 hover:bg-emerald-100" onClick={closeModal}>X</div>
-                  <h2 className="text-2xl font-bold mb-4">
-                    You are about to start {selectedSubject?.name} course
-                  </h2>
-                  <div className='mb-5'>{selectedSubject?.description}</div>
-                  <div className="justify-center">
-                    <Button
-                      onClick={() => setProficiencyAndProceed('beginner')}
-                      className="bg-green-500 text-white px-8 py-2 rounded-lg m-2 h-12 text-lg w-fit hover:bg-yellow-500 transition-colors duration-500 ease-in-out"
-                    >
-                      Begin!
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            )} */}
 
             {isCreatorModalOpen && (
               <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50">
@@ -219,10 +158,28 @@ export default function HomePage() {
   );
 }
 
-/* <ButtonLink
-  variant="primary"
-  href=""
-  className="w-full h-24 bg-green-200 rounded-lg flex flex-col items-center justify-center text-black text-xl font-semibold cursor-pointer transform transition duration-300 ease-in-out hover:scale-110 m-2"
-  onClick={() => openModal(subject)}>
-  <span className='text-emerald-950 text-lg z-30'>{subject.name}</span>
-</ButtonLink> */
+const CourseCard = ({ subject, openModal, color }) => {
+  const getColor = (color) => {
+    switch (color) {
+      case "featured":
+        return "amber";
+      case "normal":
+        return "emerald";
+      default:
+        return "gray";
+    }
+  }
+
+  return (
+    <div key={subject.id} className="h-18 relative cursor-pointer mb-5 m-2">
+      <div className={`absolute inset-0 bg-${getColor(color)}-300 opacity-25 rounded-lg shadow-2xl`}></div>
+      <div className="inset-0 transform hover:scale-90 transition duration-300">
+        <div className={`h-full w-full bg-${getColor(color)}-200 py-10 px-5 rounded-lg shadow-xl`} onClick={() => openModal(subject)}>
+          <span className='text-emerald-950 text-lg font-semibold z-30 mt-auto'>{subject.name}</span>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export { CourseCard };
