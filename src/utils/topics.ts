@@ -1,43 +1,3 @@
-/*
-To add:
-
-Product Management
-Product Marketing
-
-Political Philosophy
-Philosophy of science
-Epistemology
-
-English literature
-French literature
-Creative writing
-
-C++ programming
-Python programming
-Rust programming
-
-History of Buddhism
-History of Judaism
-
-Information theory
-Chaos theory
-
-Deep Learning
-SQL Fundamentals
-
-Classical mechanics
-Quantum physics
-Theory of relativity
-
-Chemistry
-
-Architecture
-Oceanology
-
-Dermatology
-
-*/
-
 export const subjects = [
   {
     id: 221,
@@ -221,12 +181,113 @@ export const subjects = [
     ]
   },
   {
+    id: 201,
+    name: "Beat Generation Literature",
+    status: "open",
+    type: "Humanities",
+    version: 1,
+    isTop: true,
+    description: "Explore the literary and cultural movement of the Beat Generation, and its impact on literature, art, and society.",
+    categories: [
+      {
+        category: "Introduction to the Beat Generation",
+        topics: [
+          {
+            title: "What is the Beat Generation?",
+            type: "lecture"
+          },
+          {
+            title: "Historical and cultural context",
+            type: "lecture"
+          },
+          {
+            title: "Key figures and their works",
+            type: "lecture"
+          },
+          {
+            title: "Influences and legacy",
+            type: "lecture"
+          },
+        ],
+      },
+      {
+        category: "Beat Poetry and Prose",
+        topics: [
+          {
+            title: "Beat Poetry",
+            type: "lecture"
+          },
+          {
+            title: "Beat Prose",
+            type: "lecture"
+          },
+          {
+            title: "Analysis of key works",
+            type: "discussion",
+            person: "Allen Ginsberg",
+          },
+          {
+            title: "Experimentation with language and form",
+            type: "lecture"
+          },
+          {
+            title: "Spontaneous prose",
+            type: "discussion",
+            person: "Jack Kerouac",
+          },
+        ],
+      },
+      {
+        category: "Themes and Motifs",
+        topics: [
+          {
+            title: "Non-conformity and anti-establishment",
+            type: "lecture"
+          },
+          {
+            title: "Spirituality and mysticism",
+            type: "lecture"
+          },
+          {
+            title: "Sexuality and gender",
+            type: "lecture"
+          },
+          {
+            title: "Travel and exploration",
+            type: "lecture"
+          },
+        ],
+      },
+      {
+        category: "Impact on Society and Culture",
+        topics: [
+          {
+            title: "The Beat Movement and Counterculture",
+            type: "lecture"
+          },
+          {
+            title: "Visual art and film",
+            type: "lecture"
+          },
+          {
+            title: "Influence on later writers and artists",
+            type: "lecture"
+          },
+          {
+            title: "Contemporary relevance and critique",
+            type: "lecture"
+          },
+        ],
+      },
+    ],
+  },
+  {
     id: 223,
     name: "Product Management",
     status: "open",
     type: "Business",
     version: 2,
-    isTop: true,
+    isTop: false,
     description: "The Product Management course teaches the fundamentals of product management, including defining product vision and strategy, conducting market research, creating and prioritizing product roadmaps, developing and launching products, measuring and optimizing product performance, and using product management tools and techniques. Students will learn how to apply these skills to drive product success in today's competitive market..",
     categories: [
       {
