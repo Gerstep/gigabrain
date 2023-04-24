@@ -62,7 +62,7 @@ export default function Seo(props: SeoProps) {
         <meta name='twitter:site' content='@sgershuni' />
         <meta name='twitter:title' content={meta.title} />
         <meta name='twitter:description' content={meta.description} />
-        <meta name='twitter:image' content={meta.image} />
+        <meta name='twitter:image' content='https://gigabrain.vercel.app/images/gigabrain-og.png' />
         {meta.date && (
           <>
             <meta property='article:published_time' content={meta.date} />
