@@ -56,7 +56,7 @@ class Agent {
     const initExplain = "why this topic is important";
     const explanation = await this.getExplanation(initExplain);
     this.sendAnswerMessage(explanation);
-    this.sendSystemMessage("Here's a few starting questions for you to start learning " + this.topic)
+    this.sendSystemMessage("Here's a few questions for you to start learning " + this.topic)
 
     try {
       this.tasks = await this.getInitialTask();
