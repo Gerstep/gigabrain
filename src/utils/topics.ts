@@ -1028,6 +1028,11 @@ export const subjects = [
             type: "lecture"
           },
           {
+            title: "Bluffing",
+            type: "discussion",
+            person: "Daniel Negreanu",
+          },
+          {
             title: "Essay on Poker Strategies",
             type: "laboratory",
             task: "Write an essay discussing different poker strategies and their effectiveness in different game situations. Analyze the importance of reading opponents and the role of bluffing and tells in the game.",
@@ -1042,8 +1047,9 @@ export const subjects = [
             type: "lecture"
           },
           {
-            title: "The Mindset of a Tournament Player",
-            type: "lecture"
+            title: "The Mindset of a Poker Tournament Player",
+            type: "discussion",
+            person: "Phil Ivey"
           },
           {
             title: "Advanced Tournament Strategies",
